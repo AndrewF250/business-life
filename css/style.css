@@ -709,7 +709,7 @@ a:focus {
   background-color: var(--bg-main);
 }
 
-/* Анимированный фон hero */
+/* Анимированный фон hero — плавная CSS-анимация */
 .hero__animated-bg {
   position: absolute;
   top: 0;
@@ -718,39 +718,62 @@ a:focus {
   height: 100%;
   z-index: 1;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .hero__animated-bg .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), background 1.5s ease;
+  filter: blur(80px);
   will-change: transform;
+  opacity: 0.6;
 }
 
 .hero__animated-bg .blob-1 {
-  width: 600px;
-  height: 600px;
-  top: -200px;
-  right: -200px;
-  background: radial-gradient(circle, rgba(184, 154, 122, 0.4) 0%, transparent 70%);
+  width: 500px;
+  height: 500px;
+  top: -10%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(184, 154, 122, 0.35) 0%, transparent 70%);
+  animation: blobFloat1 18s ease-in-out infinite;
 }
 
 .hero__animated-bg .blob-2 {
-  width: 500px;
-  height: 500px;
-  bottom: -150px;
-  left: -150px;
-  background: radial-gradient(circle, rgba(216, 197, 179, 0.45) 0%, transparent 70%);
+  width: 450px;
+  height: 450px;
+  bottom: -10%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(216, 197, 179, 0.35) 0%, transparent 70%);
+  animation: blobFloat2 22s ease-in-out infinite;
 }
 
 .hero__animated-bg .blob-3 {
-  width: 400px;
-  height: 400px;
-  top: 40%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(circle, rgba(184, 154, 122, 0.35) 0%, transparent 70%);
+  width: 350px;
+  height: 350px;
+  top: 35%;
+  left: 35%;
+  background: radial-gradient(circle, rgba(184, 154, 122, 0.25) 0%, transparent 70%);
+  animation: blobFloat3 20s ease-in-out infinite;
+}
+
+@keyframes blobFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(-40px, 30px) scale(1.05); }
+  50% { transform: translate(20px, -20px) scale(0.95); }
+  75% { transform: translate(-20px, -40px) scale(1.02); }
+}
+
+@keyframes blobFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -40px) scale(1.03); }
+  50% { transform: translate(-30px, 20px) scale(0.97); }
+  75% { transform: translate(40px, 30px) scale(1.04); }
+}
+
+@keyframes blobFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, -30px) scale(1.06); }
+  66% { transform: translate(-40px, 40px) scale(0.94); }
 }
 
 /* Тёмная тема — яркие блобы */
@@ -759,15 +782,15 @@ a:focus {
 }
 
 [data-theme="dark"] .hero__animated-bg .blob-1 {
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.25) 0%, transparent 70%);
-}
-
-[data-theme="dark"] .hero__animated-bg .blob-2 {
   background: radial-gradient(circle, rgba(201, 169, 110, 0.2) 0%, transparent 70%);
 }
 
-[data-theme="dark"] .hero__animated-bg .blob-3 {
+[data-theme="dark"] .hero__animated-bg .blob-2 {
   background: radial-gradient(circle, rgba(201, 169, 110, 0.15) 0%, transparent 70%);
+}
+
+[data-theme="dark"] .hero__animated-bg .blob-3 {
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.12) 0%, transparent 70%);
 }
 
 .hero__bg {
@@ -1965,6 +1988,10 @@ a:focus {
   z-index: 1;
   max-width: 700px;
   margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cta-section__label {
@@ -1983,6 +2010,7 @@ a:focus {
   margin-bottom: var(--space-lg);
   position: relative;
   z-index: 1;
+  text-align: center;
 }
 
 .cta-section p {
@@ -1991,6 +2019,8 @@ a:focus {
   margin-bottom: var(--space-2xl);
   position: relative;
   z-index: 1;
+  text-align: center;
+  max-width: 550px;
 }
 
 .cta-section__buttons {
@@ -3258,6 +3288,13 @@ a:focus {
     gap: var(--space-sm);
   }
 
+  /* Последний нечётный элемент — по центру */
+  .stats__item:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 200px;
+  }
+
   .stats__item {
     padding: var(--space-sm) var(--space-xs);
     min-height: 70px;
@@ -3473,15 +3510,7 @@ a:focus {
   animation-play-state: running;
 }
 
-/* Градиентная анимация для CTA */
-.cta-section h2 {
-  background: linear-gradient(90deg, var(--color-graphite), var(--color-accent-dark), var(--color-graphite));
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 3s ease infinite;
-}
+/* Градиентная анимация для CTA — убрана для чистоты */
 
 /* Плавающие декоративные элементы */
 .hero__decor {

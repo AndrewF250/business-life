@@ -694,56 +694,10 @@ function debounce(func, wait) {
 }
 
 /* ========================================
-   Анимированный фон hero — движение мыши
+   Анимированный фон hero — плавная CSS-анимация
    ======================================== */
 function initHeroAnimatedBg() {
-  const hero = document.querySelector('.hero');
-  const bg = document.querySelector('.hero__animated-bg');
-  if (!hero || !bg) return;
-  
-  const blobs = bg.querySelectorAll('.blob');
-  if (blobs.length === 0) return;
-  
-  // Цвета палитры для смены
-  var colors = [
-    'rgba(184, 154, 122, 0.15)',  // accent
-    'rgba(216, 197, 179, 0.2)',   // sand
-    'rgba(237, 229, 219, 0.25)',  // sand-light
-    'rgba(201, 169, 110, 0.12)',  // gold
-    'rgba(160, 133, 104, 0.18)'  // accent-hover
-  ];
-  
-  var colorIndex = 0;
-  
-  hero.addEventListener('mousemove', function(e) {
-    var rect = hero.getBoundingClientRect();
-    var x = (e.clientX - rect.left) / rect.width;
-    var y = (e.clientY - rect.top) / rect.height;
-    
-    // Двигаем блобы в зависимости от позиции мыши
-    blobs.forEach(function(blob, i) {
-      var speed = (i + 1) * 15;
-      var moveX = (x - 0.5) * speed;
-      var moveY = (y - 0.5) * speed;
-      blob.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px)';
-    });
-    
-    // Меняем цвета при достижении границ
-    if (x < 0.1 || x > 0.9 || y < 0.1 || y > 0.9) {
-      colorIndex = (colorIndex + 1) % colors.length;
-      blobs.forEach(function(blob, i) {
-        var idx = (colorIndex + i) % colors.length;
-        blob.style.background = 'radial-gradient(circle, ' + colors[idx] + ' 0%, transparent 70%)';
-      });
-    }
-  });
-  
-  // Сброс позиции при уходе мыши
-  hero.addEventListener('mouseleave', function() {
-    blobs.forEach(function(blob) {
-      blob.style.transform = 'translate(0, 0)';
-    });
-  });
+  // Анимация теперь на чистом CSS — никакого JS не требуется
 }
 
 /* ========================================
