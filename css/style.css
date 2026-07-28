@@ -706,7 +706,7 @@ a:focus {
   min-height: 80vh;
   display: flex;
   align-items: center;
-  background-color: var(--bg-main);
+  background-color: #1E1E1E;
 }
 
 /* Анимированный фон hero — плавная CSS-анимация */
@@ -724,73 +724,81 @@ a:focus {
 .hero__animated-bg .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  will-change: transform;
-  opacity: 0.6;
+  filter: blur(35px);
+  will-change: transform, opacity;
+  opacity: 0.5;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .hero__animated-bg .blob-1 {
-  width: 500px;
-  height: 500px;
-  top: -10%;
-  right: -10%;
-  background: radial-gradient(circle, rgba(184, 154, 122, 0.35) 0%, transparent 70%);
-  animation: blobFloat1 18s ease-in-out infinite;
+  width: 450px;
+  height: 450px;
+  top: -5%;
+  right: -5%;
+  background: radial-gradient(circle, rgba(184, 154, 122, 0.3) 0%, transparent 70%);
+  animation: blobFloat1 25s ease-in-out infinite;
 }
 
 .hero__animated-bg .blob-2 {
-  width: 450px;
-  height: 450px;
-  bottom: -10%;
-  left: -10%;
-  background: radial-gradient(circle, rgba(216, 197, 179, 0.35) 0%, transparent 70%);
-  animation: blobFloat2 22s ease-in-out infinite;
+  width: 400px;
+  height: 400px;
+  bottom: -5%;
+  left: -5%;
+  background: radial-gradient(circle, rgba(216, 197, 179, 0.3) 0%, transparent 70%);
+  animation: blobFloat2 30s ease-in-out infinite;
 }
 
 .hero__animated-bg .blob-3 {
-  width: 350px;
-  height: 350px;
+  width: 300px;
+  height: 300px;
   top: 35%;
   left: 35%;
-  background: radial-gradient(circle, rgba(184, 154, 122, 0.25) 0%, transparent 70%);
-  animation: blobFloat3 20s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(184, 154, 122, 0.2) 0%, transparent 70%);
+  animation: blobFloat3 28s ease-in-out infinite;
 }
 
 @keyframes blobFloat1 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(-40px, 30px) scale(1.05); }
-  50% { transform: translate(20px, -20px) scale(0.95); }
-  75% { transform: translate(-20px, -40px) scale(1.02); }
+  0%   { transform: translate(0, 0) scale(1); }
+  20%  { transform: translate(-25px, 20px) scale(1.03); }
+  40%  { transform: translate(15px, -15px) scale(0.97); }
+  60%  { transform: translate(-15px, -25px) scale(1.02); }
+  80%  { transform: translate(20px, 10px) scale(0.99); }
+  100% { transform: translate(0, 0) scale(1); }
 }
 
 @keyframes blobFloat2 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(30px, -40px) scale(1.03); }
-  50% { transform: translate(-30px, 20px) scale(0.97); }
-  75% { transform: translate(40px, 30px) scale(1.04); }
+  0%   { transform: translate(0, 0) scale(1); }
+  20%  { transform: translate(20px, -25px) scale(1.02); }
+  40%  { transform: translate(-20px, 15px) scale(0.98); }
+  60%  { transform: translate(25px, 20px) scale(1.03); }
+  80%  { transform: translate(-10px, -15px) scale(0.99); }
+  100% { transform: translate(0, 0) scale(1); }
 }
 
 @keyframes blobFloat3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(50px, -30px) scale(1.06); }
-  66% { transform: translate(-40px, 40px) scale(0.94); }
+  0%   { transform: translate(0, 0) scale(1); }
+  25%  { transform: translate(30px, -20px) scale(1.04); }
+  50%  { transform: translate(-25px, 25px) scale(0.96); }
+  75%  { transform: translate(15px, -10px) scale(1.02); }
+  100% { transform: translate(0, 0) scale(1); }
 }
 
-/* Тёмная тема — яркие блобы */
+/* Тёмная тема — блобы */
 [data-theme="dark"] .hero {
   background-color: #0D0D0D;
 }
 
 [data-theme="dark"] .hero__animated-bg .blob-1 {
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.18) 0%, transparent 70%);
 }
 
 [data-theme="dark"] .hero__animated-bg .blob-2 {
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.14) 0%, transparent 70%);
 }
 
 [data-theme="dark"] .hero__animated-bg .blob-3 {
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.1) 0%, transparent 70%);
 }
 
 .hero__bg {
@@ -844,11 +852,15 @@ a:focus {
   background: var(--color-accent);
 }
 
+.hero__subtitle {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .hero h1 {
   font-size: clamp(1.5rem, 6vw, 4.5rem);
   line-height: 1.1;
   margin-bottom: var(--space-md);
-  color: var(--color-graphite);
+  color: #FFFFFF;
   word-break: break-word;
   overflow-wrap: break-word;
 }
@@ -875,7 +887,7 @@ a:focus {
   gap: var(--space-2xl);
   margin-top: var(--space-3xl);
   padding-top: var(--space-2xl);
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   justify-content: center;
 }
 
@@ -894,7 +906,7 @@ a:focus {
 
 .hero__stat-label {
   font-size: var(--font-size-sm);
-  color: var(--color-gray);
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -1193,7 +1205,7 @@ a:focus {
    Секция статистики — Премиум
    ======================================== */
 .stats {
-  background-color: var(--bg-white);
+  background-color: #1E1E1E;
   padding: var(--space-3xl) 0;
   position: relative;
 }
@@ -1207,7 +1219,7 @@ a:focus {
   transform: translateX(-50%);
   width: 80px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  background: linear-gradient(90deg, transparent, rgba(184, 154, 122, 0.5), transparent);
 }
 
 .stats::before {
@@ -1255,7 +1267,7 @@ a:focus {
 }
 
 .stats__item:hover {
-  background-color: var(--color-sand-light);
+  background-color: rgba(184, 154, 122, 0.1);
   transform: translateY(-4px);
 }
 
@@ -1265,18 +1277,21 @@ a:focus {
 
 .stats__number {
   display: block;
+  font-family: var(--font-main);
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   font-weight: 700;
-  color: var(--color-accent);
+  color: #FFFFFF;
   margin-bottom: var(--space-xs);
   line-height: 1;
 }
 
 .stats__label {
   font-size: var(--font-size-sm);
-  color: var(--color-gray);
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 500;
   white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* ========================================
@@ -1941,8 +1956,8 @@ a:focus {
    CTA-секция — Премиум
    ======================================== */
 .cta-section {
-  background: linear-gradient(135deg, var(--color-sand) 0%, var(--color-sand-light) 100%);
-  padding: var(--space-3xl) 0;
+  background: linear-gradient(135deg, #2C2520 0%, #1E1A14 100%);
+  padding: var(--space-4xl) 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -1997,7 +2012,7 @@ a:focus {
 .cta-section__label {
   font-size: var(--font-size-sm);
   font-weight: 600;
-  color: var(--color-accent-dark);
+  color: var(--color-accent);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: var(--space-lg);
@@ -2011,11 +2026,12 @@ a:focus {
   position: relative;
   z-index: 1;
   text-align: center;
+  color: #FFFFFF;
 }
 
 .cta-section p {
   font-size: var(--font-size-lg);
-  color: var(--color-gray);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: var(--space-2xl);
   position: relative;
   z-index: 1;
@@ -4018,7 +4034,7 @@ body {
 }
 
 [data-theme="dark"] .stats {
-  background-color: var(--bg-white);
+  background-color: #0D0D0D;
   border-color: var(--color-line);
 }
 
