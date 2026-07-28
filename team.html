@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Команда — Деловая жизнь</title>
+  <meta name="description" content="Команда бизнес-клуба Деловая жизнь — организаторы, президиум, участники.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo">ДЕЛОВАЯ ЖИЗНЬ</a>
+      <nav class="header__nav" id="nav">
+        <a href="index.html" class="header__link">Главная</a>
+        <a href="about.html" class="header__link">О клубе</a>
+        <a href="team.html" class="header__link header__link--active">Команда</a>
+        <a href="residents.html" class="header__link">Резиденты</a>
+        <a href="events.html" class="header__link">События</a>
+        <a href="contacts.html" class="header__link">Контакты</a>
+      </nav>
+      <div class="header__actions" id="actions">
+        <a href="visit.html" class="btn btn--outline">Гостевой визит</a>
+      </div>
+      <button class="header__burger" id="burger" aria-label="Меню">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="residents-hero">
+      <div class="residents-hero__content">
+        <span class="residents-hero__label">Наша команда</span>
+        <h1>Кто стоит за клубом</h1>
+        <p>Люди, которые делают Деловую жизнь возможной</p>
+      </div>
+    </section>
+
+    <section class="residents-preview">
+      <div class="container">
+        <div class="residents-preview__header">
+          <span class="residents-preview__label">Президиум</span>
+          <h2 class="residents-preview__title">Организаторы клуба</h2>
+          <div class="section-divider section-divider--center"></div>
+        </div>
+        <div class="residents-preview__grid">
+          <article class="resident-card">
+            <div class="resident-card__photo"><div class="photo-zone"><span class="photo-zone__label">[Фото]</span></div></div>
+            <div class="resident-card__info">
+              <h3 class="resident-card__name">Ирина Южанинова</h3>
+              <p class="resident-card__position">Основатель</p>
+              <p class="resident-card__description">Создатель и вдохновитель бизнес-клуба Деловая жизнь</p>
+            </div>
+          </article>
+          <article class="resident-card">
+            <div class="resident-card__photo"><div class="photo-zone photo-zone--light"><span class="photo-zone__label">[Фото]</span></div></div>
+            <div class="resident-card__info">
+              <h3 class="resident-card__name">Александр Петров</h3>
+              <p class="resident-card__position">Президент</p>
+              <p class="resident-card__description">Руководит стратегическим развитием клуба</p>
+            </div>
+          </article>
+          <article class="resident-card">
+            <div class="resident-card__photo"><div class="photo-zone"><span class="photo-zone__label">[Фото]</span></div></div>
+            <div class="resident-card__info">
+              <h3 class="resident-card__name">Мария Иванова</h3>
+              <p class="resident-card__position">Координатор</p>
+              <p class="resident-card__description">Организация мероприятий и нетворкинг-сессий</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <div>
+        <div class="footer__logo">ДЕЛОВАЯ ЖИЗНЬ</div>
+        <p class="footer__tagline">Премиальное сообщество предпринимателей.</p>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <p>г. Москва, ул. Примерная, 1</p>
+        <p>+7 (999) 123-45-67</p>
+        <p>info@delovaya-zhizn.ru</p>
+      </div>
+      <div class="footer__nav">
+        <h4>Навигация</h4>
+        <div class="footer__nav-links">
+          <a href="index.html">Главная</a>
+          <a href="about.html">О клубе</a>
+          <a href="team.html">Команда</a>
+          <a href="residents.html">Резиденты</a>
+          <a href="events.html">События</a>
+          <a href="contacts.html">Контакты</a>
+        </div>
+      </div>
+      <div>
+        <h4>Социальные сети</h4>
+        <div class="footer__social">
+          <a href="#">Telegram</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">VK</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2026 Деловая жизнь.</span>
+        <div class="footer__legal">
+          <a href="privacy.html">Политика конфиденциальности</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="theme-transition-overlay" id="themeOverlay"></div>
+  <button class="scroll-top" id="scrollTop" aria-label="Наверх">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  </button>
+  <script src="js/script.js"></script>
+</body>
+</html>
