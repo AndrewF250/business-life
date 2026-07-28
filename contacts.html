@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты — Деловая жизнь</title>
+  <meta name="description" content="Свяжитесь с бизнес-клубом Деловая жизнь — адрес, телефон, форма обратной связи.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header" id="header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo">ДЕЛОВАЯ ЖИЗНЬ</a>
+      <nav class="header__nav" id="nav">
+        <a href="index.html" class="header__link">О клубе</a>
+        <a href="residents.html" class="header__link">Резиденты</a>
+        <a href="ecosystem.html" class="header__link">Экосистема</a>
+        <a href="events.html" class="header__link">События</a>
+        <a href="contacts.html" class="header__link header__link--active">Контакты</a>
+      </nav>
+      <div class="header__actions" id="actions">
+        <a href="#form" class="btn btn--outline">Стать гостем клуба</a>
+        <a href="#form" class="btn btn--outline">Оставить заявку</a>
+      </div>
+      <button class="header__burger" id="burger" aria-label="Меню">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero-секция -->
+    <section class="contacts-hero">
+      <div class="container">
+        <div class="contacts-hero__content">
+          <span class="contacts-hero__label">Контакты</span>
+          <h1>Свяжитесь с нами</h1>
+          <div class="section-divider section-divider--center"></div>
+          <p>Будем рады ответить на ваши вопросы и помочь с вступлением в клуб</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контактная информация -->
+    <section class="contacts-info">
+      <div class="container">
+        <div class="contacts-info__item">
+          <div class="contacts-info__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div>
+            <h3>Адрес</h3>
+            <p>г. Москва, ул. Примерная, 1</p>
+          </div>
+        </div>
+        <div class="contacts-info__item">
+          <div class="contacts-info__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Телефон</h3>
+            <p>+7 (999) 123-45-67</p>
+          </div>
+        </div>
+        <div class="contacts-info__item">
+          <div class="contacts-info__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <p>info@delovaya-zhizn.ru</p>
+          </div>
+        </div>
+        <div class="contacts-info__item">
+          <div class="contacts-info__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3>Время работы</h3>
+            <p>Пн-Пт: 09:00 — 18:00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Карта -->
+    <section class="contacts-map">
+      <div class="container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.123456789!2d37.617!3d55.755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTXCsDQ1JzE4LjAiTiAzN8KwMzcnMDEuMiJF!5e0!3m2!1sru!2sru!4v1234567890" 
+          width="100%" 
+          height="400" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy"
+          title="Расположение офиса">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Форма обратной связи -->
+    <section class="contacts-form" id="form">
+      <div class="container">
+        <div class="contacts-form__header">
+          <span class="contacts-form__label">Форма обратной связи</span>
+          <h2 class="contacts-form__title">Напишите нам</h2>
+          <div class="section-divider section-divider--center"></div>
+        </div>
+        <form action="#" method="POST" id="contactForm">
+          <div class="form-group">
+            <label for="name">Имя *</label>
+            <input type="text" id="name" name="name" required placeholder="Ваше имя">
+          </div>
+          <div class="form-group">
+            <label for="phone">Телефон *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67">
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label for="company">Компания</label>
+            <input type="text" id="company" name="company" placeholder="Название вашей компании">
+          </div>
+          <div class="form-group">
+            <label for="message">Сообщение *</label>
+            <textarea id="message" name="message" rows="5" required placeholder="Ваше сообщение или вопрос"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Отправить заявку</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-section__decor"></div>
+      <div class="container">
+        <div class="cta-section__content">
+          <span class="cta-section__label">Готовы начать?</span>
+          <h2>Станьте частью сообщества</h2>
+          <p>Оставьте заявку и мы свяжемся с вами в ближайшее время</p>
+          <div class="cta-section__buttons">
+            <a href="#form" class="btn btn--primary">Оставить заявку</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div>
+        <div class="footer__logo">ДЕЛОВАЯ ЖИЗНЬ</div>
+        <p class="footer__tagline">Премиальное сообщество предпринимателей для нетворкинга, развития бизнеса и обмена опытом.</p>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <p>г. Москва, ул. Примерная, 1</p>
+        <p>+7 (999) 123-45-67</p>
+        <p>info@delovaya-zhizn.ru</p>
+      </div>
+      <div class="footer__nav">
+        <h4>Навигация</h4>
+        <div class="footer__nav-links">
+          <a href="index.html">О клубе</a>
+          <a href="residents.html">Резиденты</a>
+          <a href="ecosystem.html">Экосистема</a>
+          <a href="events.html">События</a>
+          <a href="contacts.html">Контакты</a>
+        </div>
+      </div>
+      <div>
+        <h4>Социальные сети</h4>
+        <div class="footer__social">
+          <a href="#">Telegram</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">VK</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2026 Деловая жизнь. Все права защищены.</span>
+        <div class="footer__legal">
+          <a href="#">Политика конфиденциальности</a>
+          <a href="#">Пользовательское соглашение</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Оверлей анимации смены темы -->
+  <div class="theme-transition-overlay" id="themeOverlay"></div>
+
+  <!-- Кнопка "Наверх" -->
+  <button class="scroll-top" id="scrollTop" aria-label="Наверх">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Переключатель темы -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

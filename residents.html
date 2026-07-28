@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Резиденты — Деловая жизнь</title>
+  <meta name="description" content="Познакомьтесь с предпринимателями и компаниями — резидентами бизнес-клуба Деловая жизнь.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Шапка -->
+  <header class="header" id="header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo">ДЕЛОВАЯ ЖИЗНЬ</a>
+      <nav class="header__nav" id="nav">
+        <a href="index.html" class="header__link">О клубе</a>
+        <a href="residents.html" class="header__link header__link--active">Резиденты</a>
+        <a href="ecosystem.html" class="header__link">Экосистема</a>
+        <a href="events.html" class="header__link">События</a>
+        <a href="contacts.html" class="header__link">Контакты</a>
+      </nav>
+      <div class="header__actions" id="actions">
+        <a href="contacts.html#form" class="btn btn--outline">Стать гостем клуба</a>
+        <a href="contacts.html#form" class="btn btn--outline">Оставить заявку</a>
+      </div>
+      <button class="header__burger" id="burger" aria-label="Меню">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero-секция -->
+    <section class="residents-hero">
+      <div class="container">
+        <div class="residents-hero__content">
+          <span class="residents-hero__label">Лица клуба</span>
+          <h1>Резиденты клуба</h1>
+          <div class="section-divider section-divider--center"></div>
+          <p>Предприниматели и лидеры, которые формируют наше сообщество</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Фильтры -->
+    <section class="residents-filters">
+      <div class="container">
+        <button class="filter-btn filter-btn--active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="it">IT</button>
+        <button class="filter-btn" data-filter="production">Производство</button>
+        <button class="filter-btn" data-filter="services">Услуги</button>
+        <button class="filter-btn" data-filter="trade">Торговля</button>
+        <button class="filter-btn" data-filter="consulting">Консалтинг</button>
+      </div>
+    </section>
+
+    <!-- Сетка резидентов -->
+    <section class="residents-grid">
+      <div class="container">
+        <article class="resident-card" data-category="it">
+          <div class="resident-card__photo">
+            <div class="photo-zone photo-zone--light">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Александр Петров</h3>
+            <p class="resident-card__position">Генеральный директор</p>
+            <p class="resident-card__company">Технологии Будущего</p>
+            <p class="resident-card__description">Разработка IT-решений для автоматизации бизнес-процессов</p>
+          </div>
+        </article>
+        <article class="resident-card" data-category="services">
+          <div class="resident-card__photo">
+            <div class="photo-zone">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Мария Иванова</h3>
+            <p class="resident-card__position">Основатель</p>
+            <p class="resident-card__company">Маркетинг Про</p>
+            <p class="resident-card__description">Комплексное продвижение бизнеса в digital-среде</p>
+          </div>
+        </article>
+        <article class="resident-card" data-category="production">
+          <div class="resident-card__photo">
+            <div class="photo-zone photo-zone--light">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Дмитрий Козлов</h3>
+            <p class="resident-card__position">Руководитель</p>
+            <p class="resident-card__company">Строй-Инвест</p>
+            <p class="resident-card__description">Строительство и девелопмент коммерческой недвижимости</p>
+          </div>
+        </article>
+        <article class="resident-card" data-category="consulting">
+          <div class="resident-card__photo">
+            <div class="photo-zone">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Елена Сидорова</h3>
+            <p class="resident-card__position">Партнер</p>
+            <p class="resident-card__company">Бизнес Консалтинг</p>
+            <p class="resident-card__description">Управленческий консалтинг и стратегическое планирование</p>
+          </div>
+        </article>
+        <article class="resident-card" data-category="trade">
+          <div class="resident-card__photo">
+            <div class="photo-zone photo-zone--light">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Сергей Николаев</h3>
+            <p class="resident-card__position">Директор</p>
+            <p class="resident-card__company">Торговый Дом</p>
+            <p class="resident-card__description">Оптовая торговля продуктами питания</p>
+          </div>
+        </article>
+        <article class="resident-card" data-category="it">
+          <div class="resident-card__photo">
+            <div class="photo-zone">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Анна Волкова</h3>
+            <p class="resident-card__position">CTO</p>
+            <p class="resident-card__company">Диджитал Солюшнс</p>
+            <p class="resident-card__description">Разработка мобильных приложений и веб-сервисов</p>
+          </div>
+        </article>
+        <article class="resident-card" data-category="services">
+          <div class="resident-card__photo">
+            <div class="photo-zone photo-zone--light">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Павел Морозов</h3>
+            <p class="resident-card__position">Владелец</p>
+            <p class="resident-card__company">Креатив Студия</p>
+            <p class="resident-card__description">Дизайн, брендинг и рекламные коммуникации</p>
+          </div>
+        </article>
+        <article class="resident-card" data-category="production">
+          <div class="resident-card__photo">
+            <div class="photo-zone">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Ольга Кузнецова</h3>
+            <p class="resident-card__position">Генеральный директор</p>
+            <p class="resident-card__company">ПромТехника</p>
+            <p class="resident-card__description">Производство промышленного оборудования</p>
+          </div>
+        </article>
+        <article class="resident-card" data-category="consulting">
+          <div class="resident-card__photo">
+            <div class="photo-zone photo-zone--light">
+              <span class="photo-zone__label">[Фото]</span>
+            </div>
+          </div>
+          <div class="resident-card__info">
+            <h3 class="resident-card__name">Игорь Соколов</h3>
+            <p class="resident-card__position">Основатель</p>
+            <p class="resident-card__company">Финансовый Эксперт</p>
+            <p class="resident-card__description">Финансовое планирование и инвестиционный консалтинг</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Слайдер избранных -->
+    <section class="residents-slider">
+      <div class="container">
+        <div class="residents-slider__header">
+          <span class="residents-slider__label">Избранное</span>
+          <h2 class="residents-slider__title">Резиденты месяца</h2>
+          <div class="section-divider section-divider--center"></div>
+        </div>
+        <div class="slider">
+          <div class="slider__track">
+            <article class="resident-card">
+              <div class="resident-card__photo">
+                <div class="photo-zone photo-zone--light">
+                  <span class="photo-zone__label">[Фото]</span>
+                </div>
+              </div>
+              <div class="resident-card__info">
+                <h3 class="resident-card__name">Александр Петров</h3>
+                <p class="resident-card__position">Генеральный директор</p>
+                <p class="resident-card__company">Технологии Будущего</p>
+              </div>
+            </article>
+            <article class="resident-card">
+              <div class="resident-card__photo">
+                <div class="photo-zone">
+                  <span class="photo-zone__label">[Фото]</span>
+                </div>
+              </div>
+              <div class="resident-card__info">
+                <h3 class="resident-card__name">Мария Иванова</h3>
+                <p class="resident-card__position">Основатель</p>
+                <p class="resident-card__company">Маркетинг Про</p>
+              </div>
+            </article>
+            <article class="resident-card">
+              <div class="resident-card__photo">
+                <div class="photo-zone photo-zone--light">
+                  <span class="photo-zone__label">[Фото]</span>
+                </div>
+              </div>
+              <div class="resident-card__info">
+                <h3 class="resident-card__name">Дмитрий Козлов</h3>
+                <p class="resident-card__position">Руководитель</p>
+                <p class="resident-card__company">Строй-Инвест</p>
+              </div>
+            </article>
+            <article class="resident-card">
+              <div class="resident-card__photo">
+                <div class="photo-zone">
+                  <span class="photo-zone__label">[Фото]</span>
+                </div>
+              </div>
+              <div class="resident-card__info">
+                <h3 class="resident-card__name">Елена Сидорова</h3>
+                <p class="resident-card__position">Партнер</p>
+                <p class="resident-card__company">Бизнес Консалтинг</p>
+              </div>
+            </article>
+            <article class="resident-card">
+              <div class="resident-card__photo">
+                <div class="photo-zone photo-zone--light">
+                  <span class="photo-zone__label">[Фото]</span>
+                </div>
+              </div>
+              <div class="resident-card__info">
+                <h3 class="resident-card__name">Сергей Николаев</h3>
+                <p class="resident-card__position">Директор</p>
+                <p class="resident-card__company">Торговый Дом</p>
+              </div>
+            </article>
+          </div>
+          <button class="slider__btn slider__btn--prev" aria-label="Показать предыдущего резидента">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="slider__btn slider__btn--next" aria-label="Показать следующего резидента">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <div class="slider__dots">
+            <button class="slider__dot slider__dot--active" aria-label="Слайд 1"></button>
+            <button class="slider__dot" aria-label="Слайд 2"></button>
+            <button class="slider__dot" aria-label="Слайд 3"></button>
+            <button class="slider__dot" aria-label="Слайд 4"></button>
+            <button class="slider__dot" aria-label="Слайд 5"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="cta-section__decor"></div>
+      <div class="container">
+        <div class="cta-section__content">
+          <span class="cta-section__label">Станьте резидентом</span>
+          <h2>Присоединяйтесь к сообществу лидеров</h2>
+          <p>Оставьте заявку и узнайте, как стать частью делового сообщества Деловая жизнь</p>
+          <div class="cta-section__buttons">
+            <a href="contacts.html#form" class="btn btn--primary">Оставить заявку</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <div class="footer__container">
+      <div>
+        <div class="footer__logo">ДЕЛОВАЯ ЖИЗНЬ</div>
+        <p class="footer__tagline">Премиальное сообщество предпринимателей для нетворкинга, развития бизнеса и обмена опытом.</p>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <p>г. Москва, ул. Примерная, 1</p>
+        <p>+7 (999) 123-45-67</p>
+        <p>info@delovaya-zhizn.ru</p>
+      </div>
+      <div class="footer__nav">
+        <h4>Навигация</h4>
+        <div class="footer__nav-links">
+          <a href="index.html">О клубе</a>
+          <a href="residents.html">Резиденты</a>
+          <a href="ecosystem.html">Экосистема</a>
+          <a href="events.html">События</a>
+          <a href="contacts.html">Контакты</a>
+        </div>
+      </div>
+      <div>
+        <h4>Социальные сети</h4>
+        <div class="footer__social">
+          <a href="#">Telegram</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">VK</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2026 Деловая жизнь. Все права защищены.</span>
+        <div class="footer__legal">
+          <a href="#">Политика конфиденциальности</a>
+          <a href="#">Пользовательское соглашение</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Оверлей анимации смены темы -->
+  <div class="theme-transition-overlay" id="themeOverlay"></div>
+
+  <!-- Кнопка "Наверх" -->
+  <button class="scroll-top" id="scrollTop" aria-label="Наверх">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Переключатель темы -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
