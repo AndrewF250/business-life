@@ -726,3 +726,30 @@ function initScrollTop() {
     });
   });
 }
+
+/* ========================================
+   FAQ аккордеон
+   ======================================== */
+document.addEventListener('DOMContentLoaded', function() {
+  var faqItems = document.querySelectorAll('.faq-item');
+  if (faqItems.length === 0) return;
+
+  faqItems.forEach(function(item) {
+    var question = item.querySelector('.faq-item__question');
+    if (!question) return;
+
+    question.addEventListener('click', function() {
+      var isOpen = item.classList.contains('faq-item--open');
+
+      // Закрываем все остальные
+      faqItems.forEach(function(other) {
+        other.classList.remove('faq-item--open');
+      });
+
+      // Открываем текущий (если был закрыт)
+      if (!isOpen) {
+        item.classList.add('faq-item--open');
+      }
+    });
+  });
+});
