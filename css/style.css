@@ -3039,6 +3039,60 @@ a:focus {
 }
 
 /* ========================================
+   Safari и iOS специфичные фиксы
+   ======================================== */
+
+/* Фикс для Safari: корректное отображение sticky */
+@supports (-webkit-touch-callout: none) {
+  .header {
+    position: -webkit-sticky;
+  }
+
+  /* Фикс 100vh на iOS */
+  .hero {
+    min-height: -webkit-fill-available;
+  }
+
+  /* Фикс скролла в Safari */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Фикс flexbox gap в Safari < 14.1 */
+  .header__nav {
+    gap: 0;
+  }
+
+  .header__nav .header__link {
+    margin: 0 var(--space-lg);
+  }
+
+  .header__nav .header__link:first-child {
+    margin-left: 0;
+  }
+
+  .header__nav .header__link:last-child {
+    margin-right: 0;
+  }
+}
+
+/* Фикс для iOS Safari: предотвращение масштабирования при фокусе на input */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* Фикс backdrop-filter для Safari */
+@supports (-webkit-backdrop-filter: blur(10px)) {
+  .header {
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+/* ========================================
    Адаптивность (Mobile-First)
    ======================================== */
 
@@ -5046,5 +5100,228 @@ body {
 
   .next-event__info {
     flex: 1;
+  }
+}
+
+/* ========================================
+   Дополнительные улучшения для Safari/iOS
+   ======================================== */
+
+/* Безопасные отступы для iPhone с вырезом */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .header {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .footer {
+    padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom));
+  }
+}
+
+/* Фикс position:sticky в Safari */
+@supports (-webkit-touch-callout: none) {
+  .header {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+/* Плавные переходы для ВСЕХ интерактивных элементов */
+a,
+button,
+.btn,
+.resident-card,
+.news-card,
+.event-card,
+.benefits__card,
+.feature-card,
+.filter-btn,
+.footer__social a,
+.footer__nav-links a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Улучшенные hover-эффекты для карточек */
+.resident-card--clickable:hover .resident-card__photo,
+.news-card--clickable:hover .news-card__image {
+  overflow: hidden;
+}
+
+.resident-card--clickable:hover .photo-zone {
+  transform: scale(1.05);
+}
+
+/* Плавное появление страницы */
+body {
+  animation: pageLoad 0.4s ease-out;
+}
+
+/* Улучшенный фокус для доступности */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Мобильное меню — плавное открытие */
+@supports (backdrop-filter: blur(10px)) {
+  .header__nav--open {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  [data-theme="dark"] .header__nav--open {
+    background-color: rgba(13, 13, 13, 0.95) !important;
+  }
+}
+
+/* Кнопка "Наверх" — плавное появление */
+.scroll-top {
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+/* Улучшенная типографика для длинных текстов */
+.article__content,
+.about__text,
+.resident-qa__answer {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Плавные переходы для фильтров */
+.filter-btn {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+}
+
+.filter-btn--active {
+  transform: translateY(0);
+}
+
+/* Оптимизация производительности анимаций */
+.hero__animated-bg .blob,
+.hero__decor,
+.benefits__icon,
+.feature-card__icon {
+  will-change: transform;
+}
+
+/* Предотвращение мерцания при загрузке */
+.hero__animated-bg {
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.2s forwards;
+}
+
+/* Улучшенные отступы на мобильных */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+
+  .header__container {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .footer__container {
+    padding: 0 var(--space-md);
+  }
+
+  .residents-hero,
+  .events-hero,
+  .contacts-hero,
+  .ecosystem-hero {
+    padding: var(--space-3xl) 0;
+  }
+
+  .residents-hero h1,
+  .events-hero h1,
+  .contacts-hero h1,
+  .ecosystem-hero h1 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  .section-divider {
+    margin: var(--space-sm) auto;
+  }
+
+  .benefits__card,
+  .feature-card,
+  .resident-card__info,
+  .event-card {
+    padding: var(--space-md);
+  }
+
+  .faq-item__question {
+    padding: var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+
+  .faq-item__answer {
+    padding: 0 var(--space-md);
+  }
+
+  .faq-item--open .faq-item__answer {
+    padding: 0 var(--space-md) var(--space-md);
+  }
+
+  .next-event__card {
+    padding: var(--space-md);
+  }
+
+  .next-event__date {
+    width: 64px;
+    height: 64px;
+  }
+
+  .next-event__day {
+    font-size: var(--font-size-xl);
+  }
+
+  .blog-category__item {
+    flex-direction: column;
+  }
+
+  .blog-category__item-image {
+    height: 160px;
+  }
+}
+
+/* Планшет — промежуточные стили */
+@media (min-width: 481px) and (max-width: 767px) {
+  .benefits__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .residents-preview__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .news__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .testimonials__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contacts-info .container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .event-card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .stats__grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

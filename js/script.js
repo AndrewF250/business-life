@@ -640,31 +640,36 @@ function animateNumber(element, start, end, duration, prefix, suffix) {
    ======================================== */
 function initScrollAnimations() {
   const animatedElements = document.querySelectorAll(
-    '.benefits__card, .feature-card, .resident-card, .event-card, .contacts-info__item, .format-card, .testimonial-card, .news-card, .about__feature, .join__step'
+    '.benefits__card, .feature-card, .resident-card, .event-card, .contacts-info__item, .format-card, .testimonial-card, .news-card, .about__feature, .join__step, .faq-item, .next-event__card, .blog-category__item'
   );
-  
+
   if (animatedElements.length === 0) return;
-  
+
+  // Группируем элементы по родительским секциям для каскадного эффекта
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        // Добавляем задержку для каскадного эффекта
-        const delay = index * 100;
-        
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, delay);
-        
-        observer.unobserve(entry.target);
-      }
+    // Собираем видимые элементы и сортируем по позиции в DOM
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a, b) => {
+        const aIdx = Array.from(animatedElements).indexOf(a.target);
+        const bIdx = Array.from(animatedElements).indexOf(b.target);
+        return aIdx - bIdx;
+      });
+
+    visible.forEach((entry, index) => {
+      const delay = index * 80;
+      setTimeout(() => {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }, delay);
+      observer.unobserve(entry.target);
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-  
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
   animatedElements.forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     observer.observe(el);
   });
 }
