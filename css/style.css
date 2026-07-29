@@ -1874,6 +1874,20 @@ a:focus {
   box-shadow: var(--shadow-card-hover);
 }
 
+a.testimonial-card {
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+a.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+a.testimonial-card:hover .testimonial-card__author-info h4 {
+  color: var(--color-accent);
+}
+
 .testimonial-card__quote {
   font-size: var(--font-size-lg);
   color: var(--color-graphite);
