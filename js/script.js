@@ -391,6 +391,8 @@ function initContactForm() {
     
     // Простая валидация
     if (!validateForm(data)) {
+      // Shake-анимация кнопки при ошибке (если GSAP загружен)
+      if (window.blFormShake) window.blFormShake(form.querySelector('button[type="submit"]'));
       return;
     }
     
@@ -404,6 +406,9 @@ function initContactForm() {
     setTimeout(() => {
       // Показываем сообщение об успехе
       showNotification('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.', 'success');
+      
+      // Конфетти из кнопки (если GSAP загружен)
+      if (window.blSuccessParticles) window.blSuccessParticles(submitBtn);
       
       // Сбрасываем форму
       form.reset();
@@ -758,3 +763,47 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+/* ========================================
+   Загрузка GSAP и анимаций (js/animations.js)
+   ======================================== */
+(function loadGsapAnimations() {
+  var preloader = document.getElementById('preloader');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Прелоадер показываем один раз за сессию
+  var alreadyShown = false;
+  try { alreadyShown = sessionStorage.getItem('blPreloaderShown') === '1'; } catch (e) {}
+
+  if (preloader && (reducedMotion || alreadyShown)) {
+    preloader.parentNode.removeChild(preloader);
+    preloader = null;
+  }
+
+  // При reduced motion анимации не загружаем
+  if (reducedMotion) return;
+
+  // Страховка: убираем прелоадер, если GSAP не загрузился
+  function removePreloader() {
+    var p = document.getElementById('preloader');
+    if (p) {
+      p.style.opacity = '0';
+      setTimeout(function() { if (p.parentNode) p.parentNode.removeChild(p); }, 450);
+    }
+  }
+  if (preloader) setTimeout(removePreloader, 5000);
+
+  function loadScript(src, onload) {
+    var s = document.createElement('script');
+    s.src = src;
+    s.onload = onload;
+    s.onerror = removePreloader;
+    document.head.appendChild(s);
+  }
+
+  loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', function() {
+    loadScript('https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', function() {
+      loadScript('js/animations.js');
+    });
+  });
+})();

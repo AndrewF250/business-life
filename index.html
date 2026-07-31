@@ -48,6 +48,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Прелоадер -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__inner">
+      <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+      <div class="preloader__bar"><div class="preloader__bar-fill" id="preloaderBarFill"></div></div>
+      <div class="preloader__counter" id="preloaderCounter">0%</div>
+    </div>
+  </div>
+
   <!-- Шапка -->
   <header class="header" id="header">
     <div class="header__container">
@@ -598,6 +607,9 @@
           <span class="cta-section__label">Готовы начать?</span>
           <h2>Станьте частью сообщества</h2>
           <p>Оставьте заявку и мы свяжемся с вами в ближайшее время</p>
+          <div class="cta-section__buttons">
+            <a href="contacts.html#form" class="btn btn--primary">Оставить заявку</a>
+          </div>
         </div>
       </div>
     </section>
@@ -623,7 +635,9 @@
           <a href="about.html">О клубе</a>
           <a href="team.html">Команда</a>
           <a href="residents.html">Резиденты</a>
-          <a href="blog.html">Блог</a>`n          <a href="ecosystem.html">Экосистема</a>`n          <a href="events.html">События</a>
+          <a href="blog.html">Блог</a>
+          <a href="ecosystem.html">Экосистема</a>
+          <a href="events.html">События</a>
           <a href="contacts.html">Контакты</a>
         </div>
       </div>

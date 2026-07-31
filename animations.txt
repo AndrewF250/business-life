@@ -1,0 +1,681 @@
+============================================================
+INTEGRA — Все анимации проекта
+============================================================
+
+
+1. ПРЕЛОАДЕР — Анимация логотипа
+------------------------------------------------------------
+Разбивает текст "INTEGRA" на отдельные символы и анимирует их появление снизу вверх с задержкой.
+
+// JavaScript (main.js)
+const text = preloaderLogo.textContent;
+preloaderLogo.innerHTML = text.split('').map(c =>
+  `<span class="char">${c}</span>`
+).join('');
+
+const chars = preloaderLogo.querySelectorAll('.char');
+
+gsap.to(chars, {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  stagger: 0.05,
+  ease: 'power3.out',
+  delay: 0.2
+});
+
+// CSS
+.preloader-logo .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+
+2. ПРЕЛОАДЕР — Прогресс-бар
+------------------------------------------------------------
+Плавное заполнение полосы загрузки от 0% до 100%.
+
+// JavaScript
+let progress = 0;
+const loadInterval = setInterval(() => {
+  progress += Math.random() * 15 + 5;
+  if (progress > 100) progress = 100;
+  preloaderBarFill.style.width = progress + '%';
+  preloaderCounter.textContent = Math.round(progress) + '%';
+  if (progress >= 100) {
+    clearInterval(loadInterval);
+    gsap.to(preloader, {
+      opacity: 0,
+      duration: 0.6,
+      ease: 'power2.inOut',
+      onComplete: () => { preloader.style.display = 'none'; }
+    });
+  }
+}, 80);
+
+
+3. HERO — Фоновый слой (fade in)
+------------------------------------------------------------
+Плавное появление радиального градиентного фона.
+
+// JavaScript
+gsap.set('.hero-bg-layer', { opacity: 0 });
+gsap.to('.hero-bg-layer', { opacity: 1, duration: 1.5, ease: 'power2.out' });
+
+
+4. HERO — Градиентный orb (fade in + параллакс за мышью)
+------------------------------------------------------------
+Мягкий светящийся шар следует за курсором мыши с инерцией.
+
+// JavaScript — появление
+gsap.set('.hero-gradient-orb', { opacity: 0 });
+gsap.to('.hero-gradient-orb', { opacity: 1, duration: 2, ease: 'power2.out' });
+
+// JavaScript — следование за мышью
+let orbX = 0, orbY = 0;
+let targetX = 0, targetY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  targetX = (e.clientX / window.innerWidth - 0.5) * 200;
+  targetY = (e.clientY / window.innerHeight - 0.5) * 200;
+});
+
+function updateOrb() {
+  orbX += (targetX - orbX) * 0.03;
+  orbY += (targetY - orbY) * 0.03;
+  orb.style.transform = `translate(${orbX}px, ${orbY}px)`;
+  requestAnimationFrame(updateOrb);
+}
+updateOrb();
+
+
+5. HERO — Точки (dot grid) — появление из центра
+------------------------------------------------------------
+169 точек (13x13 сетка) анимируются от цента наружу с увеличением и возвратом.
+
+// JavaScript
+const GRID_SIZE = 13;
+const dots = dotGrid.querySelectorAll('.dot');
+const centerRow = Math.floor(GRID_SIZE / 2);
+const centerCol = Math.floor(GRID_SIZE / 2);
+
+dots.forEach((dot, i) => {
+  const row = Math.floor(i / GRID_SIZE);
+  const col = i % GRID_SIZE;
+  const distance = Math.sqrt(Math.pow(row - centerRow, 2) + Math.pow(col - centerCol, 2));
+
+  gsap.fromTo(dot,
+    { scale: 0.5, opacity: 0 },
+    {
+      scale: 1.2,
+      opacity: 0.7,
+      duration: 0.5,
+      delay: 0.5 + distance * 0.04,
+      ease: 'power2.inOut',
+      yoyo: true,
+      repeat: 1,
+      onComplete: () => gsap.set(dot, { scale: 0.75, opacity: 0.3 })
+    }
+  );
+});
+
+
+6. HERO — Точки — реакция на мышь (proximity)
+------------------------------------------------------------
+Точки увеличиваются и становятся ярче, когда курсор рядом.
+
+// JavaScript
+document.addEventListener('mousemove', (e) => {
+  dots.forEach((dot) => {
+    const dotRect = dot.getBoundingClientRect();
+    const dotCenterX = dotRect.left + dotRect.width / 2;
+    const dotCenterY = dotRect.top + dotRect.height / 2;
+    const dist = Math.sqrt(Math.pow(e.clientX - dotCenterX, 2) + Math.pow(e.clientY - dotCenterY, 2));
+
+    if (dist < 120) {
+      const scale = gsap.utils.mapRange(0, 120, 2.5, 0.75, dist);
+      const opacity = gsap.utils.mapRange(0, 120, 0.9, 0.3, dist);
+      gsap.to(dot, { scale, opacity, duration: 0.3, ease: 'power2.out' });
+    } else {
+      gsap.to(dot, { scale: 0.75, opacity: 0.3, duration: 0.5, ease: 'power2.out' });
+    }
+  });
+});
+
+
+7. HERO — Заголовок "INTEGRA" — split-text reveal
+------------------------------------------------------------
+Каждый символ заголовка анимируется отдельно: появляется снизу с прозрачностью.
+
+// JavaScript
+gsap.set('.hero-title', { opacity: 0 });
+gsap.to('.hero-title', { opacity: 1, duration: 0.8, ease: 'power2.out' });
+
+const titleChars = document.querySelectorAll('.hero-title .char');
+gsap.set(titleChars, { opacity: 0, y: 50 });
+gsap.to(titleChars, {
+  opacity: 1, y: 0,
+  duration: 0.8,
+  stagger: 0.05,
+  ease: 'power3.out'
+});
+
+
+8. HERO — Подзаголовок + CTA-кнопки (fade up)
+------------------------------------------------------------
+Подзаголовок и кнопки плавно появляются снизу.
+
+// JavaScript
+gsap.set('#heroSubtitle', { opacity: 0, y: 30 });
+gsap.to('#heroSubtitle', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' });
+
+gsap.set('.hero-cta-group', { opacity: 0, y: 30 });
+gsap.to('.hero-cta-group', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' });
+
+
+9. HERO — Scroll indicator (fade in + pulse)
+------------------------------------------------------------
+Надпись "Листайте" с анимированной линией, которая пульсирует сверху вниз.
+
+// JavaScript
+gsap.set('#heroScroll', { opacity: 0 });
+gsap.to('#heroScroll', { opacity: 1, duration: 0.6, ease: 'power2.out' });
+
+// CSS — пульсация линии
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0% { top: -100%; }
+  50% { top: 100%; }
+  100% { top: 100%; }
+}
+
+
+10. HERO — Параллакс при скролле
+------------------------------------------------------------
+Фон, точки и контент с разной скоростью уезжают вверх при скролле.
+
+// JavaScript
+gsap.to('#heroBg', {
+  y: -120,
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 }
+});
+gsap.to('.dot-grid', {
+  y: -80,
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 }
+});
+gsap.to('#heroContent', {
+  y: -100, opacity: 0,
+  scrollTrigger: { trigger: '#hero', start: 'top top', end: '50% top', scrub: 1 }
+});
+
+
+11. НАВИГАЦИЯ — Появление при скролле
+------------------------------------------------------------
+Навигация появляется сверху при достижении секции "О нас".
+
+// JavaScript
+ScrollTrigger.create({
+  trigger: '#about',
+  start: 'top 80%',
+  onEnter: () => nav.classList.add('visible'),
+  onLeaveBack: () => nav.classList.remove('visible')
+});
+
+// CSS
+.nav {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+.nav.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+12. НАВИГАЦИЯ — Компактный вид при скролле
+------------------------------------------------------------
+Навигация становится более компактной при прокрутке.
+
+// JavaScript
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 100) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+// CSS
+.nav.scrolled {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 16px 48px;
+}
+
+
+13. SCROLL PROGRESS BAR — Полоска прогресса
+------------------------------------------------------------
+Тонкая полоска вверху экрана показывает процент прокрутки.
+
+// JavaScript
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  bar.style.width = progress + '%';
+}, { passive: true });
+
+
+14. SPLIT-TEXT — Анимация заголовков секций
+------------------------------------------------------------
+Каждый символ каждого заголовка секции анимируется отдельно с вращением.
+
+// JavaScript
+document.querySelectorAll('.section-title').forEach(title => {
+  const chars = title.querySelectorAll('.char');
+  gsap.from(chars, {
+    opacity: 0, y: 60, rotationX: -90,
+    duration: 0.8, stagger: 0.02, ease: 'power3.out',
+    scrollTrigger: { trigger: title, start: 'top 70%' }
+  });
+});
+
+
+15. EYEBROW — Анимация меток секций
+------------------------------------------------------------
+Метки типа "О нас", "Портфолио" появляются посимвольно.
+
+// JavaScript
+document.querySelectorAll('.eyebrow').forEach(el => {
+  const chars = el.querySelectorAll('.char');
+  gsap.from(chars, {
+    opacity: 0, y: 20,
+    duration: 0.6, stagger: 0.03, ease: 'power2.out',
+    scrollTrigger: { trigger: el, start: 'top 75%' }
+  });
+});
+
+
+16. ABOUT — Counter-анимация (счётчики)
+------------------------------------------------------------
+Числа (150, 7, 98) анимируются от 0 до целевого значения.
+
+// JavaScript
+const stats = document.querySelectorAll('.stat');
+stats.forEach(stat => {
+  const target = parseInt(stat.dataset.target);
+  const numberEl = stat.querySelector('.stat-number');
+  const obj = { val: 0 };
+
+  ScrollTrigger.create({
+    trigger: stat, start: 'top 80%', once: true,
+    onEnter: () => {
+      gsap.to(obj, {
+        val: target, duration: 2, ease: 'power2.out',
+        onUpdate: () => { numberEl.textContent = Math.round(obj.val); }
+      });
+    }
+  });
+});
+
+
+17. ABOUT — Подчёркивание accent-text
+------------------------------------------------------------
+Акцентный текст получает подчёркивание слева направо.
+
+// JavaScript
+ScrollTrigger.create({
+  trigger: accentText, start: 'top 75%', once: true,
+  onEnter: () => accentText.classList.add('revealed')
+});
+
+// CSS
+.accent-text::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.accent-text.revealed::after {
+  transform: scaleX(1);
+}
+
+
+18. PORTFOLIO — Появление карточек (stagger)
+------------------------------------------------------------
+Карточки портфолио появляются по очереди снизу вверх.
+
+// JavaScript
+const cards = gsap.utils.toArray('.portfolio-card');
+cards.forEach((card, i) => {
+  gsap.to(card, {
+    opacity: 1, y: 0,
+    duration: 0.8, delay: i * 0.12,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: card, start: 'top 85%' }
+  });
+});
+
+
+19. PORTFOLIO — 3D Tilt эффект
+------------------------------------------------------------
+Карточки наклоняются в сторону курсора с 3D-перспективой.
+
+// JavaScript
+card.addEventListener('mousemove', (e) => {
+  const rect = card.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+  const rotateX = (y - centerY) / centerY * -5;
+  const rotateY = (x - centerX) / centerX * 5;
+
+  gsap.to(card, {
+    rotateX, rotateY,
+    duration: 0.3, ease: 'power2.out',
+    transformPerspective: 800,
+    transformOrigin: 'center center'
+  });
+});
+
+card.addEventListener('mouseleave', () => {
+  gsap.to(card, {
+    rotateX: 0, rotateY: 0,
+    duration: 0.5, ease: 'power3.out'
+  });
+});
+
+
+20. SERVICES — Появление элементов (slide from left)
+------------------------------------------------------------
+Элементы услуг появляются слева с задержкой.
+
+// JavaScript
+const items = gsap.utils.toArray('.service-item');
+items.forEach((item, i) => {
+  gsap.to(item, {
+    opacity: 1, x: 0,
+    duration: 0.6, delay: i * 0.1,
+    ease: 'power2.out',
+    scrollTrigger: { trigger: item, start: 'top 85%' }
+  });
+});
+
+// CSS начальное состояние
+.service-item {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+
+21. PROCESS — Заполнение линии таймлайна
+------------------------------------------------------------
+Линия таймлайна заполняется синим цветом по мере скролла.
+
+// JavaScript
+gsap.to(timelineLineFill, {
+  height: '100%',
+  scrollTrigger: {
+    trigger: '.process-timeline',
+    start: 'top 70%', end: 'bottom 50%',
+    scrub: 1
+  }
+});
+
+
+22. PROCESS — Появление шагов + смена цвета номера
+------------------------------------------------------------
+Шаги появляются снизу, номера меняют цвет на синий.
+
+// JavaScript
+const steps = gsap.utils.toArray('.process-step');
+steps.forEach((step, i) => {
+  const tl = gsap.timeline({
+    scrollTrigger: { trigger: step, start: 'top 80%' }
+  });
+  tl.to(step, { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' })
+    .to(step.querySelector('.step-number'), {
+      color: '#0071E3', duration: 0.4, ease: 'power2.out'
+    }, '-=0.3');
+});
+
+
+23. PROCESS — SVG Circuit анимация (draw + motion path + morph)
+------------------------------------------------------------
+SVG-путь рисуется постепенно, точка летит вдоль пути, квадрат превращается и вращается.
+
+// JavaScript — подготовка
+const pathLength = circuitPath.getTotalLength();
+gsap.set(circuitPath, {
+  strokeDasharray: pathLength,
+  strokeDashoffset: pathLength, opacity: 0.8
+});
+gsap.set(travelDot, { opacity: 0 });
+gsap.set(morphShape, { opacity: 0 });
+
+// JavaScript — таймлайн
+const circuitTl = gsap.timeline({
+  scrollTrigger: { trigger: '#process', start: 'top 60%', toggleActions: 'play none none none' }
+});
+
+circuitTl
+  .to(circuitPath, { strokeDashoffset: 0, duration: 3, ease: 'power1.inOut' })
+  .to(travelDot, { opacity: 1, duration: 0.2 }, 0.5)
+  .to(travelDot, {
+    motionPath: { path: '#circuitPath', align: '#circuitPath', autoRotate: true, alignOrigin: [0.5, 0.5] },
+    duration: 3, ease: 'power1.inOut'
+  }, 0.5)
+  .to(morphShape, { opacity: 0.6, duration: 0.4 }, 0.8)
+  .to(morphShape, { scale: 1.5, transformOrigin: '50% 50%', duration: 0.6, ease: 'power2.inOut' }, 1.2)
+  .to(morphShape, { rotation: 90, transformOrigin: '50% 50%', duration: 0.5, ease: 'power2.inOut' }, 1.8)
+  .to(morphShape, { scale: 0.8, rotation: 180, duration: 0.5, ease: 'power2.inOut' }, 2.3)
+  .to(morphShape, { scale: 1, rotation: 360, opacity: 0.8, duration: 0.4, ease: 'power2.out' }, 2.8);
+
+
+24. TESTIMONIAL — Появление цитаты (fade up)
+------------------------------------------------------------
+Цитата и автор появляются снизу.
+
+// JavaScript
+gsap.to('.testimonial-quote p', {
+  opacity: 1, y: 0,
+  duration: 1.2, ease: 'power3.out',
+  scrollTrigger: { trigger: '.testimonial-quote', start: 'top 75%' }
+});
+gsap.to('.testimonial-quote footer', {
+  opacity: 1,
+  duration: 0.8, delay: 0.3, ease: 'power2.out',
+  scrollTrigger: { trigger: '.testimonial-quote', start: 'top 75%' }
+});
+
+
+25. CONTACT — Появление формы (fade up)
+------------------------------------------------------------
+Форма и ссылки появляются снизу.
+
+// JavaScript
+gsap.to('.contact-form', {
+  opacity: 1, y: 0,
+  duration: 0.8, ease: 'power2.out',
+  scrollTrigger: { trigger: '.contact-form', start: 'top 85%' }
+});
+gsap.to('.contact-links', {
+  opacity: 1, y: 0,
+  duration: 0.8, delay: 0.2, ease: 'power2.out',
+  scrollTrigger: { trigger: '.contact-links', start: 'top 90%' }
+});
+
+
+26. CONTACT — Валидация формы (shake при ошибке)
+------------------------------------------------------------
+Кнопка трясётся при невалидной форме.
+
+// JavaScript
+if (!valid) {
+  gsap.fromTo(btn, { x: -8 }, { x: 0, duration: 0.5, ease: 'elastic.out(1, 0.3)' });
+  return;
+}
+
+
+27. CONTACT — Success particles (конфетти)
+------------------------------------------------------------
+12 цветных частиц разлетаются из кнопки при успешной отправке.
+
+// JavaScript
+function createSuccessParticles(btn) {
+  const rect = btn.getBoundingClientRect();
+  const colors = ['#0071E3', '#30D158', '#5AC8FA', '#FF9F0A'];
+
+  for (let i = 0; i < 12; i++) {
+    const particle = document.createElement('div');
+    particle.style.cssText = `
+      position: fixed; width: 6px; height: 6px;
+      border-radius: 50%; background: ${colors[i % colors.length]};
+      pointer-events: none; z-index: 10001;
+      left: ${rect.left + rect.width / 2}px;
+      top: ${rect.top + rect.height / 2}px;
+    `;
+    document.body.appendChild(particle);
+
+    const angle = (i / 12) * Math.PI * 2;
+    const distance = 80 + Math.random() * 60;
+
+    gsap.to(particle, {
+      x: Math.cos(angle) * distance,
+      y: Math.sin(angle) * distance - 40,
+      opacity: 0, scale: 0,
+      duration: 0.8 + Math.random() * 0.4,
+      ease: 'power2.out',
+      onComplete: () => particle.remove()
+    });
+  }
+}
+
+
+28. CUSTOM CURSOR — Следование за мышью
+------------------------------------------------------------
+Основной курсор мгновенно следует за мышью, follower — с инерцией.
+
+// JavaScript
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  gsap.to(cursor, { x: mouseX, y: mouseY, duration: 0.1 });
+});
+
+function updateFollower() {
+  followerX += (mouseX - followerX) * 0.12;
+  followerY += (mouseY - followerY) * 0.12;
+  follower.style.transform = `translate(${followerX - 20}px, ${followerY - 20}px)`;
+  requestAnimationFrame(updateFollower);
+}
+updateFollower();
+
+
+29. CUSTOM CURSOR — Hover-эффект
+------------------------------------------------------------
+Курсор увеличивается при наведении на интерактивные элементы.
+
+// JavaScript
+hoverTargets.forEach(target => {
+  target.addEventListener('mouseenter', () => {
+    cursor.classList.add('hover');
+    follower.classList.add('hover');
+  });
+  target.addEventListener('mouseleave', () => {
+    cursor.classList.remove('hover');
+    follower.classList.remove('hover');
+  });
+});
+
+// CSS
+.cursor.hover { width: 60px; height: 60px; }
+.cursor-follower.hover { width: 80px; height: 80px; border-color: var(--accent); }
+
+
+30. CUSTOM CURSOR — Click ripple
+------------------------------------------------------------
+Расходящееся кольцо в точке клика.
+
+// JavaScript
+document.addEventListener('click', (e) => {
+  const ripple = document.createElement('div');
+  ripple.className = 'cursor-ripple';
+  ripple.style.left = e.clientX + 'px';
+  ripple.style.top = e.clientY + 'px';
+  document.body.appendChild(ripple);
+
+  gsap.to(ripple, {
+    width: 100, height: 100, opacity: 0,
+    duration: 0.6, ease: 'power2.out',
+    onComplete: () => ripple.remove()
+  });
+});
+
+
+31. SECTION MORPHING — Clip-path переходы
+------------------------------------------------------------
+Секции появляются через анимацию clip-path (сжатие → полный размер).
+
+// JavaScript
+sections.forEach((section, i) => {
+  if (i === 0) return;
+  gsap.fromTo(section,
+    { clipPath: 'inset(6% 0 6% 0)' },
+    {
+      clipPath: 'inset(0% 0 0% 0)',
+      duration: 1, ease: 'power2.inOut',
+      scrollTrigger: {
+        trigger: section, start: 'top 85%', end: 'top 40%', scrub: 1
+      }
+    }
+  );
+});
+
+
+32. FOOTER — Появление (fade up)
+------------------------------------------------------------
+Футер плавно появляется при скролле.
+
+// JavaScript
+gsap.from('.footer-content', {
+  opacity: 0, y: 20,
+  duration: 0.8, ease: 'power2.out',
+  scrollTrigger: { trigger: '.footer', start: 'top 95%' }
+});
+
+
+33. NOISE OVERLAY — Текстура шума
+------------------------------------------------------------
+Тонкий SVG-шум поверх всего сайта для глубины изображения.
+
+// CSS
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,...");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+
+============================================================
+Библиотеки: GSAP 3.12.5, ScrollTrigger, MotionPathPlugin
+============================================================
