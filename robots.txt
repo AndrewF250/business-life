@@ -3,7 +3,5 @@ Allow: /
 
 Disallow: /404.html
 Disallow: /thank-you.html
-Disallow: /article.html
-Disallow: /event.html
 
 Sitemap: https://andrewf250.github.io/business-life/sitemap.xml

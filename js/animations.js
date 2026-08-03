@@ -1,6 +1,6 @@
 /* ========================================
    GSAP-анимации сайта «Деловая жизнь»
-   Адаптировано из animations.txt (проект INTEGRA)
+   GSAP-анимации (проект INTEGRA)
    Подключается динамически из js/script.js после загрузки GSAP
    ======================================== */
 
@@ -177,10 +177,10 @@
       gsap.to(titleChars, {
         opacity: 1,
         y: 0,
-        duration: 0.8,
-        stagger: 0.04,
+        duration: 0.45,
+        stagger: 0.02,
         ease: 'power3.out',
-        delay: 0.3
+        delay: 0.15
       });
     }
 
@@ -191,7 +191,7 @@
       if (!el) return;
       gsap.fromTo(el,
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, delay: 0.6 + idx * 0.15, ease: 'power2.out' }
+        { opacity: 1, y: 0, duration: 0.45, delay: 0.35 + idx * 0.08, ease: 'power2.out' }
       );
     });
 
@@ -261,10 +261,10 @@
         opacity: 1,
         y: 0,
         rotationX: 0,
-        duration: 0.8,
-        stagger: 0.02,
+        duration: 0.45,
+        stagger: 0.012,
         ease: 'power3.out',
-        scrollTrigger: { trigger: title, start: 'top 80%' }
+        scrollTrigger: { trigger: title, start: 'top 85%' }
       });
     });
   }
@@ -282,10 +282,10 @@
       gsap.to(chars, {
         opacity: 1,
         y: 0,
-        duration: 0.6,
-        stagger: 0.03,
+        duration: 0.35,
+        stagger: 0.015,
         ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 88%' }
+        scrollTrigger: { trigger: el, start: 'top 90%' }
       });
     });
   }
@@ -354,8 +354,9 @@
     var sections = document.querySelectorAll('main > section');
     sections.forEach(function (section, i) {
       if (i === 0) return;
+      if (section.classList.contains('contacts-map') || section.classList.contains('contacts-info')) return;
       gsap.fromTo(section,
-        { clipPath: 'inset(6% 0 6% 0)' },
+        { clipPath: 'inset(4% 0 4% 0)' },
         {
           clipPath: 'inset(0% 0 0% 0)',
           ease: 'none',

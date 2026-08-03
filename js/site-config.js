@@ -1,26 +1,21 @@
-/* ========================================
-   Конфиг сайта «Деловая жизнь»
-   Замените значения на реальные перед запуском рекламы
-   ======================================== */
 window.SITE_CONFIG = {
   baseUrl: 'https://andrewf250.github.io/business-life',
   brand: 'Деловая жизнь',
-  phone: '+7 (999) 123-45-67',
-  phoneRaw: '79991234567',
-  email: 'info@delovaya-zhizn.ru',
-  address: 'г. Москва, ул. Примерная, 1',
+  phone: '+7 (963) 017-00-17',
+  phoneRaw: '79630170017',
+  phoneAlt: '+7 (342) 291-95-93',
+  email: 'club@delolife.club',
+  address: 'г. Пермь, ул. 25 Октября, 4, Бизнес-дом «Деловая жизнь»',
+  addressAlt: 'г. Пермь, ул. Ленина, 68',
+  director: 'Наталья Цаюкова',
+  hours: 'Пн–Пт: 9:00 — 18:00',
+  guestFormUrl: 'https://forms.yandex.ru/cloud/643659a8c09c0200f93623d0/',
+  mapEmbed: 'https://www.google.com/maps?q=Пермь,+ул.+25+Октября,+4&hl=ru&z=16&output=embed',
   social: {
-    telegram: 'https://t.me/delovaya_zhizn',
-    whatsapp: 'https://wa.me/79991234567',
-    vk: 'https://vk.com/delovaya_zhizn'
+    telegram: 'https://t.me/delolife_club',
+    whatsapp: 'https://wa.me/79630170017',
+    vk: 'https://vk.com/delolife.club'
   },
-  /* Вставьте ID или оставьте пустым — скрипт не загрузится */
-  analytics: {
-    yandexMetrikaId: '',
-    googleAnalyticsId: '',
-    gtmId: '',
-    vkPixelId: ''
-  },
-  /* Formspree / Getform / свой endpoint. Пусто = локальное сохранение + thank-you */
+  analytics: { yandexMetrikaId: '', googleAnalyticsId: '', gtmId: '', vkPixelId: '' },
   formEndpoint: ''
 };
