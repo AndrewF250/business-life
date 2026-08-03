@@ -3,38 +3,22 @@
    ======================================== */
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Инициализация темы
+  initAnalytics();
+  initUtmCapture();
   initTheme();
-  
-  // Фиксированная шапка с эффектом скролла
   initHeaderScroll();
-  
-  // Бургер-меню
   initBurgerMenu();
-  
-  // Слайдер резидентов
+  initSiteSearch();
   initSlider();
-  
-  // Фильтры
   initFilters();
-  
-  // Форма обратной связи
   initContactForm();
-  
-  // Плавная прокрутка
+  initShareButtons();
   initSmoothScroll();
-  
-  // CountUp анимация
   initCountUp();
-  
-  // Анимации при скролле
   initScrollAnimations();
-  
-  // Анимированный фон hero
   initHeroAnimatedBg();
-  
-  // Кнопка "Наверх"
   initScrollTop();
+  trackCtaClicks();
 });
 
 /* ========================================
@@ -378,53 +362,86 @@ function initFilters() {
 function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
-  
+
+  const hasMessage = !!form.querySelector('[name="message"]');
+
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    // Получаем данные формы
+
     const formData = new FormData(form);
     const data = {};
     formData.forEach((value, key) => {
       data[key] = value;
     });
-    
-    // Простая валидация
-    if (!validateForm(data)) {
-      // Shake-анимация кнопки при ошибке (если GSAP загружен)
+
+    if (!validateForm(data, { requireMessage: hasMessage })) {
       if (window.blFormShake) window.blFormShake(form.querySelector('button[type="submit"]'));
       return;
     }
-    
-    // Имитация отправки
+
+    const consent = form.querySelector('[name="consent"]');
+    if (consent && !consent.checked) {
+      showNotification('Нужно согласие на обработку персональных данных', 'error');
+      if (window.blFormShake) window.blFormShake(form.querySelector('button[type="submit"]'));
+      return;
+    }
+
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Отправка...';
     submitBtn.disabled = true;
     submitBtn.style.opacity = '0.7';
-    
-    setTimeout(() => {
-      // Показываем сообщение об успехе
-      showNotification('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.', 'success');
-      
-      // Конфетти из кнопки (если GSAP загружен)
+
+    const utm = getStoredUtm();
+    Object.keys(utm).forEach(function(key) {
+      formData.append(key, utm[key]);
+    });
+    formData.append('page', window.location.href);
+    formData.append('submittedAt', new Date().toISOString());
+
+    const cfg = window.SITE_CONFIG || {};
+    const endpoint = cfg.formEndpoint || '';
+
+    function finishOk() {
+      try {
+        const leads = JSON.parse(localStorage.getItem('bl_leads') || '[]');
+        leads.push(Object.fromEntries(formData.entries()));
+        localStorage.setItem('bl_leads', JSON.stringify(leads.slice(-50)));
+      } catch (err) {}
+
+      trackEvent('lead', { form: form.id || 'contactForm' });
       if (window.blSuccessParticles) window.blSuccessParticles(submitBtn);
-      
-      // Сбрасываем форму
-      form.reset();
+      window.location.href = 'thank-you.html';
+    }
+
+    function finishFail() {
+      showNotification('Не удалось отправить. Попробуйте ещё раз или напишите на email.', 'error');
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
       submitBtn.style.opacity = '1';
-    }, 1500);
+    }
+
+    if (endpoint) {
+      fetch(endpoint, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' }
+      }).then(function(res) {
+        if (!res.ok) throw new Error('fail');
+        finishOk();
+      }).catch(finishFail);
+      return;
+    }
+
+    // Без endpoint: сохраняем локально и ведём на thank-you
+    setTimeout(finishOk, 600);
   });
-  
-  // Валидация в реальном времени
+
   const inputs = form.querySelectorAll('input, textarea');
   inputs.forEach(input => {
     input.addEventListener('blur', function() {
       validateField(this);
     });
-    
     input.addEventListener('input', function() {
       if (this.classList.contains('error')) {
         validateField(this);
@@ -433,35 +450,34 @@ function initContactForm() {
   });
 }
 
-function validateForm(data) {
+function validateForm(data, options) {
+  const opts = options || {};
   let isValid = true;
-  
-  // Проверка имени
+
   if (!data.name || data.name.trim().length < 2) {
     showFieldError('name', 'Пожалуйста, введите ваше имя');
     isValid = false;
   }
-  
-  // Проверка телефона
+
   const phoneRegex = /^[\+]?[0-9\s\-\(\)]{10,}$/;
   if (!data.phone || !phoneRegex.test(data.phone)) {
     showFieldError('phone', 'Пожалуйста, введите корректный номер телефона');
     isValid = false;
   }
-  
-  // Проверка email
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!data.email || !emailRegex.test(data.email)) {
     showFieldError('email', 'Пожалуйста, введите корректный email');
     isValid = false;
   }
-  
-  // Проверка сообщения
-  if (!data.message || data.message.trim().length < 10) {
-    showFieldError('message', 'Пожалуйста, введите сообщение (минимум 10 символов)');
-    isValid = false;
+
+  if (opts.requireMessage) {
+    if (!data.message || data.message.trim().length < 10) {
+      showFieldError('message', 'Пожалуйста, введите сообщение (минимум 10 символов)');
+      isValid = false;
+    }
   }
-  
+
   return isValid;
 }
 
@@ -735,6 +751,250 @@ function initScrollTop() {
       behavior: 'smooth'
     });
   });
+}
+
+/* ========================================
+   Аналитика / UTM / события
+   ======================================== */
+function initAnalytics() {
+  var cfg = (window.SITE_CONFIG && window.SITE_CONFIG.analytics) || {};
+
+  if (cfg.gtmId) {
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      var f = d.getElementsByTagName(s)[0];
+      var j = d.createElement(s);
+      var dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', cfg.gtmId);
+  }
+
+  if (cfg.googleAnalyticsId) {
+    var ga = document.createElement('script');
+    ga.async = true;
+    ga.src = 'https://www.googletagmanager.com/gtag/js?id=' + cfg.googleAnalyticsId;
+    document.head.appendChild(ga);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function() { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', cfg.googleAnalyticsId);
+  }
+
+  if (cfg.yandexMetrikaId) {
+    (function(m, e, t, r, i, k, a) {
+      m[i] = m[i] || function() { (m[i].a = m[i].a || []).push(arguments); };
+      m[i].l = 1 * new Date();
+      k = e.createElement(t);
+      a = e.getElementsByTagName(t)[0];
+      k.async = 1;
+      k.src = r;
+      a.parentNode.insertBefore(k, a);
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+    window.ym(cfg.yandexMetrikaId, 'init', {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true
+    });
+  }
+
+  if (cfg.vkPixelId) {
+    !function() {
+      var t = document.createElement('script');
+      t.type = 'text/javascript';
+      t.async = true;
+      t.src = 'https://vk.com/js/api/openapi.js?169';
+      t.onload = function() {
+        if (window.VK && window.VK.Retargeting) {
+          window.VK.Retargeting.Init(cfg.vkPixelId);
+          window.VK.Retargeting.Hit();
+        }
+      };
+      document.head.appendChild(t);
+    }();
+  }
+}
+
+function initUtmCapture() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    var stored = {};
+    var has = false;
+    keys.forEach(function(key) {
+      var val = params.get(key);
+      if (val) {
+        stored[key] = val;
+        has = true;
+      }
+    });
+    if (has) {
+      localStorage.setItem('bl_utm', JSON.stringify(stored));
+    }
+  } catch (e) {}
+}
+
+function getStoredUtm() {
+  try {
+    return JSON.parse(localStorage.getItem('bl_utm') || '{}');
+  } catch (e) {
+    return {};
+  }
+}
+
+function trackEvent(name, payload) {
+  var data = payload || {};
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', name, data);
+  }
+  var ymId = window.SITE_CONFIG && window.SITE_CONFIG.analytics && window.SITE_CONFIG.analytics.yandexMetrikaId;
+  if (ymId && typeof window.ym === 'function') {
+    window.ym(ymId, 'reachGoal', name, data);
+  }
+  if (window.dataLayer) {
+    window.dataLayer.push(Object.assign({ event: name }, data));
+  }
+}
+
+function trackCtaClicks() {
+  document.querySelectorAll('a.btn, button.btn').forEach(function(el) {
+    el.addEventListener('click', function() {
+      trackEvent('cta_click', {
+        text: (el.textContent || '').trim().slice(0, 80),
+        href: el.getAttribute('href') || ''
+      });
+    });
+  });
+}
+
+/* ========================================
+   Шаринг
+   ======================================== */
+function initShareButtons() {
+  var root = document.querySelector('[data-share-root]') || document.querySelector('.share-buttons');
+  if (!root) return;
+  var url = encodeURIComponent(window.location.href);
+  var title = encodeURIComponent(document.title);
+
+  root.querySelectorAll('[data-share]').forEach(function(link) {
+    var type = link.getAttribute('data-share');
+    if (type === 'telegram') {
+      link.href = 'https://t.me/share/url?url=' + url + '&text=' + title;
+    } else if (type === 'vk') {
+      link.href = 'https://vk.com/share.php?url=' + url + '&title=' + title;
+    } else if (type === 'copy') {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(window.location.href).then(function() {
+            showNotification('Ссылка скопирована', 'success');
+          });
+        }
+        trackEvent('share', { method: 'copy' });
+      });
+    }
+  });
+}
+
+/* ========================================
+   Поиск по сайту
+   ======================================== */
+var SITE_SEARCH_INDEX = [
+  { title: 'Главная', url: 'index.html', text: 'бизнес-клуб предпринимателей деловая жизнь' },
+  { title: 'О клубе', url: 'about.html', text: 'миссия история ценности формат участия' },
+  { title: 'Команда', url: 'team.html', text: 'президиум организаторы команда' },
+  { title: 'Резиденты', url: 'residents.html', text: 'предприниматели участники компании' },
+  { title: 'Блог', url: 'blog.html', text: 'статьи нетворкинг кейсы лайфхаки' },
+  { title: 'Экосистема', url: 'ecosystem.html', text: 'инструменты партнёры рост бизнеса' },
+  { title: 'События', url: 'events.html', text: 'мероприятия форум завтраки мастер-классы' },
+  { title: 'Контакты', url: 'contacts.html', text: 'адрес телефон заявка связаться' },
+  { title: 'Гостевой визит', url: 'visit.html', text: 'гость запись заявка визит' },
+  { title: 'Партнёрство', url: 'partnership.html', text: 'спонсоры спикеры площадки' },
+  { title: 'FAQ', url: 'faq.html', text: 'частые вопросы абонемент вступление' },
+  { title: 'Нетворкинг', url: 'networking.html', text: 'деловые связи статьи блог' },
+  { title: 'Кейсы', url: 'cases.html', text: 'истории успеха оборот рост' },
+  { title: 'Лайфхаки', url: 'lifhaki.html', text: 'советы тайм-менеджмент предприниматели' },
+  { title: 'Как эффективно нетворкить', url: 'article-networking-1.html', text: '5 правил нетворкинг связи' },
+  { title: 'Как увеличить оборот на 40%', url: 'article-cases-1.html', text: 'кейс рост оборот партнёрства' },
+  { title: 'Тайм-менеджмент', url: 'article-lifhaki-1.html', text: 'время продуктивность техники' },
+  { title: 'Архив мероприятий', url: 'events-archive.html', text: 'прошедшие события фото итоги' },
+  { title: 'Ирина Южанинова', url: 'founder.html', text: 'основатель клуба' },
+  { title: 'Политика конфиденциальности', url: 'privacy.html', text: 'персональные данные' },
+  { title: 'Пользовательское соглашение', url: 'terms.html', text: 'условия использования' }
+];
+
+function initSiteSearch() {
+  if (document.getElementById('siteSearch')) return;
+
+  var actions = document.querySelector('.header__actions');
+  if (!actions) return;
+
+  var wrap = document.createElement('div');
+  wrap.className = 'site-search';
+  wrap.innerHTML =
+    '<button type="button" class="site-search__toggle" id="siteSearchToggle" aria-label="Поиск">' +
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+    '<circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>' +
+    '<div class="site-search__panel" id="siteSearchPanel" hidden>' +
+    '<input type="search" id="siteSearch" class="site-search__input" placeholder="Поиск по сайту..." autocomplete="off">' +
+    '<div class="site-search__results" id="siteSearchResults"></div></div>';
+  actions.insertBefore(wrap, actions.firstChild);
+
+  var toggle = document.getElementById('siteSearchToggle');
+  var panel = document.getElementById('siteSearchPanel');
+  var input = document.getElementById('siteSearch');
+  var results = document.getElementById('siteSearchResults');
+
+  function runSearch() {
+    var q = input.value.trim().toLowerCase();
+    results.innerHTML = '';
+    if (q.length < 2) return;
+    var matches = SITE_SEARCH_INDEX.filter(function(item) {
+      return (item.title + ' ' + item.text).toLowerCase().indexOf(q) !== -1;
+    }).slice(0, 8);
+    if (!matches.length) {
+      results.innerHTML = '<div class="site-search__empty">Ничего не найдено</div>';
+      return;
+    }
+    matches.forEach(function(item) {
+      var a = document.createElement('a');
+      a.href = item.url;
+      a.className = 'site-search__item';
+      a.textContent = item.title;
+      results.appendChild(a);
+    });
+    trackEvent('site_search', { query: q });
+  }
+
+  toggle.addEventListener('click', function() {
+    var open = !panel.hasAttribute('hidden');
+    if (open) {
+      panel.setAttribute('hidden', '');
+    } else {
+      panel.removeAttribute('hidden');
+      input.focus();
+    }
+  });
+
+  input.addEventListener('input', debounce(runSearch, 200));
+
+  document.addEventListener('click', function(e) {
+    if (!wrap.contains(e.target)) {
+      panel.setAttribute('hidden', '');
+    }
+  });
+
+  try {
+    var qParam = new URLSearchParams(window.location.search).get('q');
+    if (qParam && qParam.trim().length >= 2) {
+      panel.removeAttribute('hidden');
+      input.value = qParam;
+      runSearch();
+    }
+  } catch (e) {}
 }
 
 /* ========================================

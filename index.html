@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Деловая жизнь — Бизнес-клуб предпринимателей</title>
   <meta name="description" content="Деловая жизнь — премиальное сообщество предпринимателей для нетворкинга, развития бизнеса и обмена опытом. 130+ участников, 5 лет, 500+ млн сделок.">
-  <meta name="keywords" content="бизнес-клуб, предприниматели, нетворкинг, форум-группы, деловое сообщество, Москва">
   <meta name="author" content="Деловая жизнь">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://andrewf250.github.io/business-life/">
@@ -17,30 +16,63 @@
   <meta property="og:description" content="Премиальное сообщество предпринимателей для нетворкинга, развития бизнеса и обмена опытом.">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:site_name" content="Деловая жизнь">
+  <meta property="og:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Деловая жизнь — Бизнес-клуб предпринимателей">
+  <meta name="twitter:description" content="Премиальное сообщество предпринимателей для нетворкинга, развития бизнеса и обмена опытом.">
+  <meta name="twitter:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
 
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Деловая жизнь",
-    "description": "Премиальное сообщество предпринимателей для нетворкинга, развития бизнеса и обмена опытом.",
-    "url": "https://andrewf250.github.io/business-life/",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Москва",
-      "streetAddress": "ул. Примерная, 1"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+7-999-123-45-67",
-      "email": "info@delovaya-zhizn.ru",
-      "contactType": "customer service"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://andrewf250.github.io/business-life/#organization",
+        "name": "Деловая жизнь",
+        "description": "Премиальное сообщество предпринимателей для нетворкинга, развития бизнеса и обмена опытом.",
+        "url": "https://andrewf250.github.io/business-life/",
+        "logo": "https://andrewf250.github.io/business-life/assets/images/favicon.svg",
+        "image": "https://andrewf250.github.io/business-life/assets/images/og-default.png",
+        "sameAs": [
+          "https://t.me/delovaya_zhizn",
+          "https://vk.com/delovaya_zhizn"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Москва",
+          "streetAddress": "ул. Примерная, 1",
+          "addressCountry": "RU"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+7-999-123-45-67",
+          "email": "info@delovaya-zhizn.ru",
+          "contactType": "customer service",
+          "availableLanguage": "Russian"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://andrewf250.github.io/business-life/#website",
+        "url": "https://andrewf250.github.io/business-life/",
+        "name": "Деловая жизнь",
+        "publisher": { "@id": "https://andrewf250.github.io/business-life/#organization" },
+        "inLanguage": "ru-RU",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://andrewf250.github.io/business-life/blog.html?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
   }
   </script>
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💼</text></svg>">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,8 +126,8 @@
       <div class="container">
         <div class="hero__content">
           <div class="hero__label">Бизнес-клуб предпринимателей</div>
-          <h1>Предпринимательская экосистема</h1>
-          <p class="hero__subtitle">Деловая жизнь — премиальное сообщество, где растет ваш бизнес и рождаются новые возможности</p>
+          <h1>Деловая жизнь — бизнес-клуб предпринимателей в Москве</h1>
+          <p class="hero__subtitle">Премиальное сообщество, где растет ваш бизнес и рождаются новые возможности</p>
           <div class="hero__stats">
             <div class="hero__stat">
               <span class="hero__stat-number" data-count="130">130+</span>
@@ -625,8 +657,8 @@
       <div class="footer__contacts">
         <h4>Контакты</h4>
         <p>г. Москва, ул. Примерная, 1</p>
-        <p>+7 (999) 123-45-67</p>
-        <p>info@delovaya-zhizn.ru</p>
+        <p><a href="tel:+79991234567">+7 (999) 123-45-67</a></p>
+        <p><a href="mailto:info@delovaya-zhizn.ru">info@delovaya-zhizn.ru</a></p>
       </div>
       <div class="footer__nav">
         <h4>Навигация</h4>
@@ -643,17 +675,13 @@
       </div>
       <div>
         <h4>Социальные сети</h4>
-        <div class="footer__social">
-          <a href="#">Telegram</a>
-          <a href="#">WhatsApp</a>
-          <a href="#">VK</a>
-        </div>
+        <div class="footer__social"><a href="https://t.me/delovaya_zhizn" target="_blank" rel="noopener noreferrer">Telegram</a><a href="https://wa.me/79991234567" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://vk.com/delovaya_zhizn" target="_blank" rel="noopener noreferrer">VK</a></div>
       </div>
       <div class="footer__bottom">
         <span class="footer__copy">&copy; 2026 Деловая жизнь. Все права защищены.</span>
         <div class="footer__legal">
-          <a href="#">Политика конфиденциальности</a>
-          <a href="#">Пользовательское соглашение</a>
+          <a href="privacy.html">Политика конфиденциальности</a>
+          <a href="terms.html">Пользовательское соглашение</a>
         </div>
       </div>
     </div>
@@ -687,6 +715,7 @@
     </svg>
   </button>
 
+  <script src="js/site-config.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
