@@ -6,6 +6,20 @@
   <meta name="robots" content="index, follow">
   <title>Резиденты — Деловая жизнь</title>
   <meta name="description" content="Бизнес-клуб Деловая жизнь в Перми. Резиденты.">
+  
+  <link rel="canonical" href="https://andrewf250.github.io/business-life/residents.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://andrewf250.github.io/business-life/residents.html">
+  <meta property="og:title" content="Резиденты — Деловая жизнь">
+  <meta property="og:description" content="Бизнес-клуб Деловая жизнь в Перми. Резиденты.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Деловая жизнь">
+  <meta property="og:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Резиденты — Деловая жизнь">
+  <meta name="twitter:description" content="Бизнес-клуб Деловая жизнь в Перми. Резиденты.">
+  <meta name="twitter:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +27,12 @@
   <link rel="stylesheet" href="css/atelier.css">
   <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
-<body>
+<body data-page="residents">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+    <div class="preloader__bar"><i id="preloaderBar"></i></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
   <div class="progress" id="progress"></div>
   <div class="theme-transition-overlay" id="themeOverlay"></div>
   <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -77,493 +96,501 @@
 
   <main>
 
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="people"><div class="container">
       <p class="eyebrow">Резиденты</p>
       <h1 class="page-hero__title">Сильные предприниматели рядом</h1>
-      <p class="page-hero__text">120+ резидентов: собственники, руководители и эксперты Пермского края. Используйте поиск в шапке.</p>
-      <div style="margin-top:20px">
+      <p class="page-hero__text">120+ резидентов: собственники, руководители и эксперты Пермского края.</p>
+      <div style="margin-top:20px;display:grid;gap:14px">
         <input type="search" id="residentsFilter" class="filter-input" placeholder="Фильтр по имени или компании...">
+        <div class="filter-chips" id="categoryFilters" data-reveal>
+          <button type="button" class="chip is-active" data-cat="all">Все</button>
+          <button type="button" class="chip" data-cat="services">Услуги</button>
+          <button type="button" class="chip" data-cat="trade">Торговля</button>
+          <button type="button" class="chip" data-cat="consulting">Консалтинг</button>
+          <button type="button" class="chip" data-cat="production">Производство</button>
+          <button type="button" class="chip" data-cat="it">IT</button>
+        </div>
       </div>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container">
+    <section class="section" style="padding-top:10px" data-bg="grid"><div class="container">
       <div class="residents-grid" id="residentsGrid" data-reveal-stagger>
-        <a class="r-card" href="irina-yuzhaninova.html" data-name="Ирина Южанинова" data-meta="Камская химическая компания">
+        <a class="r-card" href="irina-yuzhaninova.html" data-name="Ирина Южанинова" data-meta="Камская химическая компания" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/irina-yuzhaninova.jpg" alt="Ирина Южанинова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Южанинова</h3><p>Президент · Камская химическая компания</p></div>
           </a>
-        <a class="r-card" href="ekaterina-volochkova.html" data-name="Екатерина Волочкова" data-meta="Сеть турагентств «Планета»">
+        <a class="r-card" href="ekaterina-volochkova.html" data-name="Екатерина Волочкова" data-meta="Сеть турагентств «Планета»" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/ekaterina-volochkova.jpg" alt="Екатерина Волочкова" loading="lazy"></div>
             <div class="r-card__body"><h3>Екатерина Волочкова</h3><p>VIP-резидент · Сеть турагентств «Планета»</p></div>
           </a>
-        <a class="r-card" href="aleksandr-korenyakin.html" data-name="Александр Коренякин" data-meta="ДКИ">
+        <a class="r-card" href="aleksandr-korenyakin.html" data-name="Александр Коренякин" data-meta="ДКИ" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/aleksandr-korenyakin.jpg" alt="Александр Коренякин" loading="lazy"></div>
             <div class="r-card__body"><h3>Александр Коренякин</h3><p>VIP-резидент · ДКИ</p></div>
           </a>
-        <a class="r-card" href="leyli-dolya.html" data-name="Лейли Доля" data-meta="RedHome">
+        <a class="r-card" href="leyli-dolya.html" data-name="Лейли Доля" data-meta="RedHome" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/leyli-dolya.jpg" alt="Лейли Доля" loading="lazy"></div>
             <div class="r-card__body"><h3>Лейли Доля</h3><p>VIP-резидент · RedHome</p></div>
           </a>
-        <a class="r-card" href="marina-mosina.html" data-name="Марина Мосина" data-meta="Mosina Clinic">
+        <a class="r-card" href="marina-mosina.html" data-name="Марина Мосина" data-meta="Mosina Clinic" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/marina-mosina.jpg" alt="Марина Мосина" loading="lazy"></div>
             <div class="r-card__body"><h3>Марина Мосина</h3><p>VIP-резидент · Mosina Clinic</p></div>
           </a>
-        <a class="r-card" href="olga-shlyakova.html" data-name="Ольга Шлякова" data-meta="Инвестиционный банк «Синара»">
+        <a class="r-card" href="olga-shlyakova.html" data-name="Ольга Шлякова" data-meta="Инвестиционный банк «Синара»" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/olga-shlyakova.jpg" alt="Ольга Шлякова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ольга Шлякова</h3><p>VIP-резидент · Инвестиционный банк «Синара»</p></div>
           </a>
-        <a class="r-card" href="marina-myzina.html" data-name="Марина Мызина" data-meta="HR-агентство / INTOUCH / Чио Чио">
+        <a class="r-card" href="marina-myzina.html" data-name="Марина Мызина" data-meta="HR-агентство / INTOUCH / Чио Чио" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/marina-myzina.jpg" alt="Марина Мызина" loading="lazy"></div>
             <div class="r-card__body"><h3>Марина Мызина</h3><p>VIP-резидент · HR-агентство / INTOUCH / Чио Чио</p></div>
           </a>
-        <a class="r-card" href="aleksandr-sidoruk.html" data-name="Александр Сидорук" data-meta="Мясология">
+        <a class="r-card" href="aleksandr-sidoruk.html" data-name="Александр Сидорук" data-meta="Мясология" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/aleksandr-sidoruk.png" alt="Александр Сидорук" loading="lazy"></div>
             <div class="r-card__body"><h3>Александр Сидорук</h3><p>VIP-резидент · Мясология</p></div>
           </a>
-        <a class="r-card" href="olga-sozinova.html" data-name="Ольга Созинова" data-meta="Виолет">
+        <a class="r-card" href="olga-sozinova.html" data-name="Ольга Созинова" data-meta="Виолет" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/olga-sozinova.jpg" alt="Ольга Созинова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ольга Созинова</h3><p>Резидент · Виолет</p></div>
           </a>
-        <a class="r-card" href="irina-starkova.html" data-name="Ирина Старкова" data-meta="Пять сил">
+        <a class="r-card" href="irina-starkova.html" data-name="Ирина Старкова" data-meta="Пять сил" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/irina-starkova.jpg" alt="Ирина Старкова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Старкова</h3><p>Резидент · Пять сил</p></div>
           </a>
-        <a class="r-card" href="tatyana-goryacheva.html" data-name="Татьяна Горячева" data-meta="Диамид">
+        <a class="r-card" href="tatyana-goryacheva.html" data-name="Татьяна Горячева" data-meta="Диамид" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/tatyana-goryacheva.png" alt="Татьяна Горячева" loading="lazy"></div>
             <div class="r-card__body"><h3>Татьяна Горячева</h3><p>Резидент · Диамид</p></div>
           </a>
-        <a class="r-card" href="sergey-medvedev.html" data-name="Сергей Медведев" data-meta="Пермского филиала кампании UDS групп">
+        <a class="r-card" href="sergey-medvedev.html" data-name="Сергей Медведев" data-meta="Пермского филиала кампании UDS групп" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/sergey-medvedev.jpg" alt="Сергей Медведев" loading="lazy"></div>
             <div class="r-card__body"><h3>Сергей Медведев</h3><p>Резидент · Пермского филиала кампании UDS групп</p></div>
           </a>
-        <a class="r-card" href="marina-belyaeva.html" data-name="Марина Беляева" data-meta="руководителя Пермского филиала кампании UDS групп">
+        <a class="r-card" href="marina-belyaeva.html" data-name="Марина Беляева" data-meta="руководителя Пермского филиала кампании UDS групп" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/marina-belyaeva.png" alt="Марина Беляева" loading="lazy"></div>
             <div class="r-card__body"><h3>Марина Беляева</h3><p>Резидент · руководителя Пермского филиала кампании UDS групп</p></div>
           </a>
-        <a class="r-card" href="zhulanov-denis.html" data-name="Жуланов Денис" data-meta="Технологии ландшафта">
+        <a class="r-card" href="zhulanov-denis.html" data-name="Жуланов Денис" data-meta="Технологии ландшафта" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/zhulanov-denis.jpg" alt="Жуланов Денис" loading="lazy"></div>
             <div class="r-card__body"><h3>Жуланов Денис</h3><p>Резидент · Технологии ландшафта</p></div>
           </a>
-        <a class="r-card" href="dmitriy-tylec.html" data-name="Дмитрий Тылец" data-meta="Р-Групп">
+        <a class="r-card" href="dmitriy-tylec.html" data-name="Дмитрий Тылец" data-meta="Р-Групп" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/dmitriy-tylec.jpg" alt="Дмитрий Тылец" loading="lazy"></div>
             <div class="r-card__body"><h3>Дмитрий Тылец</h3><p>Резидент · Р-Групп</p></div>
           </a>
-        <a class="r-card" href="artem-shumakov.html" data-name="Артем Шумаков" data-meta="в строительной сфере (Окна ПВХ">
+        <a class="r-card" href="artem-shumakov.html" data-name="Артем Шумаков" data-meta="в строительной сфере (Окна ПВХ" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/artem-shumakov.jpg" alt="Артем Шумаков" loading="lazy"></div>
             <div class="r-card__body"><h3>Артем Шумаков</h3><p>Резидент · в строительной сфере (Окна ПВХ</p></div>
           </a>
-        <a class="r-card" href="konstantin-gonza.html" data-name="Константин Гонза" data-meta="Станки Технолоджи">
+        <a class="r-card" href="konstantin-gonza.html" data-name="Константин Гонза" data-meta="Станки Технолоджи" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/konstantin-gonza.jpg" alt="Константин Гонза" loading="lazy"></div>
             <div class="r-card__body"><h3>Константин Гонза</h3><p>Директор · Станки Технолоджи</p></div>
           </a>
-        <a class="r-card" href="denis-stepanov.html" data-name="Денис Степанов" data-meta="ТМ">
+        <a class="r-card" href="denis-stepanov.html" data-name="Денис Степанов" data-meta="ТМ" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/denis-stepanov.jpg" alt="Денис Степанов" loading="lazy"></div>
             <div class="r-card__body"><h3>Денис Степанов</h3><p>Основатель · ТМ</p></div>
           </a>
-        <a class="r-card" href="kolmogorov-andrey.html" data-name="Колмогоров Андрей" data-meta="ДРУГОЙСВЕТ">
+        <a class="r-card" href="kolmogorov-andrey.html" data-name="Колмогоров Андрей" data-meta="ДРУГОЙСВЕТ" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/kolmogorov-andrey.png" alt="Колмогоров Андрей" loading="lazy"></div>
             <div class="r-card__body"><h3>Колмогоров Андрей</h3><p>Резидент · ДРУГОЙСВЕТ</p></div>
           </a>
-        <a class="r-card" href="kisarev-artem.html" data-name="Кисарев Артем" data-meta="Мультипласт">
+        <a class="r-card" href="kisarev-artem.html" data-name="Кисарев Артем" data-meta="Мультипласт" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/kisarev-artem.png" alt="Кисарев Артем" loading="lazy"></div>
             <div class="r-card__body"><h3>Кисарев Артем</h3><p>Резидент · Мультипласт</p></div>
           </a>
-        <a class="r-card" href="stolbov-egor.html" data-name="Столбов Егор" data-meta="Центр Горно-Нефтяного Обучения">
+        <a class="r-card" href="stolbov-egor.html" data-name="Столбов Егор" data-meta="Центр Горно-Нефтяного Обучения" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/stolbov-egor.png" alt="Столбов Егор" loading="lazy"></div>
             <div class="r-card__body"><h3>Столбов Егор</h3><p>Резидент · Центр Горно-Нефтяного Обучения</p></div>
           </a>
-        <a class="r-card" href="kubyshev-maksim.html" data-name="Кубышев Максим" data-meta="ИнфоВектор">
+        <a class="r-card" href="kubyshev-maksim.html" data-name="Кубышев Максим" data-meta="ИнфоВектор" data-category="it">
             <div class="r-card__photo"><img src="assets/images/residents/kubyshev-maksim.png" alt="Кубышев Максим" loading="lazy"></div>
             <div class="r-card__body"><h3>Кубышев Максим</h3><p>Резидент · ИнфоВектор</p></div>
           </a>
-        <a class="r-card" href="vasilev-andrey.html" data-name="Васильев Андрей" data-meta="Ново-Лядовский Источник">
+        <a class="r-card" href="vasilev-andrey.html" data-name="Васильев Андрей" data-meta="Ново-Лядовский Источник" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/vasilev-andrey.png" alt="Васильев Андрей" loading="lazy"></div>
             <div class="r-card__body"><h3>Васильев Андрей</h3><p>Резидент · Ново-Лядовский Источник</p></div>
           </a>
-        <a class="r-card" href="evgeniy-ragozin.html" data-name="Евгений Рагозин" data-meta="ПОТОЛОК ЦЕНТР">
+        <a class="r-card" href="evgeniy-ragozin.html" data-name="Евгений Рагозин" data-meta="ПОТОЛОК ЦЕНТР" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/evgeniy-ragozin.jpg" alt="Евгений Рагозин" loading="lazy"></div>
             <div class="r-card__body"><h3>Евгений Рагозин</h3><p>Резидент · ПОТОЛОК ЦЕНТР</p></div>
           </a>
-        <a class="r-card" href="ivan-sokolov.html" data-name="Иван Соколов" data-meta="Магнат59">
+        <a class="r-card" href="ivan-sokolov.html" data-name="Иван Соколов" data-meta="Магнат59" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/ivan-sokolov.jpg" alt="Иван Соколов" loading="lazy"></div>
             <div class="r-card__body"><h3>Иван Соколов</h3><p>Резидент · Магнат59</p></div>
           </a>
-        <a class="r-card" href="vitaliy-oshev.html" data-name="Виталий Ошев" data-meta="ARATTA">
+        <a class="r-card" href="vitaliy-oshev.html" data-name="Виталий Ошев" data-meta="ARATTA" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/vitaliy-oshev.jpg" alt="Виталий Ошев" loading="lazy"></div>
             <div class="r-card__body"><h3>Виталий Ошев</h3><p>Резидент · ARATTA</p></div>
           </a>
-        <a class="r-card" href="evgeniy-patrakov.html" data-name="Евгений Патраков" data-meta="Мистэр Фэпс">
+        <a class="r-card" href="evgeniy-patrakov.html" data-name="Евгений Патраков" data-meta="Мистэр Фэпс" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/evgeniy-patrakov.jpg" alt="Евгений Патраков" loading="lazy"></div>
             <div class="r-card__body"><h3>Евгений Патраков</h3><p>Резидент · Мистэр Фэпс</p></div>
           </a>
-        <a class="r-card" href="ivan-kozyncev.html" data-name="Иван Козынцев" data-meta="Молоток">
+        <a class="r-card" href="ivan-kozyncev.html" data-name="Иван Козынцев" data-meta="Молоток" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/ivan-kozyncev.jpg" alt="Иван Козынцев" loading="lazy"></div>
             <div class="r-card__body"><h3>Иван Козынцев</h3><p>Резидент · Молоток</p></div>
           </a>
-        <a class="r-card" href="mihail-dyatlov.html" data-name="Михаил Дятлов" data-meta="проектирование агрегатов и систем холодоснабжения">
+        <a class="r-card" href="mihail-dyatlov.html" data-name="Михаил Дятлов" data-meta="проектирование агрегатов и систем холодоснабжения" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/mihail-dyatlov.jpg" alt="Михаил Дятлов" loading="lazy"></div>
             <div class="r-card__body"><h3>Михаил Дятлов</h3><p>Резидент · проектирование агрегатов и систем холодоснабжения</p></div>
           </a>
-        <a class="r-card" href="aleksey-sigaev.html" data-name="Алексей Сигаев" data-meta="ЗУАЦ">
+        <a class="r-card" href="aleksey-sigaev.html" data-name="Алексей Сигаев" data-meta="ЗУАЦ" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/aleksey-sigaev.jpg" alt="Алексей Сигаев" loading="lazy"></div>
             <div class="r-card__body"><h3>Алексей Сигаев</h3><p>Директор · ЗУАЦ</p></div>
           </a>
-        <a class="r-card" href="konstantin-seleznev.html" data-name="Константин Селезнев" data-meta="ТЕХНО-Д">
+        <a class="r-card" href="konstantin-seleznev.html" data-name="Константин Селезнев" data-meta="ТЕХНО-Д" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/konstantin-seleznev.jpg" alt="Константин Селезнев" loading="lazy"></div>
             <div class="r-card__body"><h3>Константин Селезнев</h3><p>Резидент · ТЕХНО-Д</p></div>
           </a>
-        <a class="r-card" href="vladimir-lipnyagov.html" data-name="Владимир Липнягов" data-meta="Урал Полимер">
+        <a class="r-card" href="vladimir-lipnyagov.html" data-name="Владимир Липнягов" data-meta="Урал Полимер" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/vladimir-lipnyagov.jpg" alt="Владимир Липнягов" loading="lazy"></div>
             <div class="r-card__body"><h3>Владимир Липнягов</h3><p>Резидент · Урал Полимер</p></div>
           </a>
-        <a class="r-card" href="matvey-makarov.html" data-name="Матвей Макаров" data-meta="MakaroVgold">
+        <a class="r-card" href="matvey-makarov.html" data-name="Матвей Макаров" data-meta="MakaroVgold" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/matvey-makarov.jpg" alt="Матвей Макаров" loading="lazy"></div>
             <div class="r-card__body"><h3>Матвей Макаров</h3><p>Резидент · MakaroVgold</p></div>
           </a>
-        <a class="r-card" href="dmitriy-nikitin.html" data-name="Дмитрий Никитин" data-meta="ЛесВиль">
+        <a class="r-card" href="dmitriy-nikitin.html" data-name="Дмитрий Никитин" data-meta="ЛесВиль" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/dmitriy-nikitin.jpg" alt="Дмитрий Никитин" loading="lazy"></div>
             <div class="r-card__body"><h3>Дмитрий Никитин</h3><p>Резидент · ЛесВиль</p></div>
           </a>
-        <a class="r-card" href="eduard-mirzamuhametov.html" data-name="Эдуард Мирзамухаметов" data-meta="Дизель">
+        <a class="r-card" href="eduard-mirzamuhametov.html" data-name="Эдуард Мирзамухаметов" data-meta="Дизель" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/eduard-mirzamuhametov.jpg" alt="Эдуард Мирзамухаметов" loading="lazy"></div>
             <div class="r-card__body"><h3>Эдуард Мирзамухаметов</h3><p>Резидент · Дизель</p></div>
           </a>
-        <a class="r-card" href="anatoliy-yuzhaninov.html" data-name="Анатолий Южанинов" data-meta="КХК">
+        <a class="r-card" href="anatoliy-yuzhaninov.html" data-name="Анатолий Южанинов" data-meta="КХК" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/anatoliy-yuzhaninov.jpg" alt="Анатолий Южанинов" loading="lazy"></div>
             <div class="r-card__body"><h3>Анатолий Южанинов</h3><p>Резидент · КХК</p></div>
           </a>
-        <a class="r-card" href="konstantin-scherbinin.html" data-name="Константин Щербинин" data-meta="Покровский">
+        <a class="r-card" href="konstantin-scherbinin.html" data-name="Константин Щербинин" data-meta="Покровский" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/konstantin-scherbinin.jpg" alt="Константин Щербинин" loading="lazy"></div>
             <div class="r-card__body"><h3>Константин Щербинин</h3><p>Директор · Покровский</p></div>
           </a>
-        <a class="r-card" href="danil-yakushev.html" data-name="Данил Якушев" data-meta="Дедал">
+        <a class="r-card" href="danil-yakushev.html" data-name="Данил Якушев" data-meta="Дедал" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/danil-yakushev.jpg" alt="Данил Якушев" loading="lazy"></div>
             <div class="r-card__body"><h3>Данил Якушев</h3><p>Резидент · Дедал</p></div>
           </a>
-        <a class="r-card" href="maksim-vinogradov.html" data-name="Максим Виноградов" data-meta="компании MOLLIS">
+        <a class="r-card" href="maksim-vinogradov.html" data-name="Максим Виноградов" data-meta="компании MOLLIS" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/maksim-vinogradov.jpg" alt="Максим Виноградов" loading="lazy"></div>
             <div class="r-card__body"><h3>Максим Виноградов</h3><p>Резидент · компании MOLLIS</p></div>
           </a>
-        <a class="r-card" href="vladimir-shavshukov.html" data-name="Владимир Шавшуков" data-meta="НОВОСТОК">
+        <a class="r-card" href="vladimir-shavshukov.html" data-name="Владимир Шавшуков" data-meta="НОВОСТОК" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/vladimir-shavshukov.jpg" alt="Владимир Шавшуков" loading="lazy"></div>
             <div class="r-card__body"><h3>Владимир Шавшуков</h3><p>Основатель · НОВОСТОК</p></div>
           </a>
-        <a class="r-card" href="sergey-volok.html" data-name="Сергей Волок" data-meta="юристРуководитель Юридических проектов междунородного бренда ZETTER">
+        <a class="r-card" href="sergey-volok.html" data-name="Сергей Волок" data-meta="юристРуководитель Юридических проектов междунородного бренда ZETTER" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/sergey-volok.jpg" alt="Сергей Волок" loading="lazy"></div>
             <div class="r-card__body"><h3>Сергей Волок</h3><p>Руководитель · юристРуководитель Юридических проектов междунородного бренда ZETTER</p></div>
           </a>
-        <a class="r-card" href="nikolay-gilev.html" data-name="Николай Гилев" data-meta="НЕАРТ">
+        <a class="r-card" href="nikolay-gilev.html" data-name="Николай Гилев" data-meta="НЕАРТ" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/nikolay-gilev.jpg" alt="Николай Гилев" loading="lazy"></div>
             <div class="r-card__body"><h3>Николай Гилев</h3><p>Резидент · НЕАРТ</p></div>
           </a>
-        <a class="r-card" href="dmitriy-tihonov.html" data-name="Дмитрий Тихонов" data-meta="Виолет">
+        <a class="r-card" href="dmitriy-tihonov.html" data-name="Дмитрий Тихонов" data-meta="Виолет" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/dmitriy-tihonov.jpeg" alt="Дмитрий Тихонов" loading="lazy"></div>
             <div class="r-card__body"><h3>Дмитрий Тихонов</h3><p>Резидент · Виолет</p></div>
           </a>
-        <a class="r-card" href="igor-ermakov.html" data-name="Игорь Ермаков" data-meta="Теплопрофи Рус">
+        <a class="r-card" href="igor-ermakov.html" data-name="Игорь Ермаков" data-meta="Теплопрофи Рус" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/igor-ermakov.png" alt="Игорь Ермаков" loading="lazy"></div>
             <div class="r-card__body"><h3>Игорь Ермаков</h3><p>Директор · Теплопрофи Рус</p></div>
           </a>
-        <a class="r-card" href="artem-kuznecov.html" data-name="Артем Кузнецов" data-meta="Инновация">
+        <a class="r-card" href="artem-kuznecov.html" data-name="Артем Кузнецов" data-meta="Инновация" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/artem-kuznecov.png" alt="Артем Кузнецов" loading="lazy"></div>
             <div class="r-card__body"><h3>Артем Кузнецов</h3><p>Резидент · Инновация</p></div>
           </a>
-        <a class="r-card" href="evgeniy-luchnikov.html" data-name="Евгений Лучников" data-meta="Гроза">
+        <a class="r-card" href="evgeniy-luchnikov.html" data-name="Евгений Лучников" data-meta="Гроза" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/evgeniy-luchnikov.jpg" alt="Евгений Лучников" loading="lazy"></div>
             <div class="r-card__body"><h3>Евгений Лучников</h3><p>Резидент · Гроза</p></div>
           </a>
-        <a class="r-card" href="aleksey-borcov.html" data-name="Алексей Борцов" data-meta="Юридическая компания">
+        <a class="r-card" href="aleksey-borcov.html" data-name="Алексей Борцов" data-meta="Юридическая компания" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/aleksey-borcov.png" alt="Алексей Борцов" loading="lazy"></div>
             <div class="r-card__body"><h3>Алексей Борцов</h3><p>Директор · Юридическая компания</p></div>
           </a>
-        <a class="r-card" href="loginenko-ekaterina.html" data-name="Логиненко Екатерина" data-meta="магазина пермских дизайнеров Polytope">
+        <a class="r-card" href="loginenko-ekaterina.html" data-name="Логиненко Екатерина" data-meta="магазина пермских дизайнеров Polytope" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/loginenko-ekaterina.jpg" alt="Логиненко Екатерина" loading="lazy"></div>
             <div class="r-card__body"><h3>Логиненко Екатерина</h3><p>Резидент · магазина пермских дизайнеров Polytope</p></div>
           </a>
-        <a class="r-card" href="erika-scherbinina.html" data-name="Эрика Щербинина" data-meta="Сфера">
+        <a class="r-card" href="erika-scherbinina.html" data-name="Эрика Щербинина" data-meta="Сфера" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/erika-scherbinina.jpg" alt="Эрика Щербинина" loading="lazy"></div>
             <div class="r-card__body"><h3>Эрика Щербинина</h3><p>Резидент · Сфера</p></div>
           </a>
-        <a class="r-card" href="ekaterina-pavlina.html" data-name="Екатерина Павлина" data-meta="Шаурма 59">
+        <a class="r-card" href="ekaterina-pavlina.html" data-name="Екатерина Павлина" data-meta="Шаурма 59" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/ekaterina-pavlina.jpg" alt="Екатерина Павлина" loading="lazy"></div>
             <div class="r-card__body"><h3>Екатерина Павлина</h3><p>Резидент · Шаурма 59</p></div>
           </a>
-        <a class="r-card" href="tatyana-bulycheva.html" data-name="Татьяна Булычева" data-meta="СантОноре">
+        <a class="r-card" href="tatyana-bulycheva.html" data-name="Татьяна Булычева" data-meta="СантОноре" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/tatyana-bulycheva.jpg" alt="Татьяна Булычева" loading="lazy"></div>
             <div class="r-card__body"><h3>Татьяна Булычева</h3><p>Руководитель · СантОноре</p></div>
           </a>
-        <a class="r-card" href="ekaterina-chernobrovina.html" data-name="Екатерина Чернобровина" data-meta="СантОноре">
+        <a class="r-card" href="ekaterina-chernobrovina.html" data-name="Екатерина Чернобровина" data-meta="СантОноре" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/ekaterina-chernobrovina.jpg" alt="Екатерина Чернобровина" loading="lazy"></div>
             <div class="r-card__body"><h3>Екатерина Чернобровина</h3><p>Директор · СантОноре</p></div>
           </a>
-        <a class="r-card" href="natalya-shvecova.html" data-name="Наталья Швецова" data-meta="Драгоценная орхидея">
+        <a class="r-card" href="natalya-shvecova.html" data-name="Наталья Швецова" data-meta="Драгоценная орхидея" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-shvecova.jpg" alt="Наталья Швецова" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Швецова</h3><p>Резидент · Драгоценная орхидея</p></div>
           </a>
-        <a class="r-card" href="yuliya-kornilova.html" data-name="Юлия Корнилова" data-meta="и главный врач клиники аппаратной косметологии NovoLaser и ООО ЭнЭль">
+        <a class="r-card" href="yuliya-kornilova.html" data-name="Юлия Корнилова" data-meta="и главный врач клиники аппаратной косметологии NovoLaser и ООО ЭнЭль" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/yuliya-kornilova.jpg" alt="Юлия Корнилова" loading="lazy"></div>
             <div class="r-card__body"><h3>Юлия Корнилова</h3><p>Резидент · и главный врач клиники аппаратной косметологии NovoLaser и ООО ЭнЭль</p></div>
           </a>
-        <a class="r-card" href="valentina-stepanova.html" data-name="Валентина Степанова" data-meta="ИнфоЛинк">
+        <a class="r-card" href="valentina-stepanova.html" data-name="Валентина Степанова" data-meta="ИнфоЛинк" data-category="it">
             <div class="r-card__photo"><img src="assets/images/residents/valentina-stepanova.jpg" alt="Валентина Степанова" loading="lazy"></div>
             <div class="r-card__body"><h3>Валентина Степанова</h3><p>Собственник · ИнфоЛинк</p></div>
           </a>
-        <a class="r-card" href="tatyana-loginova.html" data-name="Татьяна Логинова" data-meta="по недвижимости">
+        <a class="r-card" href="tatyana-loginova.html" data-name="Татьяна Логинова" data-meta="по недвижимости" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/tatyana-loginova.jpg" alt="Татьяна Логинова" loading="lazy"></div>
             <div class="r-card__body"><h3>Татьяна Логинова</h3><p>Резидент · по недвижимости</p></div>
           </a>
-        <a class="r-card" href="kristina-starikova.html" data-name="Кристина Старикова" data-meta="Шинторг">
+        <a class="r-card" href="kristina-starikova.html" data-name="Кристина Старикова" data-meta="Шинторг" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/kristina-starikova.jpg" alt="Кристина Старикова" loading="lazy"></div>
             <div class="r-card__body"><h3>Кристина Старикова</h3><p>Резидент · Шинторг</p></div>
           </a>
-        <a class="r-card" href="kisareva-yuliya.html" data-name="Кисарева Юлия" data-meta="Рыба Рыба">
+        <a class="r-card" href="kisareva-yuliya.html" data-name="Кисарева Юлия" data-meta="Рыба Рыба" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/kisareva-yuliya.jpg" alt="Кисарева Юлия" loading="lazy"></div>
             <div class="r-card__body"><h3>Кисарева Юлия</h3><p>Основатель · Рыба Рыба</p></div>
           </a>
-        <a class="r-card" href="rusina-tatyana.html" data-name="Русина Татьяна" data-meta="Форт Боярд">
+        <a class="r-card" href="rusina-tatyana.html" data-name="Русина Татьяна" data-meta="Форт Боярд" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/rusina-tatyana.jpg" alt="Русина Татьяна" loading="lazy"></div>
             <div class="r-card__body"><h3>Русина Татьяна</h3><p>Резидент · Форт Боярд</p></div>
           </a>
-        <a class="r-card" href="ekaterina-poponina.html" data-name="Екатерина Попонина" data-meta="салона красоты CHOICE">
+        <a class="r-card" href="ekaterina-poponina.html" data-name="Екатерина Попонина" data-meta="салона красоты CHOICE" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/ekaterina-poponina.jpg" alt="Екатерина Попонина" loading="lazy"></div>
             <div class="r-card__body"><h3>Екатерина Попонина</h3><p>Резидент · салона красоты CHOICE</p></div>
           </a>
-        <a class="r-card" href="voronkova-ganna.html" data-name="Воронкова Ганна" data-meta="по интеллектуальной собственности">
+        <a class="r-card" href="voronkova-ganna.html" data-name="Воронкова Ганна" data-meta="по интеллектуальной собственности" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/voronkova-ganna.jpg" alt="Воронкова Ганна" loading="lazy"></div>
             <div class="r-card__body"><h3>Воронкова Ганна</h3><p>Резидент · по интеллектуальной собственности</p></div>
           </a>
-        <a class="r-card" href="svetlana-pikman.html" data-name="Светлана Пикман" data-meta="и руководитель салона премиальной сантехники и мебели для ванных комна">
+        <a class="r-card" href="svetlana-pikman.html" data-name="Светлана Пикман" data-meta="и руководитель салона премиальной сантехники и мебели для ванных комна" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/svetlana-pikman.jpg" alt="Светлана Пикман" loading="lazy"></div>
             <div class="r-card__body"><h3>Светлана Пикман</h3><p>Руководитель · и руководитель салона премиальной сантехники и мебели для ванных комна</p></div>
           </a>
-        <a class="r-card" href="elena-vinogradova.html" data-name="Елена Виноградова" data-meta="Mollis">
+        <a class="r-card" href="elena-vinogradova.html" data-name="Елена Виноградова" data-meta="Mollis" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/elena-vinogradova.jpg" alt="Елена Виноградова" loading="lazy"></div>
             <div class="r-card__body"><h3>Елена Виноградова</h3><p>Резидент · Mollis</p></div>
           </a>
-        <a class="r-card" href="irina-tarasova.html" data-name="Ирина Тарасова" data-meta="Любимые пироги">
+        <a class="r-card" href="irina-tarasova.html" data-name="Ирина Тарасова" data-meta="Любимые пироги" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/irina-tarasova.jpg" alt="Ирина Тарасова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Тарасова</h3><p>Резидент · Любимые пироги</p></div>
           </a>
-        <a class="r-card" href="elena-orlova.html" data-name="Елена Орлова" data-meta="Тенториум">
+        <a class="r-card" href="elena-orlova.html" data-name="Елена Орлова" data-meta="Тенториум" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/elena-orlova.jpg" alt="Елена Орлова" loading="lazy"></div>
             <div class="r-card__body"><h3>Елена Орлова</h3><p>Резидент · Тенториум</p></div>
           </a>
-        <a class="r-card" href="olga-prudnikova.html" data-name="Ольга Прудникова" data-meta="Парик">
+        <a class="r-card" href="olga-prudnikova.html" data-name="Ольга Прудникова" data-meta="Парик" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/olga-prudnikova.jpg" alt="Ольга Прудникова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ольга Прудникова</h3><p>Резидент · Парик</p></div>
           </a>
-        <a class="r-card" href="evgeniya-chepkasova.html" data-name="Евгения Чепкасова" data-meta="Базис">
+        <a class="r-card" href="evgeniya-chepkasova.html" data-name="Евгения Чепкасова" data-meta="Базис" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/evgeniya-chepkasova.jpg" alt="Евгения Чепкасова" loading="lazy"></div>
             <div class="r-card__body"><h3>Евгения Чепкасова</h3><p>Резидент · Базис</p></div>
           </a>
-        <a class="r-card" href="irina-smirnova.html" data-name="Ирина Смирнова" data-meta="Bento СУШИ">
+        <a class="r-card" href="irina-smirnova.html" data-name="Ирина Смирнова" data-meta="Bento СУШИ" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/irina-smirnova.jpg" alt="Ирина Смирнова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Смирнова</h3><p>Резидент · Bento СУШИ</p></div>
           </a>
-        <a class="r-card" href="lyudmila-drobnich.html" data-name="Людмила Дробнич" data-meta="Бухгалтерский консалтинг">
+        <a class="r-card" href="lyudmila-drobnich.html" data-name="Людмила Дробнич" data-meta="Бухгалтерский консалтинг" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/lyudmila-drobnich.jpg" alt="Людмила Дробнич" loading="lazy"></div>
             <div class="r-card__body"><h3>Людмила Дробнич</h3><p>Резидент · Бухгалтерский консалтинг</p></div>
           </a>
-        <a class="r-card" href="irina-yavan.html" data-name="Ирина Яван" data-meta="STAFFSKILLS">
+        <a class="r-card" href="irina-yavan.html" data-name="Ирина Яван" data-meta="STAFFSKILLS" data-category="it">
             <div class="r-card__photo"><img src="assets/images/residents/irina-yavan.jpg" alt="Ирина Яван" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Яван</h3><p>Резидент · STAFFSKILLS</p></div>
           </a>
-        <a class="r-card" href="elena-babukova.html" data-name="Елена Бабукова" data-meta="Югорское юридическое агентство">
+        <a class="r-card" href="elena-babukova.html" data-name="Елена Бабукова" data-meta="Югорское юридическое агентство" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/elena-babukova.jpg" alt="Елена Бабукова" loading="lazy"></div>
             <div class="r-card__body"><h3>Елена Бабукова</h3><p>Директор · Югорское юридическое агентство</p></div>
           </a>
-        <a class="r-card" href="irina-koksharova.html" data-name="Ирина Кокшарова" data-meta="ПРАВИЛА ФИНАНСОВ">
+        <a class="r-card" href="irina-koksharova.html" data-name="Ирина Кокшарова" data-meta="ПРАВИЛА ФИНАНСОВ" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/irina-koksharova.jpg" alt="Ирина Кокшарова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Кокшарова</h3><p>Резидент · ПРАВИЛА ФИНАНСОВ</p></div>
           </a>
-        <a class="r-card" href="natalya-nikitina.html" data-name="Наталья Никитина" data-meta="студии интерьерного текстиля TÜLLING">
+        <a class="r-card" href="natalya-nikitina.html" data-name="Наталья Никитина" data-meta="студии интерьерного текстиля TÜLLING" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-nikitina.jpg" alt="Наталья Никитина" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Никитина</h3><p>Резидент · студии интерьерного текстиля TÜLLING</p></div>
           </a>
-        <a class="r-card" href="marina-boyarskih.html" data-name="Марина Боярских" data-meta="эксперт в области арбитражных споров">
+        <a class="r-card" href="marina-boyarskih.html" data-name="Марина Боярских" data-meta="эксперт в области арбитражных споров" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/marina-boyarskih.jpg" alt="Марина Боярских" loading="lazy"></div>
             <div class="r-card__body"><h3>Марина Боярских</h3><p>Резидент · эксперт в области арбитражных споров</p></div>
           </a>
-        <a class="r-card" href="lyubov-shumkova.html" data-name="Любовь Шумкова" data-meta="МамаЛюба">
+        <a class="r-card" href="lyubov-shumkova.html" data-name="Любовь Шумкова" data-meta="МамаЛюба" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/lyubov-shumkova.jpg" alt="Любовь Шумкова" loading="lazy"></div>
             <div class="r-card__body"><h3>Любовь Шумкова</h3><p>Резидент · МамаЛюба</p></div>
           </a>
-        <a class="r-card" href="irina-ragozina.html" data-name="Ирина Рагозина" data-meta="ПО-ТО-ЛОК.РФ">
+        <a class="r-card" href="irina-ragozina.html" data-name="Ирина Рагозина" data-meta="ПО-ТО-ЛОК.РФ" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/irina-ragozina.jpg" alt="Ирина Рагозина" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Рагозина</h3><p>Резидент · ПО-ТО-ЛОК.РФ</p></div>
           </a>
-        <a class="r-card" href="svetlana-tavabilova.html" data-name="Светлана Тавабилова" data-meta="Консалтинг">
+        <a class="r-card" href="svetlana-tavabilova.html" data-name="Светлана Тавабилова" data-meta="Консалтинг" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/svetlana-tavabilova.jpg" alt="Светлана Тавабилова" loading="lazy"></div>
             <div class="r-card__body"><h3>Светлана Тавабилова</h3><p>Директор · Консалтинг</p></div>
           </a>
-        <a class="r-card" href="alena-pisareva.html" data-name="Алена Писарева" data-meta="Dance Life">
+        <a class="r-card" href="alena-pisareva.html" data-name="Алена Писарева" data-meta="Dance Life" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/alena-pisareva.jpg" alt="Алена Писарева" loading="lazy"></div>
             <div class="r-card__body"><h3>Алена Писарева</h3><p>Основатель · Dance Life</p></div>
           </a>
-        <a class="r-card" href="natalya-semyannikova.html" data-name="Наталья Семянникова" data-meta="ПЕРМСПЕЦКОМ">
+        <a class="r-card" href="natalya-semyannikova.html" data-name="Наталья Семянникова" data-meta="ПЕРМСПЕЦКОМ" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-semyannikova.jpg" alt="Наталья Семянникова" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Семянникова</h3><p>Резидент · ПЕРМСПЕЦКОМ</p></div>
           </a>
-        <a class="r-card" href="natalya-pischalnikova.html" data-name="Наталья Пищальникова" data-meta="Согласие">
+        <a class="r-card" href="natalya-pischalnikova.html" data-name="Наталья Пищальникова" data-meta="Согласие" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-pischalnikova.jpg" alt="Наталья Пищальникова" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Пищальникова</h3><p>Резидент · Согласие</p></div>
           </a>
-        <a class="r-card" href="ayna-yakupova.html" data-name="Айна Якупова" data-meta="Научный Проектно-Технологический Институт «ОРТЭКС">
+        <a class="r-card" href="ayna-yakupova.html" data-name="Айна Якупова" data-meta="Научный Проектно-Технологический Институт «ОРТЭКС" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/ayna-yakupova.jpg" alt="Айна Якупова" loading="lazy"></div>
             <div class="r-card__body"><h3>Айна Якупова</h3><p>Резидент · Научный Проектно-Технологический Институт «ОРТЭКС</p></div>
           </a>
-        <a class="r-card" href="irina-kuznecova.html" data-name="Ирина Кузнецова" data-meta="Центр стоматологии и имплантологии АСТРА-МЕД">
+        <a class="r-card" href="irina-kuznecova.html" data-name="Ирина Кузнецова" data-meta="Центр стоматологии и имплантологии АСТРА-МЕД" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/irina-kuznecova.jpg" alt="Ирина Кузнецова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Кузнецова</h3><p>Резидент · Центр стоматологии и имплантологии АСТРА-МЕД</p></div>
           </a>
-        <a class="r-card" href="natalya-oborina.html" data-name="Наталья Оборина" data-meta="Уральский центр технического обучения">
+        <a class="r-card" href="natalya-oborina.html" data-name="Наталья Оборина" data-meta="Уральский центр технического обучения" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-oborina.jpg" alt="Наталья Оборина" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Оборина</h3><p>Резидент · Уральский центр технического обучения</p></div>
           </a>
-        <a class="r-card" href="galina-schelchkova.html" data-name="Галина Щелчкова" data-meta="Стратег">
+        <a class="r-card" href="galina-schelchkova.html" data-name="Галина Щелчкова" data-meta="Стратег" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/galina-schelchkova.jpg" alt="Галина Щелчкова" loading="lazy"></div>
             <div class="r-card__body"><h3>Галина Щелчкова</h3><p>Резидент · Стратег</p></div>
           </a>
-        <a class="r-card" href="natalya-kalashnikova.html" data-name="Наталья Калашникова" data-meta="СМТ">
+        <a class="r-card" href="natalya-kalashnikova.html" data-name="Наталья Калашникова" data-meta="СМТ" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-kalashnikova.jpg" alt="Наталья Калашникова" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Калашникова</h3><p>Резидент · СМТ</p></div>
           </a>
-        <a class="r-card" href="veronika-bushueva.html" data-name="Вероника Бушуева" data-meta="Партнерское бюро">
+        <a class="r-card" href="veronika-bushueva.html" data-name="Вероника Бушуева" data-meta="Партнерское бюро" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/veronika-bushueva.jpg" alt="Вероника Бушуева" loading="lazy"></div>
             <div class="r-card__body"><h3>Вероника Бушуева</h3><p>Директор · Партнерское бюро</p></div>
           </a>
-        <a class="r-card" href="yuliya-krepak.html" data-name="Юлия Крепак" data-meta="антивозрастной и превентивной медицины">
+        <a class="r-card" href="yuliya-krepak.html" data-name="Юлия Крепак" data-meta="антивозрастной и превентивной медицины" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/yuliya-krepak.jpg" alt="Юлия Крепак" loading="lazy"></div>
             <div class="r-card__body"><h3>Юлия Крепак</h3><p>Резидент · антивозрастной и превентивной медицины</p></div>
           </a>
-        <a class="r-card" href="shumitova-venera.html" data-name="Шумитова Венера" data-meta="ООО Алло">
+        <a class="r-card" href="shumitova-venera.html" data-name="Шумитова Венера" data-meta="ООО Алло" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/shumitova-venera.jpg" alt="Шумитова Венера" loading="lazy"></div>
             <div class="r-card__body"><h3>Шумитова Венера</h3><p>Резидент · ООО Алло</p></div>
           </a>
-        <a class="r-card" href="lyudmila-yunusova.html" data-name="Людмила Юнусова" data-meta="Мясной от фермера">
+        <a class="r-card" href="lyudmila-yunusova.html" data-name="Людмила Юнусова" data-meta="Мясной от фермера" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/lyudmila-yunusova.jpg" alt="Людмила Юнусова" loading="lazy"></div>
             <div class="r-card__body"><h3>Людмила Юнусова</h3><p>Резидент · Мясной от фермера</p></div>
           </a>
-        <a class="r-card" href="elena-teterleva.html" data-name="Елена Тетерлева" data-meta="Елены Тетерлевой">
+        <a class="r-card" href="elena-teterleva.html" data-name="Елена Тетерлева" data-meta="Елены Тетерлевой" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/elena-teterleva.jpg" alt="Елена Тетерлева" loading="lazy"></div>
             <div class="r-card__body"><h3>Елена Тетерлева</h3><p>Резидент · Елены Тетерлевой</p></div>
           </a>
-        <a class="r-card" href="nadezhda-ahmetova.html" data-name="Надежда Ахметова" data-meta="Бест-Н">
+        <a class="r-card" href="nadezhda-ahmetova.html" data-name="Надежда Ахметова" data-meta="Бест-Н" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/nadezhda-ahmetova.jpg" alt="Надежда Ахметова" loading="lazy"></div>
             <div class="r-card__body"><h3>Надежда Ахметова</h3><p>Директор · Бест-Н</p></div>
           </a>
-        <a class="r-card" href="natalya-zykova.html" data-name="Наталья Зыкова" data-meta="Капитал LIFE Страхование Жизни">
+        <a class="r-card" href="natalya-zykova.html" data-name="Наталья Зыкова" data-meta="Капитал LIFE Страхование Жизни" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-zykova.jpg" alt="Наталья Зыкова" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Зыкова</h3><p>Директор · Капитал LIFE Страхование Жизни</p></div>
           </a>
-        <a class="r-card" href="anna-mushegyan.html" data-name="Анна Мушегян" data-meta="НАШ ДВОР">
+        <a class="r-card" href="anna-mushegyan.html" data-name="Анна Мушегян" data-meta="НАШ ДВОР" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/anna-mushegyan.jpg" alt="Анна Мушегян" loading="lazy"></div>
             <div class="r-card__body"><h3>Анна Мушегян</h3><p>Резидент · НАШ ДВОР</p></div>
           </a>
-        <a class="r-card" href="kseniya-shumakova.html" data-name="Ксения Шумакова" data-meta="Форд Боярд">
+        <a class="r-card" href="kseniya-shumakova.html" data-name="Ксения Шумакова" data-meta="Форд Боярд" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/kseniya-shumakova.jpg" alt="Ксения Шумакова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ксения Шумакова</h3><p>Резидент · Форд Боярд</p></div>
           </a>
-        <a class="r-card" href="olga-novoselova.html" data-name="Ольга Новоселова" data-meta="Cleverfish">
+        <a class="r-card" href="olga-novoselova.html" data-name="Ольга Новоселова" data-meta="Cleverfish" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/olga-novoselova.jpg" alt="Ольга Новоселова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ольга Новоселова</h3><p>Резидент · Cleverfish</p></div>
           </a>
-        <a class="r-card" href="oksana-volozheninova.html" data-name="Оксана Воложенинова" data-meta="Закон">
+        <a class="r-card" href="oksana-volozheninova.html" data-name="Оксана Воложенинова" data-meta="Закон" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/oksana-volozheninova.jpg" alt="Оксана Воложенинова" loading="lazy"></div>
             <div class="r-card__body"><h3>Оксана Воложенинова</h3><p>Резидент · Закон</p></div>
           </a>
-        <a class="r-card" href="tatyana-berestova.html" data-name="Татьяна Берестова" data-meta="Международное образование">
+        <a class="r-card" href="tatyana-berestova.html" data-name="Татьяна Берестова" data-meta="Международное образование" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/tatyana-berestova.jpg" alt="Татьяна Берестова" loading="lazy"></div>
             <div class="r-card__body"><h3>Татьяна Берестова</h3><p>Директор · Международное образование</p></div>
           </a>
-        <a class="r-card" href="irina-dyldina.html" data-name="Ирина Дылдина" data-meta="Пион">
+        <a class="r-card" href="irina-dyldina.html" data-name="Ирина Дылдина" data-meta="Пион" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/irina-dyldina.jpg" alt="Ирина Дылдина" loading="lazy"></div>
             <div class="r-card__body"><h3>Ирина Дылдина</h3><p>Резидент · Пион</p></div>
           </a>
-        <a class="r-card" href="natalya-glazova.html" data-name="Наталья Глазова" data-meta="ИТЦ КРИС">
+        <a class="r-card" href="natalya-glazova.html" data-name="Наталья Глазова" data-meta="ИТЦ КРИС" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-glazova.jpg" alt="Наталья Глазова" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Глазова</h3><p>Директор · ИТЦ КРИС</p></div>
           </a>
-        <a class="r-card" href="marina-petushkova.html" data-name="Марина Петушкова" data-meta="ALTALINE-M">
+        <a class="r-card" href="marina-petushkova.html" data-name="Марина Петушкова" data-meta="ALTALINE-M" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/marina-petushkova.jpg" alt="Марина Петушкова" loading="lazy"></div>
             <div class="r-card__body"><h3>Марина Петушкова</h3><p>Резидент · ALTALINE-M</p></div>
           </a>
-        <a class="r-card" href="olesya-malyugina.html" data-name="Олеся Малюгина" data-meta="Barbershop KONTORA">
+        <a class="r-card" href="olesya-malyugina.html" data-name="Олеся Малюгина" data-meta="Barbershop KONTORA" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/olesya-malyugina.jpg" alt="Олеся Малюгина" loading="lazy"></div>
             <div class="r-card__body"><h3>Олеся Малюгина</h3><p>Резидент · Barbershop KONTORA</p></div>
           </a>
-        <a class="r-card" href="mariya-purtova.html" data-name="Мария Пуртова" data-meta="Kultura здоровых волос">
+        <a class="r-card" href="mariya-purtova.html" data-name="Мария Пуртова" data-meta="Kultura здоровых волос" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/mariya-purtova.jpg" alt="Мария Пуртова" loading="lazy"></div>
             <div class="r-card__body"><h3>Мария Пуртова</h3><p>Резидент · Kultura здоровых волос</p></div>
           </a>
-        <a class="r-card" href="olga-lyadova.html" data-name="Ольга Лядова" data-meta="Центр активации молодости Ольги Лядовой">
+        <a class="r-card" href="olga-lyadova.html" data-name="Ольга Лядова" data-meta="Центр активации молодости Ольги Лядовой" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/olga-lyadova.jpg" alt="Ольга Лядова" loading="lazy"></div>
             <div class="r-card__body"><h3>Ольга Лядова</h3><p>Резидент · Центр активации молодости Ольги Лядовой</p></div>
           </a>
-        <a class="r-card" href="nadezhda-kasatkina.html" data-name="Надежда Касаткина" data-meta="Канцлеръ">
+        <a class="r-card" href="nadezhda-kasatkina.html" data-name="Надежда Касаткина" data-meta="Канцлеръ" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/nadezhda-kasatkina.jpg" alt="Надежда Касаткина" loading="lazy"></div>
             <div class="r-card__body"><h3>Надежда Касаткина</h3><p>Резидент · Канцлеръ</p></div>
           </a>
-        <a class="r-card" href="lyudmila-dolgih.html" data-name="Людмила Долгих" data-meta="Эксперт">
+        <a class="r-card" href="lyudmila-dolgih.html" data-name="Людмила Долгих" data-meta="Эксперт" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/lyudmila-dolgih.jpg" alt="Людмила Долгих" loading="lazy"></div>
             <div class="r-card__body"><h3>Людмила Долгих</h3><p>Резидент · Эксперт</p></div>
           </a>
-        <a class="r-card" href="tatyana-semencova.html" data-name="Татьяна Семенцова" data-meta="Ленд">
+        <a class="r-card" href="tatyana-semencova.html" data-name="Татьяна Семенцова" data-meta="Ленд" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/tatyana-semencova.jpg" alt="Татьяна Семенцова" loading="lazy"></div>
             <div class="r-card__body"><h3>Татьяна Семенцова</h3><p>Резидент · Ленд</p></div>
           </a>
-        <a class="r-card" href="valentina-arzamasova.html" data-name="Валентина Арзамасова" data-meta="Саквояж">
+        <a class="r-card" href="valentina-arzamasova.html" data-name="Валентина Арзамасова" data-meta="Саквояж" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/valentina-arzamasova.jpg" alt="Валентина Арзамасова" loading="lazy"></div>
             <div class="r-card__body"><h3>Валентина Арзамасова</h3><p>Резидент · Саквояж</p></div>
           </a>
-        <a class="r-card" href="alena-starkova.html" data-name="Алена Старкова" data-meta="Пять сил">
+        <a class="r-card" href="alena-starkova.html" data-name="Алена Старкова" data-meta="Пять сил" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/alena-starkova.jpg" alt="Алена Старкова" loading="lazy"></div>
             <div class="r-card__body"><h3>Алена Старкова</h3><p>Резидент · Пять сил</p></div>
           </a>
-        <a class="r-card" href="natalya-malkova.html" data-name="Наталья Малькова" data-meta="Перммедтехника">
+        <a class="r-card" href="natalya-malkova.html" data-name="Наталья Малькова" data-meta="Перммедтехника" data-category="trade">
             <div class="r-card__photo"><img src="assets/images/residents/natalya-malkova.jpg" alt="Наталья Малькова" loading="lazy"></div>
             <div class="r-card__body"><h3>Наталья Малькова</h3><p>Резидент · Перммедтехника</p></div>
           </a>
-        <a class="r-card" href="tatyana-golubaeva.html" data-name="Татьяна Голубаева" data-meta="Берегиня">
+        <a class="r-card" href="tatyana-golubaeva.html" data-name="Татьяна Голубаева" data-meta="Берегиня" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/tatyana-golubaeva.jpg" alt="Татьяна Голубаева" loading="lazy"></div>
             <div class="r-card__body"><h3>Татьяна Голубаева</h3><p>Резидент · Берегиня</p></div>
           </a>
-        <a class="r-card" href="margarita-sokolova.html" data-name="Маргарита Соколова" data-meta="Полигарх-Финам">
+        <a class="r-card" href="margarita-sokolova.html" data-name="Маргарита Соколова" data-meta="Полигарх-Финам" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/margarita-sokolova.jpg" alt="Маргарита Соколова" loading="lazy"></div>
             <div class="r-card__body"><h3>Маргарита Соколова</h3><p>Директор · Полигарх-Финам</p></div>
           </a>
-        <a class="r-card" href="tatyana-ganeva.html" data-name="Татьяна Ганева" data-meta="Социан">
+        <a class="r-card" href="tatyana-ganeva.html" data-name="Татьяна Ганева" data-meta="Социан" data-category="consulting">
             <div class="r-card__photo"><img src="assets/images/residents/tatyana-ganeva.jpg" alt="Татьяна Ганева" loading="lazy"></div>
             <div class="r-card__body"><h3>Татьяна Ганева</h3><p>Собственник · Социан</p></div>
           </a>
-        <a class="r-card" href="olga-simdyashkina.html" data-name="Ольга Симдяшкина" data-meta="Урал Труд Эксперт">
+        <a class="r-card" href="olga-simdyashkina.html" data-name="Ольга Симдяшкина" data-meta="Урал Труд Эксперт" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/olga-simdyashkina.jpg" alt="Ольга Симдяшкина" loading="lazy"></div>
             <div class="r-card__body"><h3>Ольга Симдяшкина</h3><p>Резидент · Урал Труд Эксперт</p></div>
           </a>
-        <a class="r-card" href="yuliya-sheremet.html" data-name="Юлия Шеремет" data-meta="Клуба развития ребёнка “Роббо клуб”">
+        <a class="r-card" href="yuliya-sheremet.html" data-name="Юлия Шеремет" data-meta="Клуба развития ребёнка “Роббо клуб”" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/yuliya-sheremet.jpg" alt="Юлия Шеремет" loading="lazy"></div>
             <div class="r-card__body"><h3>Юлия Шеремет</h3><p>Резидент · Клуба развития ребёнка “Роббо клуб”</p></div>
           </a>
-        <a class="r-card" href="nadezhda-blank.html" data-name="Надежда Бланк" data-meta="МедСервис">
+        <a class="r-card" href="nadezhda-blank.html" data-name="Надежда Бланк" data-meta="МедСервис" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/nadezhda-blank.jpg" alt="Надежда Бланк" loading="lazy"></div>
             <div class="r-card__body"><h3>Надежда Бланк</h3><p>Директор · МедСервис</p></div>
           </a>
-        <a class="r-card" href="elena-chernikova.html" data-name="Елена Черникова" data-meta="частного английского детского сада Sun School">
+        <a class="r-card" href="elena-chernikova.html" data-name="Елена Черникова" data-meta="частного английского детского сада Sun School" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/elena-chernikova.jpg" alt="Елена Черникова" loading="lazy"></div>
             <div class="r-card__body"><h3>Елена Черникова</h3><p>Резидент · частного английского детского сада Sun School</p></div>
           </a>
-        <a class="r-card" href="anna-borodina.html" data-name="Анна Бородина" data-meta="Инбьюти">
+        <a class="r-card" href="anna-borodina.html" data-name="Анна Бородина" data-meta="Инбьюти" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/anna-borodina.jpg" alt="Анна Бородина" loading="lazy"></div>
             <div class="r-card__body"><h3>Анна Бородина</h3><p>Резидент · Инбьюти</p></div>
           </a>
-        <a class="r-card" href="ekaterina-moskaleva.html" data-name="Екатерина Москалева" data-meta="Промпак">
+        <a class="r-card" href="ekaterina-moskaleva.html" data-name="Екатерина Москалева" data-meta="Промпак" data-category="production">
             <div class="r-card__photo"><img src="assets/images/residents/ekaterina-moskaleva.jpg" alt="Екатерина Москалева" loading="lazy"></div>
             <div class="r-card__body"><h3>Екатерина Москалева</h3><p>Резидент · Промпак</p></div>
           </a>
-        <a class="r-card" href="evgeniya-tihonova.html" data-name="Евгения Тихонова" data-meta="с 20-летним опытом">
+        <a class="r-card" href="evgeniya-tihonova.html" data-name="Евгения Тихонова" data-meta="с 20-летним опытом" data-category="it">
             <div class="r-card__photo"><img src="assets/images/residents/evgeniya-tihonova.jpg" alt="Евгения Тихонова" loading="lazy"></div>
             <div class="r-card__body"><h3>Евгения Тихонова</h3><p>Собственник · с 20-летним опытом</p></div>
           </a>
-        <a class="r-card" href="tatyana-zotova.html" data-name="Татьяна Зотова" data-meta="Актив">
+        <a class="r-card" href="tatyana-zotova.html" data-name="Татьяна Зотова" data-meta="Актив" data-category="services">
             <div class="r-card__photo"><img src="assets/images/residents/tatyana-zotova.jpg" alt="Татьяна Зотова" loading="lazy"></div>
             <div class="r-card__body"><h3>Татьяна Зотова</h3><p>Резидент · Актив</p></div>
           </a>
@@ -592,6 +619,10 @@
             <a href="events.html">События</a>
             <a href="faq.html">FAQ</a>
             <a href="partnership.html">Партнёрство</a>
+            <a href="networking.html">Нетворкинг</a>
+            <a href="cases.html">Кейсы</a>
+            <a href="lifhaki.html">Лайфхаки</a>
+            <a href="events-archive.html">Архив событий</a>
           </nav>
         </div>
         <div>
@@ -627,6 +658,8 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="js/site-config.js"></script>
   <script src="js/atelier-residents.js"></script>
   <script src="js/atelier-motion.js"></script>
 </body>

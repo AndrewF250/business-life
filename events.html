@@ -6,6 +6,20 @@
   <meta name="robots" content="index, follow">
   <title>События — Деловая жизнь</title>
   <meta name="description" content="Бизнес-клуб Деловая жизнь в Перми. События.">
+  
+  <link rel="canonical" href="https://andrewf250.github.io/business-life/events.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://andrewf250.github.io/business-life/events.html">
+  <meta property="og:title" content="События — Деловая жизнь">
+  <meta property="og:description" content="Бизнес-клуб Деловая жизнь в Перми. События.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Деловая жизнь">
+  <meta property="og:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="События — Деловая жизнь">
+  <meta name="twitter:description" content="Бизнес-клуб Деловая жизнь в Перми. События.">
+  <meta name="twitter:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +27,12 @@
   <link rel="stylesheet" href="css/atelier.css">
   <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
-<body>
+<body data-page="events">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+    <div class="preloader__bar"><i id="preloaderBar"></i></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
   <div class="progress" id="progress"></div>
   <div class="theme-transition-overlay" id="themeOverlay"></div>
   <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -77,22 +96,36 @@
 
   <main>
 
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="formats"><div class="container">
       <p class="eyebrow">События</p>
       <h1 class="page-hero__title">Форматы, которые меняют бизнес</h1>
       <p class="page-hero__text">Форумы, мастер-классы, завтраки и нетворкинг — 165+ мероприятий.</p>
+      <div class="filter-chips" id="eventFilters" style="margin-top:20px" data-reveal>
+        <button type="button" class="chip is-active" data-filter="all">Все</button>
+        <button type="button" class="chip" data-filter="forum">Форумы</button>
+        <button type="button" class="chip" data-filter="breakfast">Завтраки</button>
+        <button type="button" class="chip" data-filter="masterclass">Мастер-классы</button>
+        <button type="button" class="chip" data-filter="networking">Нетворкинг</button>
+        <a class="chip" href="events-archive.html">Архив событий</a>
+      </div>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container grid-3" data-reveal-stagger>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Форумы</h3><p>Глубокий разбор задач и обмен опытом между предпринимателями.</p></article>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Мастер-классы</h3><p>Эксперты по продажам, маркетингу, команде и ресурсу.</p></article>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Завтраки</h3><p>Лёгкий нетворкинг и тёплые знакомства.</p></article>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Стажировки</h3><p>Погружение в компании резидентов.</p></article>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Разговоры за вином</h3><p>Неформальное общение, где рождаются партнёрства.</p></article>
-      <article class="event-card"><div class="event-card__date">Открыто</div><h3>День открытых дверей</h3><p>Познакомьтесь с клубом и задайте вопросы команде.</p></article>
-    </div>
-    <div style="margin-top:36px;text-align:center" data-reveal>
-      <a class="btn btn--line" href="events-archive.html">Архив событий</a>
-    </div></div></section>
+    <section class="section" style="padding-top:10px" data-bg="news"><div class="container">
+      <div class="grid-3" id="eventsGrid" data-reveal-stagger>
+        <a class="event-card" href="event-forum-teh.html" data-type="forum"><div class="event-card__date">Форум</div><h3>Форум «Технологии»</h3><p>Разбор внедрения решений и AI в бизнес-процессах.</p></a>
+        <a class="event-card" href="event-forum-marketing.html" data-type="forum"><div class="event-card__date">Форум</div><h3>Форум «Маркетинг»</h3><p>Глубокий разбор задач продвижения и роста.</p></a>
+        <a class="event-card" href="event-masterclass-prodaji.html" data-type="masterclass"><div class="event-card__date">Мастер-класс</div><h3>Продажи</h3><p>Техники и кейсы участников клуба.</p></a>
+        <a class="event-card" href="event-breakfast-01.html" data-type="breakfast"><div class="event-card__date">Завтрак</div><h3>Бизнес-завтрак</h3><p>Лёгкий нетворкинг и тёплые знакомства.</p></a>
+        <a class="event-card" href="event-breakfast-15.html" data-type="breakfast"><div class="event-card__date">Завтрак</div><h3>Масштабирование</h3><p>Стратегии роста компаний резидентов.</p></a>
+        <a class="event-card" href="event-networking-25.html" data-type="networking"><div class="event-card__date">Нетворкинг</div><h3>Встреча резидентов</h3><p>Знакомства и обмен контактами.</p></a>
+        <article class="event-card" data-type="networking"><div class="event-card__date">Формат</div><h3>Стажировки</h3><p>Погружение в компании резидентов.</p></article>
+        <article class="event-card" data-type="networking"><div class="event-card__date">Формат</div><h3>Разговоры за вином</h3><p>Неформальное общение, где рождаются партнёрства.</p></article>
+        <article class="event-card" data-type="forum"><div class="event-card__date">Открыто</div><h3>День открытых дверей</h3><p>Познакомьтесь с клубом и задайте вопросы команде.</p></article>
+      </div>
+      <div style="margin-top:36px;text-align:center" data-reveal>
+        <a class="btn btn--line" href="events-archive.html">Архив событий</a>
+        <a class="btn btn--fill" href="visit.html" style="margin-left:8px" data-cta="events_visit">Стать гостем</a>
+      </div>
+    </div></section>
 
   </main>
 
@@ -116,6 +149,10 @@
             <a href="events.html">События</a>
             <a href="faq.html">FAQ</a>
             <a href="partnership.html">Партнёрство</a>
+            <a href="networking.html">Нетворкинг</a>
+            <a href="cases.html">Кейсы</a>
+            <a href="lifhaki.html">Лайфхаки</a>
+            <a href="events-archive.html">Архив событий</a>
           </nav>
         </div>
         <div>
@@ -151,6 +188,8 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="js/site-config.js"></script>
   <script src="js/atelier-residents.js"></script>
   <script src="js/atelier-motion.js"></script>
 </body>

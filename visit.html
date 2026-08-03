@@ -6,6 +6,20 @@
   <meta name="robots" content="index, follow">
   <title>Гостевой визит — Деловая жизнь</title>
   <meta name="description" content="Бизнес-клуб Деловая жизнь в Перми. Гостевой визит.">
+  
+  <link rel="canonical" href="https://andrewf250.github.io/business-life/visit.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://andrewf250.github.io/business-life/visit.html">
+  <meta property="og:title" content="Гостевой визит — Деловая жизнь">
+  <meta property="og:description" content="Бизнес-клуб Деловая жизнь в Перми. Гостевой визит.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Деловая жизнь">
+  <meta property="og:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Гостевой визит — Деловая жизнь">
+  <meta name="twitter:description" content="Бизнес-клуб Деловая жизнь в Перми. Гостевой визит.">
+  <meta name="twitter:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +27,12 @@
   <link rel="stylesheet" href="css/atelier.css">
   <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
-<body>
+<body data-page="visit">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+    <div class="preloader__bar"><i id="preloaderBar"></i></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
   <div class="progress" id="progress"></div>
   <div class="theme-transition-overlay" id="themeOverlay"></div>
   <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -77,27 +96,38 @@
 
   <main>
 
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="cta"><div class="container">
       <p class="eyebrow">Гостевой визит</p>
       <h1 class="page-hero__title">Почувствуйте атмосферу клуба</h1>
       <p class="page-hero__text">Приходите в гости: познакомьтесь с резидентами, форматами и командой.</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container split">
+    <section class="section" style="padding-top:10px" data-bg="why"><div class="container">
+      <p class="eyebrow" data-reveal>Как попасть</p>
+      <h2 class="section-title" data-split style="margin-bottom:28px">Три шага к клубу</h2>
+      <div class="join-steps" data-reveal-stagger>
+        <article class="join-step"><span class="join-step__num">1</span><h3>Заявка</h3><p>Заполните форму ниже или <a href="https://forms.yandex.ru/cloud/643659a8c09c0200f93623d0/" target="_blank" rel="noopener">официальную анкету клуба</a>.</p></article>
+        <article class="join-step"><span class="join-step__num">2</span><h3>Знакомство</h3><p>Мы пригласим на событие или гостевую встречу с резидентами.</p></article>
+        <article class="join-step"><span class="join-step__num">3</span><h3>Решение</h3><p>Оцените атмосферу и решите о вступлении вместе с командой клуба.</p></article>
+      </div>
+    </div></section>
+    <section class="section section--sand" id="form" data-bg="cta"><div class="container split">
       <div class="prose" data-reveal>
-        <h2>Как это проходит</h2>
-        <p>Вы оставляете заявку — мы связываемся и приглашаем на подходящее событие или визит.</p>
+        <h2>Записаться на гостевой визит</h2>
+        <p>Оставьте контакты — свяжемся и подберём удобный формат знакомства.</p>
         <ul class="eco__list" style="margin:20px 0">
           <li>Знакомство с клубом и командой</li>
           <li>Живая атмосфера мероприятий</li>
           <li>Ответы на вопросы о резидентстве</li>
         </ul>
-        <a class="btn btn--fill" href="https://forms.yandex.ru/cloud/643659a8c09c0200f93623d0/" target="_blank" rel="noopener">Открыть форму заявки</a>
+        <a class="btn btn--line" href="https://forms.yandex.ru/cloud/643659a8c09c0200f93623d0/" target="_blank" rel="noopener" data-cta="visit_form">Открыть анкету Яндекс.Формы</a>
       </div>
-      <form class="form" data-reveal action="https://forms.yandex.ru/cloud/643659a8c09c0200f93623d0/" method="get" target="_blank">
-        <label>Имя<input type="text" name="name" placeholder="Как к вам обращаться" required></label>
-        <label>Телефон<input type="tel" name="phone" placeholder="+7" required></label>
-        <label>Комментарий<textarea name="comment" placeholder="Чем интересен клуб"></textarea></label>
-        <button class="btn btn--fill" type="submit">Отправить заявку</button>
+      <form class="form" id="contactForm" data-reveal>
+        <label>Имя<input type="text" id="name" name="name" placeholder="Как вас зовут?" required></label>
+        <label>Телефон<input type="tel" id="phone" name="phone" placeholder="+7 (963) 017-00-17" required></label>
+        <label>Email<input type="email" id="email" name="email" placeholder="email@example.com" required></label>
+        <label>Компания<input type="text" id="company" name="company" placeholder="Название вашей компании"></label>
+        <label class="form-consent"><input type="checkbox" name="consent" id="consent" required> Согласен на <a href="privacy.html">обработку персональных данных</a></label>
+        <button class="btn btn--fill" type="submit" data-cta="visit_submit">Отправить заявку</button>
         <p style="font-size:.8rem;color:var(--muted)">Или: club@delolife.club · +7 (963) 017-00-17</p>
       </form>
     </div></section>
@@ -124,6 +154,10 @@
             <a href="events.html">События</a>
             <a href="faq.html">FAQ</a>
             <a href="partnership.html">Партнёрство</a>
+            <a href="networking.html">Нетворкинг</a>
+            <a href="cases.html">Кейсы</a>
+            <a href="lifhaki.html">Лайфхаки</a>
+            <a href="events-archive.html">Архив событий</a>
           </nav>
         </div>
         <div>
@@ -159,6 +193,8 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="js/site-config.js"></script>
   <script src="js/atelier-residents.js"></script>
   <script src="js/atelier-motion.js"></script>
 </body>

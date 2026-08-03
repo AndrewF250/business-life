@@ -6,6 +6,20 @@
   <meta name="robots" content="index, follow">
   <title>Соглашение — Деловая жизнь</title>
   <meta name="description" content="Бизнес-клуб Деловая жизнь в Перми. Соглашение.">
+  
+  <link rel="canonical" href="https://andrewf250.github.io/business-life/terms.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://andrewf250.github.io/business-life/terms.html">
+  <meta property="og:title" content="Соглашение — Деловая жизнь">
+  <meta property="og:description" content="Бизнес-клуб Деловая жизнь в Перми. Соглашение.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Деловая жизнь">
+  <meta property="og:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Соглашение — Деловая жизнь">
+  <meta name="twitter:description" content="Бизнес-клуб Деловая жизнь в Перми. Соглашение.">
+  <meta name="twitter:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +27,12 @@
   <link rel="stylesheet" href="css/atelier.css">
   <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
-<body>
+<body data-page="terms">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+    <div class="preloader__bar"><i id="preloaderBar"></i></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
   <div class="progress" id="progress"></div>
   <div class="theme-transition-overlay" id="themeOverlay"></div>
   <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -77,11 +96,11 @@
 
   <main>
 
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="grid"><div class="container">
       <p class="eyebrow">Документы</p>
       <h1 class="page-hero__title">Пользовательское соглашение</h1>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container prose" data-reveal>
+    <section class="section" style="padding-top:10px" data-bg="why"><div class="container prose" data-reveal>
       <p>Используя сайт, вы соглашаетесь с правилами обработки обращений и корректного использования материалов клуба «Деловая жизнь».</p>
       <p>Контент сайта предназначен для информирования о деятельности сообщества. Актуальные условия резидентства уточняйте у директора клуба.</p>
     </div></section>
@@ -108,6 +127,10 @@
             <a href="events.html">События</a>
             <a href="faq.html">FAQ</a>
             <a href="partnership.html">Партнёрство</a>
+            <a href="networking.html">Нетворкинг</a>
+            <a href="cases.html">Кейсы</a>
+            <a href="lifhaki.html">Лайфхаки</a>
+            <a href="events-archive.html">Архив событий</a>
           </nav>
         </div>
         <div>
@@ -143,6 +166,8 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="js/site-config.js"></script>
   <script src="js/atelier-residents.js"></script>
   <script src="js/atelier-motion.js"></script>
 </body>

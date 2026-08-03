@@ -6,6 +6,7 @@
   <meta name="robots" content="noindex, follow">
   <title>Конфиденциальность — Деловая жизнь</title>
   <meta name="description" content="Бизнес-клуб Деловая жизнь в Перми. Конфиденциальность.">
+  
   <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,12 @@
   <link rel="stylesheet" href="style.css">
   <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
-<body>
+<body data-page="privacy">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+    <div class="preloader__bar"><i id="preloaderBar"></i></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
   <div class="progress" id="progress"></div>
   <div class="theme-transition-overlay" id="themeOverlay"></div>
   <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -77,11 +83,11 @@
 
   <main>
 
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="grid"><div class="container">
       <p class="eyebrow">Документы</p>
       <h1 class="page-hero__title">Политика конфиденциальности</h1>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container prose" data-reveal>
+    <section class="section" style="padding-top:10px" data-bg="why"><div class="container prose" data-reveal>
       <p>Мы обрабатываем персональные данные (имя, телефон, email), которые вы оставляете в заявках, только для связи по вопросам клуба и гостевого визита.</p>
       <p>Данные не передаются третьим лицам, за исключением случаев, предусмотренных законом. По вопросам: club@delolife.club.</p>
       <p>Полная версия документов также доступна на основном сайте клуба.</p>
@@ -109,6 +115,10 @@
             <a href="events.html">События</a>
             <a href="faq.html">FAQ</a>
             <a href="partnership.html">Партнёрство</a>
+            <a href="networking.html">Нетворкинг</a>
+            <a href="cases.html">Кейсы</a>
+            <a href="lifhaki.html">Лайфхаки</a>
+            <a href="events-archive.html">Архив событий</a>
           </nav>
         </div>
         <div>
@@ -144,6 +154,8 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="../../js/site-config.js"></script>
   <script src="residents-data.js"></script>
   <script src="motion.js"></script>
 </body>

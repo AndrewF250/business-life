@@ -6,6 +6,7 @@
   <meta name="robots" content="noindex, follow">
   <title>Экосистема — Деловая жизнь</title>
   <meta name="description" content="Бизнес-клуб Деловая жизнь в Перми. Экосистема.">
+  
   <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,12 @@
   <link rel="stylesheet" href="style.css">
   <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
-<body>
+<body data-page="ecosystem">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+    <div class="preloader__bar"><i id="preloaderBar"></i></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
   <div class="progress" id="progress"></div>
   <div class="theme-transition-overlay" id="themeOverlay"></div>
   <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -77,18 +83,18 @@
 
   <main>
 
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="eco"><div class="container">
       <p class="eyebrow">Экосистема</p>
       <h1 class="page-hero__title">Всё для роста — в одном клубе</h1>
       <p class="page-hero__text">Форматы, партнёры и сервисы, которые помогают бизнесу двигаться быстрее.</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container grid-2" data-reveal-stagger>
+    <section class="section" style="padding-top:10px" data-bg="why"><div class="container grid-2" data-reveal-stagger>
       <article class="info-card"><h3>Покупай у своих</h3><p>Товары и услуги резидентов — сделки остаются внутри сообщества.</p></article>
       <article class="info-card"><h3>ОПОРА РОССИИ</h3><p>Региональное партнёрство расширяет возможности участников.</p></article>
       <article class="info-card"><h3>Стажировки</h3><p>Экскурсии в компании и знакомство с первыми лицами.</p></article>
       <article class="info-card"><h3>Экспертиза</h3><p>Мастер-классы по продажам, маркетингу и управлению.</p></article>
     </div></section>
-    <section class="section"><div class="container"><div class="eco" data-reveal>
+    <section class="section" data-bg="people"><div class="container"><div class="eco" data-reveal>
       <div class="eco__media"><img src="../../assets/images/atmosphere/atm-11.jpg" alt="" data-parallax></div>
       <div class="eco__copy">
         <h2 class="section-title">Бизнес-дом на 25 Октября</h2>
@@ -119,6 +125,10 @@
             <a href="events.html">События</a>
             <a href="faq.html">FAQ</a>
             <a href="partnership.html">Партнёрство</a>
+            <a href="networking.html">Нетворкинг</a>
+            <a href="cases.html">Кейсы</a>
+            <a href="lifhaki.html">Лайфхаки</a>
+            <a href="events-archive.html">Архив событий</a>
           </nav>
         </div>
         <div>
@@ -154,6 +164,8 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="../../js/site-config.js"></script>
   <script src="residents-data.js"></script>
   <script src="motion.js"></script>
 </body>

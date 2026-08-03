@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <title>Кейсы — Деловая жизнь</title>
+  <meta name="description" content="Бизнес-клуб Деловая жизнь в Перми. Кейсы.">
+  
+  <link rel="icon" href="../../assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+</head>
+<body data-page="cases">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+    <div class="preloader__bar"><i id="preloaderBar"></i></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
+  <div class="progress" id="progress"></div>
+  <div class="theme-transition-overlay" id="themeOverlay"></div>
+  <button class="scroll-top" id="scrollTop" aria-label="Наверх">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+  <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  </button>
+  <div class="social-float" aria-label="Связь">
+    <a href="https://t.me/delolife_club" target="_blank" rel="noopener" title="Telegram">TG</a>
+    <a href="https://wa.me/79630170017" target="_blank" rel="noopener" title="WhatsApp">WA</a>
+    <a href="https://vk.com/delolife.club" target="_blank" rel="noopener" title="VK">VK</a>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="header__logo" href="index.html">
+        <strong>ДЕЛОВАЯ ЖИЗНЬ</strong>
+        <span>бизнес-клуб</span>
+      </a>
+      <nav class="header__nav">
+          <a href="about.html" class="">О клубе</a>
+          <a href="team.html" class="">Команда</a>
+          <a href="residents.html" class="">Резиденты</a>
+          <a href="blog.html" class="is-active">Блог</a>
+          <a href="ecosystem.html" class="">Экосистема</a>
+          <a href="events.html" class="">События</a>
+          <a href="contacts.html" class="">Контакты</a>
+      </nav>
+      <div class="header__actions">
+        <div class="site-search" id="siteSearchWrap">
+          <button type="button" class="site-search__toggle" id="siteSearchToggle" aria-label="Поиск резидентов" title="Поиск резидентов">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="7.5" r="3.2"/><path d="M3.8 18.5c.6-2.8 2.7-4.5 5.2-4.5s4.6 1.7 5.2 4.5"/><circle cx="17.2" cy="16.2" r="3.3"/><line x1="19.5" y1="18.6" x2="21.4" y2="20.5"/></svg>
+          </button>
+          <div class="site-search__panel" id="siteSearchPanel" hidden>
+            <input type="search" id="siteSearch" class="site-search__input" placeholder="Найти резидента..." autocomplete="off">
+            <div class="site-search__results" id="siteSearchResults"></div>
+          </div>
+        </div>
+        <a class="btn btn--fill" href="visit.html">Стать гостем клуба</a>
+        <a class="btn btn--line" href="visit.html">Гостевой визит</a>
+        <button class="header__burger" id="burger" aria-label="Меню"><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="about.html" class="">О клубе</a>
+          <a href="team.html" class="">Команда</a>
+          <a href="residents.html" class="">Резиденты</a>
+          <a href="blog.html" class="is-active">Блог</a>
+          <a href="ecosystem.html" class="">Экосистема</a>
+          <a href="events.html" class="">События</a>
+          <a href="contacts.html" class="">Контакты</a>
+    <a href="visit.html">Гостевой визит</a>
+    <a href="faq.html">FAQ</a>
+    <a href="partnership.html">Партнёрство</a>
+    <a href="../index.html">Все дизайны</a>
+  </div>
+
+  <main>
+
+    <section class="page-hero" data-bg="eco"><div class="container">
+      <p class="eyebrow">Кейсы</p>
+      <h1 class="page-hero__title">Результаты внутри сообщества</h1>
+      <p class="page-hero__text">Истории сотрудничества и сделок по программе «Покупай у своих».</p>
+    </div></section>
+    <section class="section" data-bg="news"><div class="container grid-2" data-reveal-stagger>
+      <a class="event-card" href="article-cases-1.html"><div class="event-card__date">Кейс</div><h3>Сделки внутри клуба</h3><p>Как резиденты усиливают друг друга заказами и рекомендациями.</p></a>
+      <article class="info-card"><h3>500 млн₽+</h3><p>Объём сделок внутри сообщества — живой результат доверия.</p></article>
+    </div></div></section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <strong>ДЕЛОВАЯ ЖИЗНЬ</strong>
+          <p>Крупнейшее бизнес-сообщество предпринимателей Пермского края.</p>
+          <p style="margin-top:12px">г. Пермь, ул. 25 Октября, 4</p>
+          <p>Пн–Пт: 9:00 — 18:00</p>
+        </div>
+        <div>
+          <h4>Клуб</h4>
+          <nav>
+            <a href="about.html">О клубе</a>
+            <a href="team.html">Команда</a>
+            <a href="residents.html">Резиденты</a>
+            <a href="blog.html">Блог</a>
+            <a href="ecosystem.html">Экосистема</a>
+            <a href="events.html">События</a>
+            <a href="faq.html">FAQ</a>
+            <a href="partnership.html">Партнёрство</a>
+            <a href="networking.html">Нетворкинг</a>
+            <a href="cases.html">Кейсы</a>
+            <a href="lifhaki.html">Лайфхаки</a>
+            <a href="events-archive.html">Архив событий</a>
+          </nav>
+        </div>
+        <div>
+          <h4>Контакты</h4>
+          <nav>
+            <a href="tel:+79630170017">+7 (963) 017-00-17</a>
+            <a href="tel:+73422919593">+7 (342) 291-95-93</a>
+            <a href="mailto:club@delolife.club">club@delolife.club</a>
+            <a href="https://t.me/delolife_club" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://wa.me/79630170017" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://vk.com/delolife.club" target="_blank" rel="noopener">VK</a>
+          </nav>
+        </div>
+        <div>
+          <h4>Ещё</h4>
+          <nav>
+            <a href="visit.html">Гостевой визит</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="privacy.html">Конфиденциальность</a>
+            <a href="terms.html">Соглашение</a>
+            <a href="../index.html">Все дизайны</a>
+            <a href="../../index.html">Основной сайт</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© Деловая жизнь · Atelier</span>
+        <span>Директор: Наталья Цаюкова</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="../../js/site-config.js"></script>
+  <script src="residents-data.js"></script>
+  <script src="motion.js"></script>
+</body>
+</html>

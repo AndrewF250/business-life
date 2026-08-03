@@ -19,7 +19,7 @@ const FORM = 'https://forms.yandex.ru/cloud/643659a8c09c0200f93623d0/';
 const people = JSON.parse(fs.readFileSync(path.join(root, 'tools', 'people.json'), 'utf8'));
 
 const pagesMeta = {
-  index: { title: 'Деловая жизнь', file: 'index.html', active: 'index' },
+  index: { title: 'Бизнес-клуб в Перми', file: 'index.html', active: 'index' },
   about: { title: 'О клубе', file: 'about.html', active: 'about' },
   team: { title: 'Команда', file: 'team.html', active: 'team' },
   residents: { title: 'Резиденты', file: 'residents.html', active: 'residents' },
@@ -33,6 +33,11 @@ const pagesMeta = {
   privacy: { title: 'Конфиденциальность', file: 'privacy.html', active: 'privacy' },
   terms: { title: 'Соглашение', file: 'terms.html', active: 'terms' },
   'thank-you': { title: 'Спасибо', file: 'thank-you.html', active: 'visit' },
+  networking: { title: 'Нетворкинг', file: 'networking.html', active: 'blog' },
+  cases: { title: 'Кейсы', file: 'cases.html', active: 'blog' },
+  lifhaki: { title: 'Лайфхаки', file: 'lifhaki.html', active: 'blog' },
+  'events-archive': { title: 'Архив событий', file: 'events-archive.html', active: 'events' },
+  founder: { title: 'Основатель', file: 'founder.html', active: 'team' },
 };
 
 function photoOf(p) {
@@ -58,11 +63,21 @@ function navLinks(active) {
 }
 
 function rCard(p) {
-  return `<a class="r-card" href="${hrefOf(p)}" data-name="${p.name}" data-meta="${p.company || ''}">
+  const cat = p.category || 'other';
+  return `<a class="r-card" href="${hrefOf(p)}" data-name="${p.name}" data-meta="${p.company || ''}" data-category="${cat}">
             <div class="r-card__photo"><img src="${photoOf(p)}" alt="${p.name}" loading="lazy"></div>
             <div class="r-card__body"><h3>${p.name}</h3><p>${p.position || ''}${p.company ? ' · ' + p.company : ''}</p></div>
           </a>`;
 }
+
+const CAT_LABELS = {
+  services: 'Услуги',
+  trade: 'Торговля',
+  consulting: 'Консалтинг',
+  production: 'Производство',
+  it: 'IT',
+  other: 'Другое',
+};
 
 function shell(pageKey, body) {
   const meta = pagesMeta[pageKey];
@@ -71,6 +86,28 @@ function shell(pageKey, body) {
     ? '<a href="designs/index.html">6 дизайнов</a>'
     : '<a href="../index.html">Все дизайны</a>';
   const mainSite = toRoot ? '' : `<a href="../../index.html">Основной сайт</a>`;
+  const pageUrl = `https://andrewf250.github.io/business-life/${meta.file === 'index.html' ? '' : meta.file}`;
+  const desc = `Бизнес-клуб Деловая жизнь в Перми. ${meta.title}.`;
+  const title = `${meta.title} — Деловая жизнь`;
+  const seoBlock = toRoot ? `
+  <link rel="canonical" href="${pageUrl}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="${pageUrl}">
+  <meta property="og:title" content="${title}">
+  <meta property="og:description" content="${desc}">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Деловая жизнь">
+  <meta property="og:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${title}">
+  <meta name="twitter:description" content="${desc}">
+  <meta name="twitter:image" content="https://andrewf250.github.io/business-life/assets/images/og-default.png">
+  ${pageKey === 'index' ? `<script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Organization","@id":"https://andrewf250.github.io/business-life/#organization","name":"Деловая жизнь","url":"https://andrewf250.github.io/business-life/","logo":"https://andrewf250.github.io/business-life/assets/images/favicon.svg","image":"https://andrewf250.github.io/business-life/assets/images/og-default.png","sameAs":["https://t.me/delolife_club","https://vk.com/delolife.club"],"address":{"@type":"PostalAddress","addressLocality":"Пермь","streetAddress":"ул. 25 Октября, 4","addressCountry":"RU"},"contactPoint":{"@type":"ContactPoint","telephone":"+7-963-017-00-17","email":"club@delolife.club","contactType":"customer service","availableLanguage":"Russian"}},
+    {"@type":"WebSite","@id":"https://andrewf250.github.io/business-life/#website","url":"https://andrewf250.github.io/business-life/","name":"Деловая жизнь","publisher":{"@id":"https://andrewf250.github.io/business-life/#organization"},"inLanguage":"ru-RU"}
+  ]}
+  </script>` : ''}` : '';
 
   return `<!DOCTYPE html>
 <html lang="ru">
@@ -78,8 +115,9 @@ function shell(pageKey, body) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="${toRoot ? 'index, follow' : 'noindex, follow'}">
-  <title>${meta.title} — Деловая жизнь</title>
-  <meta name="description" content="Бизнес-клуб Деловая жизнь в Перми. ${meta.title}.">
+  <title>${title}</title>
+  <meta name="description" content="${desc}">
+  ${seoBlock}
   <link rel="icon" href="${A}/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,7 +125,12 @@ function shell(pageKey, body) {
   <link rel="stylesheet" href="${cssHref}">
   <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 </head>
-<body>
+<body data-page="${pageKey}">
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__logo" id="preloaderLogo">ДЕЛОВАЯ ЖИЗНЬ</div>
+    <div class="preloader__bar"><i id="preloaderBar"></i></div>
+    <div class="preloader__pct" id="preloaderPct">0%</div>
+  </div>
   <div class="progress" id="progress"></div>
   <div class="theme-transition-overlay" id="themeOverlay"></div>
   <button class="scroll-top" id="scrollTop" aria-label="Наверх">
@@ -161,6 +204,10 @@ ${body}
             <a href="events.html">События</a>
             <a href="faq.html">FAQ</a>
             <a href="partnership.html">Партнёрство</a>
+            <a href="networking.html">Нетворкинг</a>
+            <a href="cases.html">Кейсы</a>
+            <a href="lifhaki.html">Лайфхаки</a>
+            <a href="events-archive.html">Архив событий</a>
           </nav>
         </div>
         <div>
@@ -196,6 +243,8 @@ ${body}
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.2/lib/anime.min.js"></script>
+  <script src="${toRoot ? 'js/site-config.js' : '../../js/site-config.js'}"></script>
   <script src="${dataHref}"></script>
   <script src="${motionHref}"></script>
 </body>
@@ -218,18 +267,18 @@ const carouselPeople = featured.length ? featured : people.slice(0, 8);
 const bodies = {};
 
 bodies.index = `
-    <section class="hero">
+    <section class="hero" data-bg="hero">
       <div class="container hero__grid">
         <div>
           <p class="hero__label">Бизнес-клуб · Пермь</p>
           <h1 class="hero__title">
-            <span class="line">Деловая жизнь —</span>
-            <span class="line">сообщество, где</span>
-            <span class="line">растёт ваш бизнес</span>
+            <span class="line">Деловая жизнь</span>
+            <span class="line">в Перми</span>
+            <span class="line">для роста бизнеса</span>
           </h1>
           <p class="hero__text">Крупнейшее сообщество предпринимателей Пермского края. Нетворкинг, поддержка, форумы и сделки внутри клуба.</p>
           <div class="hero__cta">
-            <a class="btn btn--fill" href="visit.html">Стать гостем клуба
+            <a class="btn btn--fill" href="visit.html" data-cta="hero_guest">Стать гостем клуба
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
             <a class="btn btn--ghost" href="about.html"><i>▶</i> О клубе</a>
@@ -242,7 +291,7 @@ bodies.index = `
       </div>
     </section>
 
-    <section class="stats">
+    <section class="stats" data-bg="stats">
       <div class="container">
         <div class="stats__bar">
           <div class="stats__item"><span class="stats__num" data-count="140" data-suffix="+">0</span><span class="stats__label">предпринимателей</span></div>
@@ -254,7 +303,7 @@ bodies.index = `
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" data-bg="why">
       <div class="container why__grid">
         <div class="why__left" data-reveal>
           <p class="eyebrow">Почему нас выбирают</p>
@@ -273,7 +322,24 @@ bodies.index = `
       </div>
     </section>
 
-    <section class="section section--sand">
+    <section class="section section--sand" data-bg="formats">
+      <div class="container">
+        <div class="res-head" data-reveal>
+          <div>
+            <p class="eyebrow">Форматы</p>
+            <h2 class="section-title" data-split>Мероприятия клуба</h2>
+          </div>
+          <a class="btn btn--line" href="events.html">Все события</a>
+        </div>
+        <div class="grid-3" data-reveal-stagger>
+          <article class="event-card"><div class="event-card__date">Ключевой</div><h3>Форумы</h3><p>Разбор задач, обмен опытом и решения, которые помогают бизнесу расти быстрее.</p></article>
+          <article class="event-card"><div class="event-card__date">Обучение</div><h3>Мастер-классы</h3><p>Эксперты по продажам, маркетингу, финансам и развитию команд.</p></article>
+          <article class="event-card"><div class="event-card__date">Связи</div><h3>Разговоры за вином</h3><p>Живые встречи, где рождаются сильные знакомства и партнёрства.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-bg="eco">
       <div class="container">
         <div class="eco" data-reveal>
           <div class="eco__media"><img src="${A}/atmosphere/atm-05.jpg" alt="Бизнес-дом" data-parallax></div>
@@ -293,7 +359,7 @@ bodies.index = `
       </div>
     </section>
 
-    <section class="section">
+    <section class="section section--sand" data-bg="people">
       <div class="container">
         <div class="res-head">
           <div data-reveal>
@@ -316,15 +382,44 @@ bodies.index = `
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" data-bg="quotes">
+      <div class="container">
+        <p class="eyebrow" data-reveal>Отзывы</p>
+        <h2 class="section-title" data-split style="margin-bottom:28px">Участники о клубе</h2>
+        <div class="grid-3" data-reveal-stagger>
+          <article class="info-card"><h3>Александр Коренякин</h3><p>«Благодаря клубу я нашёл ключевых партнёров. Форум-группы дают честную обратную связь.»</p></article>
+          <article class="info-card"><h3>Екатерина Волочкова</h3><p>«Для меня это развитие, опыт лучших управленцев и мощная помощь в разных вопросах.»</p></article>
+          <article class="info-card"><h3>Александр Сидорук</h3><p>«Сообщество даёт уверенность: в любой ситуации можно обратиться к своим.»</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand" data-bg="news">
+      <div class="container">
+        <div class="res-head" data-reveal>
+          <div>
+            <p class="eyebrow">Блог и материалы</p>
+            <h2 class="section-title" data-split>Полезное из клуба</h2>
+          </div>
+          <a class="btn btn--line" href="blog.html">Весь блог</a>
+        </div>
+        <div class="grid-3" data-reveal-stagger>
+          <a class="event-card" href="article-networking-1.html"><div class="event-card__date">Нетворкинг</div><h3>Как работают связи</h3><p>О живых знакомствах и доверии между резидентами.</p></a>
+          <a class="event-card" href="article-lifhaki-1.html"><div class="event-card__date">Лайфхаки</div><h3>Практики роста</h3><p>Рабочие приёмы предпринимателей сообщества.</p></a>
+          <a class="event-card" href="article-cases-1.html"><div class="event-card__date">Кейсы</div><h3>Сделки внутри клуба</h3><p>Как «Покупай у своих» помогает бизнесу.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-bg="cta">
       <div class="container">
         <div class="cta-band" data-reveal>
           <p class="eyebrow">Гостевой визит</p>
-          <h2 class="section-title">Увидьте клуб изнутри</h2>
-          <p>Лучший способ почувствовать атмосферу «Деловой жизни» — прийти в гости.</p>
+          <h2 class="section-title">Приходите познакомиться с клубом</h2>
+          <p>Один визит — и вы почувствуете атмосферу, людей и возможности «Деловой жизни».</p>
           <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-            <a class="btn btn--fill" href="${FORM}" target="_blank" rel="noopener">Записаться</a>
-            <a class="btn btn--line" href="visit.html">Подробнее</a>
+            <a class="btn btn--fill" href="${FORM}" target="_blank" rel="noopener" data-cta="cta_form">Записаться</a>
+            <a class="btn btn--line" href="visit.html" data-cta="cta_visit">Подробнее</a>
           </div>
         </div>
       </div>
@@ -332,22 +427,22 @@ bodies.index = `
 `;
 
 bodies.about = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="why"><div class="container">
       <p class="eyebrow">О клубе</p>
       <h1 class="page-hero__title">Место силы для бизнесменов Пермского края</h1>
       <p class="page-hero__text">«Деловая жизнь» объединяет, мотивирует и выстраивает бизнес-коммуникации с 2021 года.</p>
     </div></section>
-    <section class="section" style="padding-top:20px"><div class="container split">
+    <section class="section" style="padding-top:20px" data-bg="eco"><div class="container split">
       <div class="split__media" data-reveal><img src="${A}/atmosphere/atm-07.jpg" alt="" data-parallax></div>
       <div class="prose" data-reveal>
         <h2>Кто мы</h2>
         <p>Крупнейшее бизнес-сообщество предпринимателей края. В сотрудничестве с Пермским региональным отделением «ОПОРА РОССИИ» возможности резидентов становятся шире.</p>
         <p>Программа «Покупай у своих» помогает сохранять сделки внутри сообщества — уже на сотни миллионов рублей.</p>
         <p><strong>Директор:</strong> Наталья Цаюкова</p>
-        <a class="btn btn--fill" href="visit.html" style="margin-top:12px">Стать гостем</a>
+        <a class="btn btn--fill" href="visit.html" style="margin-top:12px" data-cta="about_guest">Стать гостем</a>
       </div>
     </div></section>
-    <section class="section section--sand"><div class="container">
+    <section class="section section--sand" data-bg="quotes"><div class="container">
       <h2 class="section-title" data-split style="margin-bottom:28px">На чём держится клуб</h2>
       <div class="grid-3" data-reveal-stagger>
         <article class="info-card"><h3>Доверие</h3><p>Закрытое сообщество, где ценят репутацию и длинные отношения.</p></article>
@@ -358,12 +453,12 @@ bodies.about = `
 `;
 
 bodies.team = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="people"><div class="container">
       <p class="eyebrow">Команда</p>
       <h1 class="page-hero__title">Кто стоит за клубом</h1>
       <p class="page-hero__text">Президиум, VIP-резиденты и директор — люди, которые делают «Деловую жизнь».</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container">
+    <section class="section" style="padding-top:10px" data-bg="grid"><div class="container">
       <p class="eyebrow" data-reveal>Президиум</p>
       <h2 class="section-title" data-split style="margin-bottom:28px">Организаторы</h2>
       <div class="residents-grid" data-reveal-stagger>
@@ -372,6 +467,7 @@ bodies.team = `
       <div class="info-card" style="margin:40px 0" data-reveal>
         <h3>Директор клуба — Наталья Цаюкова</h3>
         <p><a href="tel:+79630170017">+7 (963) 017-00-17</a> · <a href="mailto:club@delolife.club">club@delolife.club</a></p>
+        <p style="margin-top:12px"><a class="btn btn--line" href="founder.html">Страница основателя</a></p>
       </div>
       <p class="eyebrow" data-reveal>VIP</p>
       <h2 class="section-title" data-split style="margin-bottom:28px">Клуб в лицах</h2>
@@ -382,15 +478,21 @@ bodies.team = `
 `;
 
 bodies.residents = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="people"><div class="container">
       <p class="eyebrow">Резиденты</p>
       <h1 class="page-hero__title">Сильные предприниматели рядом</h1>
-      <p class="page-hero__text">${people.length}+ резидентов: собственники, руководители и эксперты Пермского края. Используйте поиск в шапке.</p>
-      <div style="margin-top:20px">
+      <p class="page-hero__text">${people.length}+ резидентов: собственники, руководители и эксперты Пермского края.</p>
+      <div style="margin-top:20px;display:grid;gap:14px">
         <input type="search" id="residentsFilter" class="filter-input" placeholder="Фильтр по имени или компании...">
+        <div class="filter-chips" id="categoryFilters" data-reveal>
+          <button type="button" class="chip is-active" data-cat="all">Все</button>
+          ${[...new Set(people.map((p) => p.category).filter(Boolean))]
+            .map((c) => `<button type="button" class="chip" data-cat="${c}">${CAT_LABELS[c] || c}</button>`)
+            .join('\n          ')}
+        </div>
       </div>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container">
+    <section class="section" style="padding-top:10px" data-bg="grid"><div class="container">
       <div class="residents-grid" id="residentsGrid" data-reveal-stagger>
         ${people.map(rCard).join('\n        ')}
       </div>
@@ -398,12 +500,12 @@ bodies.residents = `
 `;
 
 bodies.blog = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="news"><div class="container">
       <p class="eyebrow">Блог</p>
       <h1 class="page-hero__title">Истории и материалы клуба</h1>
       <p class="page-hero__text">Кейсы, лайфхаки и новости сообщества.</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container grid-3" data-reveal-stagger>
+    <section class="section" style="padding-top:10px" data-bg="formats"><div class="container grid-3" data-reveal-stagger>
       <a class="event-card" href="${R}article-networking-1.html"><div class="event-card__date">Нетворкинг</div><h3>Как работают связи в клубе</h3><p>О пользе живых знакомств и доверия между резидентами.</p></a>
       <a class="event-card" href="${R}article-lifhaki-1.html"><div class="event-card__date">Лайфхаки</div><h3>Практики роста</h3><p>Рабочие приёмы предпринимателей сообщества.</p></a>
       <a class="event-card" href="${R}article-cases-1.html"><div class="event-card__date">Кейсы</div><h3>Сделки внутри клуба</h3><p>Как программа «Покупай у своих» помогает бизнесу.</p></a>
@@ -414,18 +516,18 @@ bodies.blog = `
 `;
 
 bodies.ecosystem = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="eco"><div class="container">
       <p class="eyebrow">Экосистема</p>
       <h1 class="page-hero__title">Всё для роста — в одном клубе</h1>
       <p class="page-hero__text">Форматы, партнёры и сервисы, которые помогают бизнесу двигаться быстрее.</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container grid-2" data-reveal-stagger>
+    <section class="section" style="padding-top:10px" data-bg="why"><div class="container grid-2" data-reveal-stagger>
       <article class="info-card"><h3>Покупай у своих</h3><p>Товары и услуги резидентов — сделки остаются внутри сообщества.</p></article>
       <article class="info-card"><h3>ОПОРА РОССИИ</h3><p>Региональное партнёрство расширяет возможности участников.</p></article>
       <article class="info-card"><h3>Стажировки</h3><p>Экскурсии в компании и знакомство с первыми лицами.</p></article>
       <article class="info-card"><h3>Экспертиза</h3><p>Мастер-классы по продажам, маркетингу и управлению.</p></article>
     </div></section>
-    <section class="section"><div class="container"><div class="eco" data-reveal>
+    <section class="section" data-bg="people"><div class="container"><div class="eco" data-reveal>
       <div class="eco__media"><img src="${A}/atmosphere/atm-11.jpg" alt="" data-parallax></div>
       <div class="eco__copy">
         <h2 class="section-title">Бизнес-дом на 25 Октября</h2>
@@ -436,31 +538,45 @@ bodies.ecosystem = `
 `;
 
 bodies.events = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="formats"><div class="container">
       <p class="eyebrow">События</p>
       <h1 class="page-hero__title">Форматы, которые меняют бизнес</h1>
       <p class="page-hero__text">Форумы, мастер-классы, завтраки и нетворкинг — 165+ мероприятий.</p>
+      <div class="filter-chips" id="eventFilters" style="margin-top:20px" data-reveal>
+        <button type="button" class="chip is-active" data-filter="all">Все</button>
+        <button type="button" class="chip" data-filter="forum">Форумы</button>
+        <button type="button" class="chip" data-filter="breakfast">Завтраки</button>
+        <button type="button" class="chip" data-filter="masterclass">Мастер-классы</button>
+        <button type="button" class="chip" data-filter="networking">Нетворкинг</button>
+        <a class="chip" href="${R}events-archive.html">Архив событий</a>
+      </div>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container grid-3" data-reveal-stagger>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Форумы</h3><p>Глубокий разбор задач и обмен опытом между предпринимателями.</p></article>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Мастер-классы</h3><p>Эксперты по продажам, маркетингу, команде и ресурсу.</p></article>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Завтраки</h3><p>Лёгкий нетворкинг и тёплые знакомства.</p></article>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Стажировки</h3><p>Погружение в компании резидентов.</p></article>
-      <article class="event-card"><div class="event-card__date">Формат</div><h3>Разговоры за вином</h3><p>Неформальное общение, где рождаются партнёрства.</p></article>
-      <article class="event-card"><div class="event-card__date">Открыто</div><h3>День открытых дверей</h3><p>Познакомьтесь с клубом и задайте вопросы команде.</p></article>
-    </div>
-    <div style="margin-top:36px;text-align:center" data-reveal>
-      <a class="btn btn--line" href="${R}events-archive.html">Архив событий</a>
-    </div></div></section>
+    <section class="section" style="padding-top:10px" data-bg="news"><div class="container">
+      <div class="grid-3" id="eventsGrid" data-reveal-stagger>
+        <a class="event-card" href="${R}event-forum-teh.html" data-type="forum"><div class="event-card__date">Форум</div><h3>Форум «Технологии»</h3><p>Разбор внедрения решений и AI в бизнес-процессах.</p></a>
+        <a class="event-card" href="${R}event-forum-marketing.html" data-type="forum"><div class="event-card__date">Форум</div><h3>Форум «Маркетинг»</h3><p>Глубокий разбор задач продвижения и роста.</p></a>
+        <a class="event-card" href="${R}event-masterclass-prodaji.html" data-type="masterclass"><div class="event-card__date">Мастер-класс</div><h3>Продажи</h3><p>Техники и кейсы участников клуба.</p></a>
+        <a class="event-card" href="${R}event-breakfast-01.html" data-type="breakfast"><div class="event-card__date">Завтрак</div><h3>Бизнес-завтрак</h3><p>Лёгкий нетворкинг и тёплые знакомства.</p></a>
+        <a class="event-card" href="${R}event-breakfast-15.html" data-type="breakfast"><div class="event-card__date">Завтрак</div><h3>Масштабирование</h3><p>Стратегии роста компаний резидентов.</p></a>
+        <a class="event-card" href="${R}event-networking-25.html" data-type="networking"><div class="event-card__date">Нетворкинг</div><h3>Встреча резидентов</h3><p>Знакомства и обмен контактами.</p></a>
+        <article class="event-card" data-type="networking"><div class="event-card__date">Формат</div><h3>Стажировки</h3><p>Погружение в компании резидентов.</p></article>
+        <article class="event-card" data-type="networking"><div class="event-card__date">Формат</div><h3>Разговоры за вином</h3><p>Неформальное общение, где рождаются партнёрства.</p></article>
+        <article class="event-card" data-type="forum"><div class="event-card__date">Открыто</div><h3>День открытых дверей</h3><p>Познакомьтесь с клубом и задайте вопросы команде.</p></article>
+      </div>
+      <div style="margin-top:36px;text-align:center" data-reveal>
+        <a class="btn btn--line" href="${R}events-archive.html">Архив событий</a>
+        <a class="btn btn--fill" href="visit.html" style="margin-left:8px" data-cta="events_visit">Стать гостем</a>
+      </div>
+    </div></section>
 `;
 
 bodies.contacts = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="cta"><div class="container">
       <p class="eyebrow">Контакты</p>
       <h1 class="page-hero__title">Будем рады знакомству</h1>
       <p class="page-hero__text">Напишите или позвоните — расскажем о гостевом визите и клубе.</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container grid-2">
+    <section class="section" style="padding-top:10px" data-bg="grid"><div class="container grid-2">
       <div class="grid-2" style="grid-template-columns:1fr;gap:18px" data-reveal-stagger>
         <article class="contact-card"><h3>Телефон</h3><p><a href="tel:+79630170017">+7 (963) 017-00-17</a><br><a href="tel:+73422919593">+7 (342) 291-95-93</a></p></article>
         <article class="contact-card"><h3>Email</h3><p><a href="mailto:club@delolife.club">club@delolife.club</a></p></article>
@@ -471,42 +587,72 @@ bodies.contacts = `
         <iframe src="https://www.google.com/maps?q=Пермь,+ул.+25+Октября,+4&hl=ru&z=16&output=embed" loading="lazy" title="Карта"></iframe>
       </div>
     </div></section>
+    <section class="section section--sand" id="form" data-bg="cta">
+      <div class="container split">
+        <div class="prose" data-reveal>
+          <p class="eyebrow">Форма обратной связи</p>
+          <h2 class="section-title">Напишите нам</h2>
+          <p>Оставьте контакты — директор клуба свяжется и ответит на вопросы.</p>
+          <p style="margin-top:12px"><a class="btn btn--line" href="${FORM}" target="_blank" rel="noopener" data-cta="contacts_yandex">Официальная анкета клуба</a></p>
+        </div>
+        <form class="form" id="contactForm" data-reveal>
+          <label>Имя<input type="text" id="name" name="name" placeholder="Ваше имя" required></label>
+          <label>Телефон<input type="tel" id="phone" name="phone" placeholder="+7 (963) 017-00-17" required></label>
+          <label>Email<input type="email" id="email" name="email" placeholder="your@email.com" required></label>
+          <label>Компания<input type="text" id="company" name="company" placeholder="Название компании"></label>
+          <label>Сообщение<textarea id="message" name="message" rows="5" placeholder="Ваше сообщение или вопрос" required></textarea></label>
+          <label class="form-consent"><input type="checkbox" name="consent" id="consent" required> Согласен на <a href="privacy.html">обработку персональных данных</a></label>
+          <button class="btn btn--fill" type="submit" data-cta="contacts_submit">Отправить</button>
+        </form>
+      </div>
+    </section>
 `;
 
 bodies.visit = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="cta"><div class="container">
       <p class="eyebrow">Гостевой визит</p>
       <h1 class="page-hero__title">Почувствуйте атмосферу клуба</h1>
       <p class="page-hero__text">Приходите в гости: познакомьтесь с резидентами, форматами и командой.</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container split">
+    <section class="section" style="padding-top:10px" data-bg="why"><div class="container">
+      <p class="eyebrow" data-reveal>Как попасть</p>
+      <h2 class="section-title" data-split style="margin-bottom:28px">Три шага к клубу</h2>
+      <div class="join-steps" data-reveal-stagger>
+        <article class="join-step"><span class="join-step__num">1</span><h3>Заявка</h3><p>Заполните форму ниже или <a href="${FORM}" target="_blank" rel="noopener">официальную анкету клуба</a>.</p></article>
+        <article class="join-step"><span class="join-step__num">2</span><h3>Знакомство</h3><p>Мы пригласим на событие или гостевую встречу с резидентами.</p></article>
+        <article class="join-step"><span class="join-step__num">3</span><h3>Решение</h3><p>Оцените атмосферу и решите о вступлении вместе с командой клуба.</p></article>
+      </div>
+    </div></section>
+    <section class="section section--sand" id="form" data-bg="cta"><div class="container split">
       <div class="prose" data-reveal>
-        <h2>Как это проходит</h2>
-        <p>Вы оставляете заявку — мы связываемся и приглашаем на подходящее событие или визит.</p>
+        <h2>Записаться на гостевой визит</h2>
+        <p>Оставьте контакты — свяжемся и подберём удобный формат знакомства.</p>
         <ul class="eco__list" style="margin:20px 0">
           <li>Знакомство с клубом и командой</li>
           <li>Живая атмосфера мероприятий</li>
           <li>Ответы на вопросы о резидентстве</li>
         </ul>
-        <a class="btn btn--fill" href="${FORM}" target="_blank" rel="noopener">Открыть форму заявки</a>
+        <a class="btn btn--line" href="${FORM}" target="_blank" rel="noopener" data-cta="visit_form">Открыть анкету Яндекс.Формы</a>
       </div>
-      <form class="form" data-reveal action="${FORM}" method="get" target="_blank">
-        <label>Имя<input type="text" name="name" placeholder="Как к вам обращаться" required></label>
-        <label>Телефон<input type="tel" name="phone" placeholder="+7" required></label>
-        <label>Комментарий<textarea name="comment" placeholder="Чем интересен клуб"></textarea></label>
-        <button class="btn btn--fill" type="submit">Отправить заявку</button>
+      <form class="form" id="contactForm" data-reveal>
+        <label>Имя<input type="text" id="name" name="name" placeholder="Как вас зовут?" required></label>
+        <label>Телефон<input type="tel" id="phone" name="phone" placeholder="+7 (963) 017-00-17" required></label>
+        <label>Email<input type="email" id="email" name="email" placeholder="email@example.com" required></label>
+        <label>Компания<input type="text" id="company" name="company" placeholder="Название вашей компании"></label>
+        <label class="form-consent"><input type="checkbox" name="consent" id="consent" required> Согласен на <a href="privacy.html">обработку персональных данных</a></label>
+        <button class="btn btn--fill" type="submit" data-cta="visit_submit">Отправить заявку</button>
         <p style="font-size:.8rem;color:var(--muted)">Или: club@delolife.club · +7 (963) 017-00-17</p>
       </form>
     </div></section>
 `;
 
 bodies.faq = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="quotes"><div class="container">
       <p class="eyebrow">FAQ</p>
       <h1 class="page-hero__title">Частые вопросы</h1>
       <p class="page-hero__text">Коротко о вступлении, форматах и площадке клуба.</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container" style="max-width:800px">
+    <section class="section" style="padding-top:10px" data-bg="grid"><div class="container" style="max-width:800px">
       <div class="faq" data-reveal-stagger>
         <details class="faq-item" open><summary>Какие требования к резиденту?</summary><p>Клуб открыт для действующих предпринимателей и руководителей компаний Пермского края. Важны активность и готовность к партнёрству.</p></details>
         <details class="faq-item"><summary>Что входит в участие?</summary><p>Доступ к форумам, мастер-классам, стажировкам, нетворкингу и программе «Покупай у своих». Тарифы — у директора клуба.</p></details>
@@ -519,12 +665,12 @@ bodies.faq = `
 `;
 
 bodies.partnership = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="eco"><div class="container">
       <p class="eyebrow">Партнёрство</p>
       <h1 class="page-hero__title">Сотрудничество с клубом</h1>
       <p class="page-hero__text">Спонсорство, экспертные выступления и совместные проекты.</p>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container grid-3" data-reveal-stagger>
+    <section class="section" style="padding-top:10px" data-bg="formats"><div class="container grid-3" data-reveal-stagger>
       <article class="info-card"><h3>События</h3><p>Партнёрство на форумах и мастер-классах клуба.</p></article>
       <article class="info-card"><h3>Экспертиза</h3><p>Выступления для аудитории предпринимателей края.</p></article>
       <article class="info-card"><h3>Комьюнити</h3><p>Доступ к закрытому кругу сильных компаний.</p></article>
@@ -535,11 +681,11 @@ bodies.partnership = `
 `;
 
 bodies.privacy = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="grid"><div class="container">
       <p class="eyebrow">Документы</p>
       <h1 class="page-hero__title">Политика конфиденциальности</h1>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container prose" data-reveal>
+    <section class="section" style="padding-top:10px" data-bg="why"><div class="container prose" data-reveal>
       <p>Мы обрабатываем персональные данные (имя, телефон, email), которые вы оставляете в заявках, только для связи по вопросам клуба и гостевого визита.</p>
       <p>Данные не передаются третьим лицам, за исключением случаев, предусмотренных законом. По вопросам: club@delolife.club.</p>
       <p>Полная версия документов также доступна на основном сайте клуба.</p>
@@ -547,18 +693,18 @@ bodies.privacy = `
 `;
 
 bodies.terms = `
-    <section class="page-hero"><div class="container">
+    <section class="page-hero" data-bg="grid"><div class="container">
       <p class="eyebrow">Документы</p>
       <h1 class="page-hero__title">Пользовательское соглашение</h1>
     </div></section>
-    <section class="section" style="padding-top:10px"><div class="container prose" data-reveal>
+    <section class="section" style="padding-top:10px" data-bg="why"><div class="container prose" data-reveal>
       <p>Используя сайт, вы соглашаетесь с правилами обработки обращений и корректного использования материалов клуба «Деловая жизнь».</p>
       <p>Контент сайта предназначен для информирования о деятельности сообщества. Актуальные условия резидентства уточняйте у директора клуба.</p>
     </div></section>
 `;
 
 bodies['thank-you'] = `
-    <section class="page-hero"><div class="container" style="text-align:center">
+    <section class="page-hero" data-bg="cta"><div class="container" style="text-align:center">
       <p class="eyebrow">Заявка</p>
       <h1 class="page-hero__title">Спасибо!</h1>
       <p class="page-hero__text" style="margin:0 auto">Мы получили обращение и свяжемся с вами.</p>
@@ -567,6 +713,87 @@ bodies['thank-you'] = `
         <a class="btn btn--line" href="events.html">События</a>
       </div>
     </div></section>
+`;
+
+bodies.networking = `
+    <section class="page-hero" data-bg="why"><div class="container">
+      <p class="eyebrow">Нетворкинг</p>
+      <h1 class="page-hero__title">Знакомства, которые двигают бизнес</h1>
+      <p class="page-hero__text">Форматы клуба для живых встреч, доверия и партнёрств между резидентами.</p>
+    </div></section>
+    <section class="section" data-bg="formats"><div class="container grid-3" data-reveal-stagger>
+      <article class="info-card"><h3>Случайные встречи</h3><p>Знакомства один на один с предпринимателями клуба.</p></article>
+      <article class="info-card"><h3>Завтраки</h3><p>Лёгкий нетворкинг в деловой атмосфере.</p></article>
+      <article class="info-card"><h3>Разговоры за вином</h3><p>Неформальный формат, где рождаются сделки и дружба.</p></article>
+    </div>
+    <div style="margin-top:32px;text-align:center" data-reveal>
+      <a class="btn btn--fill" href="article-networking-1.html">Читать материал</a>
+      <a class="btn btn--line" href="visit.html" style="margin-left:8px">Гостевой визит</a>
+    </div></div></section>
+`;
+
+bodies.cases = `
+    <section class="page-hero" data-bg="eco"><div class="container">
+      <p class="eyebrow">Кейсы</p>
+      <h1 class="page-hero__title">Результаты внутри сообщества</h1>
+      <p class="page-hero__text">Истории сотрудничества и сделок по программе «Покупай у своих».</p>
+    </div></section>
+    <section class="section" data-bg="news"><div class="container grid-2" data-reveal-stagger>
+      <a class="event-card" href="article-cases-1.html"><div class="event-card__date">Кейс</div><h3>Сделки внутри клуба</h3><p>Как резиденты усиливают друг друга заказами и рекомендациями.</p></a>
+      <article class="info-card"><h3>500 млн₽+</h3><p>Объём сделок внутри сообщества — живой результат доверия.</p></article>
+    </div></div></section>
+`;
+
+bodies.lifhaki = `
+    <section class="page-hero" data-bg="quotes"><div class="container">
+      <p class="eyebrow">Лайфхаки</p>
+      <h1 class="page-hero__title">Практики для руководителей</h1>
+      <p class="page-hero__text">Короткие материалы и рабочие приёмы от участников клуба.</p>
+    </div></section>
+    <section class="section" data-bg="grid"><div class="container grid-3" data-reveal-stagger>
+      <a class="event-card" href="article-lifhaki-1.html"><div class="event-card__date">Практика</div><h3>Лайфхаки роста</h3><p>Приёмы, которые предприниматели применяют каждый день.</p></a>
+      <a class="event-card" href="blog.html"><div class="event-card__date">Блог</div><h3>Все материалы</h3><p>Подборка статей, кейсов и заметок клуба.</p></a>
+      <a class="event-card" href="events.html"><div class="event-card__date">События</div><h3>Учиться вживую</h3><p>Мастер-классы и форумы с разбором реальных задач.</p></a>
+    </div></div></section>
+`;
+
+bodies['events-archive'] = `
+    <section class="page-hero" data-bg="formats"><div class="container">
+      <p class="eyebrow">Архив</p>
+      <h1 class="page-hero__title">Прошедшие события клуба</h1>
+      <p class="page-hero__text">Форумы, завтраки, мастер-классы и нетворкинг — что уже состоялось.</p>
+    </div></section>
+    <section class="section" data-bg="news"><div class="container grid-3" data-reveal-stagger>
+      <a class="event-card" href="event-forum-marketing.html"><div class="event-card__date">Форум</div><h3>Маркетинг</h3><p>Разбор задач продвижения и роста.</p></a>
+      <a class="event-card" href="event-forum-teh.html"><div class="event-card__date">Форум</div><h3>Технологии</h3><p>Практика внедрения решений в бизнес.</p></a>
+      <a class="event-card" href="event-masterclass-prodaji.html"><div class="event-card__date">Мастер-класс</div><h3>Продажи</h3><p>Техники и кейсы участников.</p></a>
+      <a class="event-card" href="event-breakfast-01.html"><div class="event-card__date">Завтрак</div><h3>Бизнес-завтрак</h3><p>Нетворкинг в деловом формате.</p></a>
+      <a class="event-card" href="event-breakfast-15.html"><div class="event-card__date">Завтрак</div><h3>Масштабирование</h3><p>Стратегии роста компаний.</p></a>
+      <a class="event-card" href="event-networking-25.html"><div class="event-card__date">Нетворкинг</div><h3>Встреча резидентов</h3><p>Знакомства и обмен контактами.</p></a>
+    </div>
+    <div style="margin-top:32px;text-align:center" data-reveal>
+      <a class="btn btn--fill" href="events.html">Актуальные форматы</a>
+    </div></div></section>
+`;
+
+bodies.founder = `
+    <section class="page-hero" data-bg="people"><div class="container">
+      <p class="eyebrow">Президент</p>
+      <h1 class="page-hero__title">Ирина Южанинова</h1>
+      <p class="page-hero__text">Президент клуба «Деловая жизнь», председатель ПРО «ОПОРА РОССИИ».</p>
+    </div></section>
+    <section class="section" data-bg="eco"><div class="container split">
+      <div class="profile-photo mouse-dots tilt-card" data-reveal>
+        <div class="mouse-dots__canvas" aria-hidden="true"></div>
+        <img src="${A}/residents/irina-yuzhaninova.jpg" alt="Ирина Южанинова" data-parallax>
+      </div>
+      <div class="prose" data-reveal>
+        <h2>О роли в клубе</h2>
+        <p>Ирина Южанинова объединяет предпринимателей края, развивает сообщество и представляет интересы бизнеса вместе с «ОПОРА РОССИИ».</p>
+        <a class="btn btn--fill" href="irina-yuzhaninova.html">Полный профиль</a>
+        <a class="btn btn--line" href="team.html" style="margin-left:8px">Команда</a>
+      </div>
+    </div></div></section>
 `;
 
 /* Write CSS/JS copies for root mode */
