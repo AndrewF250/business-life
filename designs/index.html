@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow">
+  <title>6 дизайнов — Деловая жизнь</title>
+  <link rel="icon" href="../assets/images/favicon.svg" type="image/svg+xml">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0e0c0a; --text:#f4efe6; --muted:#b8a99a; --accent:#c9a96e; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'DM Sans',sans-serif;background:radial-gradient(1200px 600px at 20% -10%,#3a2a18 0%,var(--bg) 55%);color:var(--text);min-height:100vh;padding:40px 24px 80px}
+    .top{max-width:1100px;margin:0 auto 48px;display:flex;justify-content:space-between;gap:20px;align-items:end;flex-wrap:wrap}
+    .top a{color:var(--accent);text-decoration:none;font-weight:600}
+    h1{font-family:Syne,sans-serif;font-size:clamp(2rem,5vw,3.6rem);letter-spacing:-.03em;line-height:1.05}
+    .top p{color:var(--muted);max-width:420px;line-height:1.5}
+    .grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+    .pick{display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.08);border-radius:24px;overflow:hidden;text-decoration:none;color:inherit;background:rgba(255,255,255,.03);transition:transform .45s, border-color .3s;animation:rise .7s both;animation-delay:calc(var(--i)*.08s)}
+    .pick:hover{transform:translateY(-8px);border-color:rgba(201,169,110,.45)}
+    .pick__visual{height:160px}
+    .pick__visual--1{background:linear-gradient(90deg,#efe4d3 45%,#1c1610 45%),linear-gradient(135deg,#c9a96e,#8a6a3d)}
+    .pick__visual--2{background:linear-gradient(180deg,#1a1510,#000)}
+    .pick__visual--3{background:linear-gradient(180deg,#faf7f2 60%,#e8dfd0);border-bottom:3px solid #141414}
+    .pick__visual--4{background:radial-gradient(circle at 30% 40%,#c4a574aa,#e9eef1 50%),radial-gradient(circle at 80% 20%,#7a8f7aaa,transparent)}
+    .pick__visual--5{background:repeating-linear-gradient(-12deg,#111 0 40px,#e8b86d 40px 44px,#111 44px 90px)}
+    .pick__visual--6{background:linear-gradient(135deg,#F8F6F3 0%,#E6E0DA 40%,#D8C5B3 70%,#B89A7A 100%)}
+    .pick.featured{border-color:rgba(201,169,110,.4);box-shadow:0 0 0 1px rgba(201,169,110,.15)}
+    .pick__meta{padding:22px}
+    .pick__meta span{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+    .pick__meta h2{font-family:Syne,sans-serif;font-size:1.45rem;margin-bottom:8px}
+    .pick__meta p{color:var(--muted);font-size:.95rem;line-height:1.45;margin-bottom:16px}
+    .pick__meta em{font-style:normal;font-weight:600}
+    @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="top">
+    <div>
+      <h1>6 разных<br>дизайнов</h1>
+    </div>
+    <div>
+      <p>V6 Atelier — полный сайт по макету. Остальные — разные концепции.</p>
+      <a href="../index.html">← Основной сайт</a>
+    </div>
+  </div>
+  <div class="grid">
+    <a class="pick" href="v1-luxury/index.html" style="--i:0">
+      <div class="pick__visual pick__visual--1"></div>
+      <div class="pick__meta">
+        <span>Split</span>
+        <h2>Luxury Gold</h2>
+        <p>Боковая рейка + split-screen, золотые линии, горизонтальная лента</p>
+        <em>Открыть →</em>
+      </div>
+    </a>
+
+    <a class="pick" href="v2-cinematic/index.html" style="--i:1">
+      <div class="pick__visual pick__visual--2"></div>
+      <div class="pick__meta">
+        <span>Cinema</span>
+        <h2>Cinematic Dark</h2>
+        <p>Полноэкранные сцены как в кино, veil, cast</p>
+        <em>Открыть →</em>
+      </div>
+    </a>
+
+    <a class="pick" href="v3-editorial/index.html" style="--i:2">
+      <div class="pick__visual pick__visual--3"></div>
+      <div class="pick__meta">
+        <span>Magazine</span>
+        <h2>Editorial Light</h2>
+        <p>Журнальная вёрстка: колонки, цитата, содержание</p>
+        <em>Открыть →</em>
+      </div>
+    </a>
+
+    <a class="pick" href="v4-glass/index.html" style="--i:3">
+      <div class="pick__visual pick__visual--4"></div>
+      <div class="pick__meta">
+        <span>Soft</span>
+        <h2>Soft Glass</h2>
+        <p>Плавающие панели, круги лиц, мягкие blob</p>
+        <em>Открыть →</em>
+      </div>
+    </a>
+
+    <a class="pick" href="v5-kinetic/index.html" style="--i:4">
+      <div class="pick__visual pick__visual--5"></div>
+      <div class="pick__meta">
+        <span>Kinetic</span>
+        <h2>Bold Kinetic</h2>
+        <p>Ломаный тип, диагональ, строки-кнопки</p>
+        <em>Открыть →</em>
+      </div>
+    </a>
+
+    <a class="pick featured" href="v6-atelier/index.html" style="--i:5">
+      <div class="pick__visual pick__visual--6"></div>
+      <div class="pick__meta">
+        <span>Mockup</span>
+        <h2>Atelier Luxury</h2>
+        <p>Полный сайт в стиле макета: крем, золото, serif, карусель, Lenis+GSAP</p>
+        <em>Открыть →</em>
+      </div>
+    </a></div>
+</body>
+</html>
