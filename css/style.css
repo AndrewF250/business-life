@@ -1754,11 +1754,8 @@ a:focus {
 
 .resident-card__photo {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
   height: auto;
-  min-height: 280px;
-  max-height: 380px;
-  object-fit: cover;
   position: relative;
   overflow: hidden;
   background: var(--bg-card);
@@ -1768,12 +1765,13 @@ a:focus {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center top;
+  transform-origin: center top;
   transition: transform var(--transition-slow);
 }
 
 .resident-card:hover .resident-card__photo img {
-  transform: scale(1.05);
+  transform: none;
 }
 
 .resident-card__photo-placeholder {
@@ -1937,7 +1935,7 @@ a.testimonial-card:hover .testimonial-card__author-info h4 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center center;
+  object-position: center top;
 }
 
 .testimonial-card__avatar-placeholder {
@@ -5024,7 +5022,7 @@ body {
 }
 
 .resident-card--clickable:hover .resident-card__photo img {
-  transform: scale(1.05);
+  transform: none;
 }
 
 .resident-card--clickable .resident-card__name {
@@ -5339,7 +5337,7 @@ button,
 }
 
 .resident-card--clickable:hover .photo-zone {
-  transform: scale(1.05);
+  transform: none;
 }
 
 /* Плавное появление страницы */
@@ -5783,7 +5781,7 @@ button:focus-visible,
 }
 
 
-/* Faces centered in the middle */
+/* Faces: never crop the head — anchor to top, card ratio matches tall portraits */
 .resident-photo,
 .resident-card__photo img,
 .resident-profile__photo img,
@@ -5791,15 +5789,15 @@ button:focus-visible,
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  object-position: center center !important;
+  object-position: center top !important;
   display: block;
 }
+
 .resident-profile__photo {
   overflow: hidden;
   border-radius: var(--radius-lg);
-  aspect-ratio: 3 / 4;
-  min-height: 320px;
-  max-height: 520px;
+  aspect-ratio: 2 / 3;
+  height: auto;
 }
 .testimonial-card__avatar {
   overflow: hidden;
