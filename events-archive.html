@@ -74,7 +74,6 @@
           </div>
         </div>
         <a class="btn btn--fill" href="visit.html">Стать гостем клуба</a>
-        <a class="btn btn--line" href="visit.html">Гостевой визит</a>
         <button class="header__burger" id="burger" aria-label="Меню"><span></span></button>
       </div>
     </div>
@@ -88,10 +87,8 @@
           <a href="ecosystem.html" class="">Экосистема</a>
           <a href="events.html" class="is-active">События</a>
           <a href="contacts.html" class="">Контакты</a>
-    <a href="visit.html">Гостевой визит</a>
-    <a href="faq.html">FAQ</a>
+    <a href="visit.html">Стать гостем клуба</a>
     <a href="partnership.html">Партнёрство</a>
-    <a href="designs/index.html">6 дизайнов</a>
   </div>
 
   <main>
@@ -101,17 +98,43 @@
       <h1 class="page-hero__title">Прошедшие события клуба</h1>
       <p class="page-hero__text">Форумы, завтраки, мастер-классы и нетворкинг — что уже состоялось.</p>
     </div></section>
-    <section class="section" data-bg="news"><div class="container grid-3" data-reveal-stagger>
-      <a class="event-card" href="event-forum-marketing.html"><div class="event-card__date">Форум</div><h3>Маркетинг</h3><p>Разбор задач продвижения и роста.</p></a>
-      <a class="event-card" href="event-forum-teh.html"><div class="event-card__date">Форум</div><h3>Технологии</h3><p>Практика внедрения решений в бизнес.</p></a>
-      <a class="event-card" href="event-masterclass-prodaji.html"><div class="event-card__date">Мастер-класс</div><h3>Продажи</h3><p>Техники и кейсы участников.</p></a>
-      <a class="event-card" href="event-breakfast-01.html"><div class="event-card__date">Завтрак</div><h3>Бизнес-завтрак</h3><p>Нетворкинг в деловом формате.</p></a>
-      <a class="event-card" href="event-breakfast-15.html"><div class="event-card__date">Завтрак</div><h3>Масштабирование</h3><p>Стратегии роста компаний.</p></a>
-      <a class="event-card" href="event-networking-25.html"><div class="event-card__date">Нетворкинг</div><h3>Встреча резидентов</h3><p>Знакомства и обмен контактами.</p></a>
-    </div>
-    <div style="margin-top:32px;text-align:center" data-reveal>
-      <a class="btn btn--fill" href="events.html">Актуальные форматы</a>
-    </div></div></section>
+    <section class="section" data-bg="news"><div class="container">
+      <div class="events-list" data-reveal-stagger>
+        <a class="event-row" href="event-breakfast-15.html" data-type="breakfast">
+          <div class="event-row__date"><span>15</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Бизнес-завтрак</h3><p class="event-row__meta">09:00 — 11:00 · Бизнес-дом</p><p>Тема: «Как масштабировать бизнес в 2026 году»</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-forum-teh.html" data-type="forum">
+          <div class="event-row__date"><span>18</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Форум-группа «Технологии»</h3><p class="event-row__meta">18:00 — 20:00 · переговорная №2</p><p>Обсуждение внедрения AI в бизнес-процессы</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-masterclass-prodaji.html" data-type="masterclass">
+          <div class="event-row__date"><span>22</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Мастер-класс «Продажи»</h3><p class="event-row__meta">14:00 — 17:00 · зал мероприятий</p><p>Практические техники повышения конверсии продаж</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-networking-25.html" data-type="networking">
+          <div class="event-row__date"><span>25</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Нетворкинг-вечер</h3><p class="event-row__meta">19:00 — 21:00 · Бизнес-дом</p><p>Неформальное общение и знакомство с новыми резидентами</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-forum-marketing.html" data-type="forum">
+          <div class="event-row__date"><span>29</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Форум-группа «Маркетинг»</h3><p class="event-row__meta">18:00 — 20:00 · переговорная №1</p><p>Анализ эффективности маркетинговых каналов</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-breakfast-01.html" data-type="breakfast">
+          <div class="event-row__date"><span>01</span><em>авг</em></div>
+          <div class="event-row__body"><h3>Бизнес-завтрак</h3><p class="event-row__meta">09:00 — 11:00 · Бизнес-дом</p><p>Тема: «Управление финансами в кризис»</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+      </div>
+      <div style="margin-top:32px;text-align:center" data-reveal>
+        <a class="btn btn--fill" href="events.html">Актуальные форматы</a>
+      </div>
+    </div></section>
 
   </main>
 
@@ -133,12 +156,7 @@
             <a href="blog.html">Блог</a>
             <a href="ecosystem.html">Экосистема</a>
             <a href="events.html">События</a>
-            <a href="faq.html">FAQ</a>
-            <a href="partnership.html">Партнёрство</a>
-            <a href="networking.html">Нетворкинг</a>
-            <a href="cases.html">Кейсы</a>
-            <a href="lifhaki.html">Лайфхаки</a>
-            <a href="events-archive.html">Архив событий</a>
+            <a href="contacts.html">Контакты</a>
           </nav>
         </div>
         <div>
@@ -155,12 +173,10 @@
         <div>
           <h4>Ещё</h4>
           <nav>
-            <a href="visit.html">Гостевой визит</a>
-            <a href="contacts.html">Контакты</a>
+            <a href="visit.html">Стать гостем</a>
+            <a href="partnership.html">Партнёрство</a>
             <a href="privacy.html">Конфиденциальность</a>
             <a href="terms.html">Соглашение</a>
-            <a href="designs/index.html">6 дизайнов</a>
-            
           </nav>
         </div>
       </div>

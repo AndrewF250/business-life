@@ -85,7 +85,6 @@ function shell({ title, description, active, body, robots = 'index, follow', pag
           </div>
         </div>
         <a class="btn btn--fill" href="visit.html">Стать гостем клуба</a>
-        <a class="btn btn--line" href="visit.html">Гостевой визит</a>
         <button class="header__burger" id="burger" aria-label="Меню"><span></span></button>
       </div>
     </div>
@@ -93,10 +92,8 @@ function shell({ title, description, active, body, robots = 'index, follow', pag
 
   <div class="mobile-nav" id="mobileNav">
     ${navLinks(active)}
-    <a href="visit.html">Гостевой визит</a>
-    <a href="faq.html">FAQ</a>
+    <a href="visit.html">Стать гостем клуба</a>
     <a href="partnership.html">Партнёрство</a>
-    <a href="designs/index.html">6 дизайнов</a>
   </div>
 
   <main>
@@ -120,7 +117,7 @@ ${body}
             <a href="blog.html">Блог</a>
             <a href="ecosystem.html">Экосистема</a>
             <a href="events.html">События</a>
-            <a href="faq.html">FAQ</a>
+            <a href="contacts.html">Контакты</a>
           </nav>
         </div>
         <div>
@@ -135,11 +132,10 @@ ${body}
         <div>
           <h4>Ещё</h4>
           <nav>
-            <a href="visit.html">Гостевой визит</a>
+            <a href="visit.html">Стать гостем</a>
             <a href="partnership.html">Партнёрство</a>
             <a href="privacy.html">Конфиденциальность</a>
             <a href="terms.html">Соглашение</a>
-            <a href="designs/index.html">6 дизайнов</a>
           </nav>
         </div>
       </div>

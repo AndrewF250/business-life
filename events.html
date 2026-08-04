@@ -74,7 +74,6 @@
           </div>
         </div>
         <a class="btn btn--fill" href="visit.html">Стать гостем клуба</a>
-        <a class="btn btn--line" href="visit.html">Гостевой визит</a>
         <button class="header__burger" id="burger" aria-label="Меню"><span></span></button>
       </div>
     </div>
@@ -88,42 +87,114 @@
           <a href="ecosystem.html" class="">Экосистема</a>
           <a href="events.html" class="is-active">События</a>
           <a href="contacts.html" class="">Контакты</a>
-    <a href="visit.html">Гостевой визит</a>
-    <a href="faq.html">FAQ</a>
+    <a href="visit.html">Стать гостем клуба</a>
     <a href="partnership.html">Партнёрство</a>
-    <a href="designs/index.html">6 дизайнов</a>
   </div>
 
   <main>
 
     <section class="page-hero" data-bg="formats"><div class="container">
-      <p class="eyebrow">События</p>
-      <h1 class="page-hero__title">Форматы, которые меняют бизнес</h1>
-      <p class="page-hero__text">Форумы, мастер-классы, завтраки и нетворкинг — 165+ мероприятий.</p>
-      <div class="filter-chips" id="eventFilters" style="margin-top:20px" data-reveal>
+      <p class="eyebrow">Календарь</p>
+      <h1 class="page-hero__title">События клуба</h1>
+      <p class="page-hero__text">Форумы, мастер-классы, стажировки, «Разговоры за вином», спорт и досуг — форматы для роста бизнеса и сильных связей.</p>
+    </div></section>
+
+    <section class="section" style="padding-top:10px" data-bg="cta">
+      <div class="container">
+        <article class="next-event" data-reveal>
+          <div class="next-event__badge">Ближайшее событие</div>
+          <a class="next-event__main" href="event-open-doors.html">
+            <div class="next-event__media"><img src="assets/images/atmosphere/dj-03.jpg" alt="День открытых дверей" loading="lazy"></div>
+            <div class="next-event__body">
+              <div class="next-event__date"><span class="next-event__day">12</span><span class="next-event__month">августа</span></div>
+              <div class="next-event__info">
+                <h2 class="next-event__title">День открытых дверей «Деловой жизни»</h2>
+                <p class="next-event__meta">Бизнес-дом, ул. 25 Октября, 4 · Пермь</p>
+                <p class="next-event__desc">Впервые в истории клуба — день открытых дверей. Увидите клуб изнутри, познакомитесь с резидентами и почувствуете атмосферу сообщества.</p>
+              </div>
+              <span class="next-event__more">Подробнее →</span>
+            </div>
+          </a>
+          <div class="next-event__cta">
+            <a class="btn btn--fill" href="visit.html" data-cta="next_event">Записаться</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--sand" data-bg="news"><div class="container">
+      <div class="res-head" data-reveal>
+        <div>
+          <p class="eyebrow">Расписание</p>
+          <h2 class="section-title" data-split>Ближайшие события</h2>
+        </div>
+        <a class="btn btn--line" href="events-archive.html">Архив событий</a>
+      </div>
+      <div class="filter-chips" id="eventFilters" style="margin:8px 0 22px" data-reveal>
         <button type="button" class="chip is-active" data-filter="all">Все</button>
-        <button type="button" class="chip" data-filter="forum">Форумы</button>
-        <button type="button" class="chip" data-filter="breakfast">Завтраки</button>
+        <button type="button" class="chip" data-filter="forum">Форум-группы</button>
+        <button type="button" class="chip" data-filter="breakfast">Бизнес-завтраки</button>
         <button type="button" class="chip" data-filter="masterclass">Мастер-классы</button>
         <button type="button" class="chip" data-filter="networking">Нетворкинг</button>
-        <a class="chip" href="events-archive.html">Архив событий</a>
       </div>
-    </div></section>
-    <section class="section" style="padding-top:10px" data-bg="news"><div class="container">
-      <div class="grid-3" id="eventsGrid" data-reveal-stagger>
-        <a class="event-card" href="event-forum-teh.html" data-type="forum"><div class="event-card__date">Форум</div><h3>Форум «Технологии»</h3><p>Разбор внедрения решений и AI в бизнес-процессах.</p></a>
-        <a class="event-card" href="event-forum-marketing.html" data-type="forum"><div class="event-card__date">Форум</div><h3>Форум «Маркетинг»</h3><p>Глубокий разбор задач продвижения и роста.</p></a>
-        <a class="event-card" href="event-masterclass-prodaji.html" data-type="masterclass"><div class="event-card__date">Мастер-класс</div><h3>Продажи</h3><p>Техники и кейсы участников клуба.</p></a>
-        <a class="event-card" href="event-breakfast-01.html" data-type="breakfast"><div class="event-card__date">Завтрак</div><h3>Бизнес-завтрак</h3><p>Лёгкий нетворкинг и тёплые знакомства.</p></a>
-        <a class="event-card" href="event-breakfast-15.html" data-type="breakfast"><div class="event-card__date">Завтрак</div><h3>Масштабирование</h3><p>Стратегии роста компаний резидентов.</p></a>
-        <a class="event-card" href="event-networking-25.html" data-type="networking"><div class="event-card__date">Нетворкинг</div><h3>Встреча резидентов</h3><p>Знакомства и обмен контактами.</p></a>
-        <article class="event-card" data-type="networking"><div class="event-card__date">Формат</div><h3>Стажировки</h3><p>Погружение в компании резидентов.</p></article>
-        <article class="event-card" data-type="networking"><div class="event-card__date">Формат</div><h3>Разговоры за вином</h3><p>Неформальное общение, где рождаются партнёрства.</p></article>
-        <article class="event-card" data-type="forum"><div class="event-card__date">Открыто</div><h3>День открытых дверей</h3><p>Познакомьтесь с клубом и задайте вопросы команде.</p></article>
+      <div class="events-list" id="eventsGrid" data-reveal-stagger>
+        <a class="event-row" href="event-breakfast-15.html" data-type="breakfast">
+          <div class="event-row__date"><span>15</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Бизнес-завтрак</h3>
+            <p class="event-row__meta">09:00 — 11:00 · Бизнес-дом, ул. 25 Октября, 4</p>
+            <p>Тема: «Как масштабировать бизнес в 2026 году»</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-forum-teh.html" data-type="forum">
+          <div class="event-row__date"><span>18</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Форум-группа «Технологии»</h3>
+            <p class="event-row__meta">18:00 — 20:00 · Бизнес-дом, переговорная №2</p>
+            <p>Обсуждение внедрения AI в бизнес-процессы</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-masterclass-prodaji.html" data-type="masterclass">
+          <div class="event-row__date"><span>22</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Мастер-класс «Продажи»</h3>
+            <p class="event-row__meta">14:00 — 17:00 · Бизнес-дом, зал мероприятий</p>
+            <p>Практические техники повышения конверсии продаж</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-networking-25.html" data-type="networking">
+          <div class="event-row__date"><span>25</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Нетворкинг-вечер</h3>
+            <p class="event-row__meta">19:00 — 21:00 · Бизнес-дом, ул. 25 Октября, 4</p>
+            <p>Неформальное общение и знакомство с новыми резидентами</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-forum-marketing.html" data-type="forum">
+          <div class="event-row__date"><span>29</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Форум-группа «Маркетинг»</h3>
+            <p class="event-row__meta">18:00 — 20:00 · Бизнес-дом, переговорная №1</p>
+            <p>Анализ эффективности маркетинговых каналов</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-breakfast-01.html" data-type="breakfast">
+          <div class="event-row__date"><span>01</span><em>авг</em></div>
+          <div class="event-row__body">
+            <h3>Бизнес-завтрак</h3>
+            <p class="event-row__meta">09:00 — 11:00 · Бизнес-дом, ул. 25 Октября, 4</p>
+            <p>Тема: «Управление финансами в кризис»</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
       </div>
       <div style="margin-top:36px;text-align:center" data-reveal>
-        <a class="btn btn--line" href="events-archive.html">Архив событий</a>
-        <a class="btn btn--fill" href="visit.html" style="margin-left:8px" data-cta="events_visit">Стать гостем</a>
+        <a class="btn btn--fill" href="visit.html" data-cta="events_visit">Стать гостем</a>
       </div>
     </div></section>
 
@@ -147,12 +218,7 @@
             <a href="blog.html">Блог</a>
             <a href="ecosystem.html">Экосистема</a>
             <a href="events.html">События</a>
-            <a href="faq.html">FAQ</a>
-            <a href="partnership.html">Партнёрство</a>
-            <a href="networking.html">Нетворкинг</a>
-            <a href="cases.html">Кейсы</a>
-            <a href="lifhaki.html">Лайфхаки</a>
-            <a href="events-archive.html">Архив событий</a>
+            <a href="contacts.html">Контакты</a>
           </nav>
         </div>
         <div>
@@ -169,12 +235,10 @@
         <div>
           <h4>Ещё</h4>
           <nav>
-            <a href="visit.html">Гостевой визит</a>
-            <a href="contacts.html">Контакты</a>
+            <a href="visit.html">Стать гостем</a>
+            <a href="partnership.html">Партнёрство</a>
             <a href="privacy.html">Конфиденциальность</a>
             <a href="terms.html">Соглашение</a>
-            <a href="designs/index.html">6 дизайнов</a>
-            
           </nav>
         </div>
       </div>

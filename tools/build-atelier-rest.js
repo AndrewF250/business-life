@@ -14,6 +14,7 @@ const MAIN_DONE = new Set([
   'ecosystem.html', 'events.html', 'contacts.html', 'visit.html', 'faq.html',
   'partnership.html', 'privacy.html', 'terms.html', 'thank-you.html',
   'networking.html', 'cases.html', 'lifhaki.html', 'events-archive.html', 'founder.html',
+  'event-open-doors.html',
 ]);
 
 function qaFor(p) {
@@ -109,7 +110,7 @@ function guessActive(name) {
   if (/^event|events-archive/.test(name)) return 'events';
   if (/^article|cases|lifhaki|networking|blog/.test(name)) return 'blog';
   if (/founder|team/.test(name)) return 'team';
-  if (/resident|petrov|ivanova|kozlov/.test(name)) return 'residents';
+  if (/resident/.test(name)) return 'residents';
   return 'index';
 }
 

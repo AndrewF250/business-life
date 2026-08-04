@@ -38,6 +38,7 @@ const pagesMeta = {
   lifhaki: { title: 'Лайфхаки', file: 'lifhaki.html', active: 'blog' },
   'events-archive': { title: 'Архив событий', file: 'events-archive.html', active: 'events' },
   founder: { title: 'Основатель', file: 'founder.html', active: 'team' },
+  'event-open-doors': { title: 'День открытых дверей', file: 'event-open-doors.html', active: 'events' },
 };
 
 function photoOf(p) {
@@ -82,10 +83,6 @@ const CAT_LABELS = {
 function shell(pageKey, body) {
   const meta = pagesMeta[pageKey];
   const active = meta.active;
-  const designsLink = toRoot
-    ? '<a href="designs/index.html">6 дизайнов</a>'
-    : '<a href="../index.html">Все дизайны</a>';
-  const mainSite = toRoot ? '' : `<a href="../../index.html">Основной сайт</a>`;
   const pageUrl = `https://andrewf250.github.io/business-life/${meta.file === 'index.html' ? '' : meta.file}`;
   const desc = `Бизнес-клуб Деловая жизнь в Перми. ${meta.title}.`;
   const title = `${meta.title} — Деловая жизнь`;
@@ -166,7 +163,6 @@ function shell(pageKey, body) {
           </div>
         </div>
         <a class="btn btn--fill" href="visit.html">Стать гостем клуба</a>
-        <a class="btn btn--line" href="visit.html">Гостевой визит</a>
         <button class="header__burger" id="burger" aria-label="Меню"><span></span></button>
       </div>
     </div>
@@ -174,10 +170,8 @@ function shell(pageKey, body) {
 
   <div class="mobile-nav" id="mobileNav">
     ${navLinks(active)}
-    <a href="visit.html">Гостевой визит</a>
-    <a href="faq.html">FAQ</a>
+    <a href="visit.html">Стать гостем клуба</a>
     <a href="partnership.html">Партнёрство</a>
-    ${designsLink}
   </div>
 
   <main>
@@ -202,12 +196,7 @@ ${body}
             <a href="blog.html">Блог</a>
             <a href="ecosystem.html">Экосистема</a>
             <a href="events.html">События</a>
-            <a href="faq.html">FAQ</a>
-            <a href="partnership.html">Партнёрство</a>
-            <a href="networking.html">Нетворкинг</a>
-            <a href="cases.html">Кейсы</a>
-            <a href="lifhaki.html">Лайфхаки</a>
-            <a href="events-archive.html">Архив событий</a>
+            <a href="contacts.html">Контакты</a>
           </nav>
         </div>
         <div>
@@ -224,12 +213,10 @@ ${body}
         <div>
           <h4>Ещё</h4>
           <nav>
-            <a href="visit.html">Гостевой визит</a>
-            <a href="contacts.html">Контакты</a>
+            <a href="visit.html">Стать гостем</a>
+            <a href="partnership.html">Партнёрство</a>
             <a href="privacy.html">Конфиденциальность</a>
             <a href="terms.html">Соглашение</a>
-            ${designsLink}
-            ${mainSite}
           </nav>
         </div>
       </div>
@@ -285,7 +272,7 @@ bodies.index = `
           </div>
         </div>
         <div class="hero__visual">
-          <img src="${A}/atmosphere/atm-01.jpg" alt="Атмосфера клуба" data-parallax>
+          <img src="${A}/atmosphere/dj-01.jpg" alt="Атмосфера клуба" data-parallax>
           <div class="hero__badge"><strong>с 2021</strong>Место силы для бизнесменов Перми</div>
         </div>
       </div>
@@ -342,7 +329,7 @@ bodies.index = `
     <section class="section" data-bg="eco">
       <div class="container">
         <div class="eco" data-reveal>
-          <div class="eco__media"><img src="${A}/atmosphere/atm-05.jpg" alt="Бизнес-дом" data-parallax></div>
+          <div class="eco__media"><img src="${A}/atmosphere/dj-34.jpg" alt="Встреча в клубе" data-parallax></div>
           <div class="eco__copy">
             <p class="eyebrow">Экосистема</p>
             <h2 class="section-title">Все возможности для роста бизнеса в одном месте</h2>
@@ -433,7 +420,7 @@ bodies.about = `
       <p class="page-hero__text">«Деловая жизнь» объединяет, мотивирует и выстраивает бизнес-коммуникации с 2021 года.</p>
     </div></section>
     <section class="section" style="padding-top:20px" data-bg="eco"><div class="container split">
-      <div class="split__media" data-reveal><img src="${A}/atmosphere/atm-07.jpg" alt="" data-parallax></div>
+      <div class="split__media" data-reveal><img src="${A}/atmosphere/dj-03.jpg" alt="Встреча клуба" data-parallax></div>
       <div class="prose" data-reveal>
         <h2>Кто мы</h2>
         <p>Крупнейшее бизнес-сообщество предпринимателей края. В сотрудничестве с Пермским региональным отделением «ОПОРА РОССИИ» возможности резидентов становятся шире.</p>
@@ -448,6 +435,18 @@ bodies.about = `
         <article class="info-card"><h3>Доверие</h3><p>Закрытое сообщество, где ценят репутацию и длинные отношения.</p></article>
         <article class="info-card"><h3>Поддержка</h3><p>Форумы, стажировки и взаимная помощь между резидентами.</p></article>
         <article class="info-card"><h3>Рост</h3><p>Новые клиенты, партнёры и знания — в одной экосистеме.</p></article>
+      </div>
+    </div></section>
+    <section class="section" id="faq" data-bg="grid"><div class="container" style="max-width:800px">
+      <p class="eyebrow" data-reveal>FAQ</p>
+      <h2 class="section-title" data-split style="margin-bottom:28px">Частые вопросы</h2>
+      <div class="faq" data-reveal-stagger>
+        <details class="faq-item" open><summary>Какие требования к резиденту?</summary><p>Клуб открыт для действующих предпринимателей и руководителей компаний Пермского края. Важны активность и готовность к партнёрству.</p></details>
+        <details class="faq-item"><summary>Что входит в участие?</summary><p>Доступ к форумам, мастер-классам, стажировкам, нетворкингу и программе «Покупай у своих». Тарифы — у директора клуба.</p></details>
+        <details class="faq-item"><summary>Как познакомиться с резидентами?</summary><p>Через гостевой визит, форумы и неформальные форматы. Начните с <a href="visit.html">заявки</a>.</p></details>
+        <details class="faq-item"><summary>Как вступить?</summary><p>Оставьте заявку, посетите гостевую встречу и примите решение о вступлении.</p></details>
+        <details class="faq-item"><summary>Сколько стоит?</summary><p>Актуальные условия: <a href="tel:+79630170017">+7 (963) 017-00-17</a> или club@delolife.club.</p></details>
+        <details class="faq-item"><summary>Где проходит клуб?</summary><p>ул. 25 Октября, 4 · Бизнес-дом «Деловая жизнь». Часть встреч — ул. Ленина, 68.</p></details>
       </div>
     </div></section>
 `;
@@ -503,15 +502,27 @@ bodies.blog = `
     <section class="page-hero" data-bg="news"><div class="container">
       <p class="eyebrow">Блог</p>
       <h1 class="page-hero__title">Истории и материалы клуба</h1>
-      <p class="page-hero__text">Кейсы, лайфхаки и новости сообщества.</p>
+      <p class="page-hero__text">Три раздела: нетворкинг, лайфхаки и кейсы.</p>
     </div></section>
     <section class="section" style="padding-top:10px" data-bg="formats"><div class="container grid-3" data-reveal-stagger>
-      <a class="event-card" href="${R}article-networking-1.html"><div class="event-card__date">Нетворкинг</div><h3>Как работают связи в клубе</h3><p>О пользе живых знакомств и доверия между резидентами.</p></a>
-      <a class="event-card" href="${R}article-lifhaki-1.html"><div class="event-card__date">Лайфхаки</div><h3>Практики роста</h3><p>Рабочие приёмы предпринимателей сообщества.</p></a>
-      <a class="event-card" href="${R}article-cases-1.html"><div class="event-card__date">Кейсы</div><h3>Сделки внутри клуба</h3><p>Как программа «Покупай у своих» помогает бизнесу.</p></a>
-      <a class="event-card" href="${R}lifhaki.html"><div class="event-card__date">Подборка</div><h3>Лайфхаки</h3><p>Материалы для ежедневной работы руководителя.</p></a>
-      <a class="event-card" href="${R}cases.html"><div class="event-card__date">Подборка</div><h3>Кейсы</h3><p>Истории резидентов и результаты сотрудничества.</p></a>
-      <a class="event-card" href="${R}networking.html"><div class="event-card__date">Подборка</div><h3>Нетворкинг</h3><p>Форматы знакомств и деловых встреч.</p></a>
+      <a class="event-card event-card--media" href="${R}networking.html">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-45.jpg" alt="Нетворкинг" loading="lazy"></div>
+        <div class="event-card__date">Раздел</div>
+        <h3>Нетворкинг</h3>
+        <p>Форматы знакомств, спорт, поездки и живые встречи резидентов.</p>
+      </a>
+      <a class="event-card event-card--media" href="${R}lifhaki.html">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-22.jpg" alt="Лайфхаки" loading="lazy"></div>
+        <div class="event-card__date">Раздел</div>
+        <h3>Лайфхаки</h3>
+        <p>Практики роста, разборы и рабочие приёмы предпринимателей.</p>
+      </a>
+      <a class="event-card event-card--media" href="${R}cases.html">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-34.jpg" alt="Кейсы" loading="lazy"></div>
+        <div class="event-card__date">Раздел</div>
+        <h3>Кейсы</h3>
+        <p>Сделки, стажировки и результаты программы «Покупай у своих».</p>
+      </a>
     </div></section>
 `;
 
@@ -528,47 +539,127 @@ bodies.ecosystem = `
       <article class="info-card"><h3>Экспертиза</h3><p>Мастер-классы по продажам, маркетингу и управлению.</p></article>
     </div></section>
     <section class="section" data-bg="people"><div class="container"><div class="eco" data-reveal>
-      <div class="eco__media"><img src="${A}/atmosphere/atm-11.jpg" alt="" data-parallax></div>
+      <div class="eco__media"><img src="${A}/atmosphere/dj-12.jpg" alt="Бизнес-дом" data-parallax></div>
       <div class="eco__copy">
         <h2 class="section-title">Бизнес-дом на 25 Октября</h2>
         <p>Точка притяжения резидентов: встречи, события и рабочие коммуникации.</p>
-        <a class="btn btn--fill" href="contacts.html">Как добраться</a>
+        <div class="eco__actions">
+          <a class="btn btn--fill" href="partnership.html" data-cta="eco_partner">Стать партнёром</a>
+          <a class="btn btn--line" href="contacts.html">Как добраться</a>
+        </div>
       </div>
     </div></div></section>
 `;
 
 bodies.events = `
     <section class="page-hero" data-bg="formats"><div class="container">
-      <p class="eyebrow">События</p>
-      <h1 class="page-hero__title">Форматы, которые меняют бизнес</h1>
-      <p class="page-hero__text">Форумы, мастер-классы, завтраки и нетворкинг — 165+ мероприятий.</p>
-      <div class="filter-chips" id="eventFilters" style="margin-top:20px" data-reveal>
+      <p class="eyebrow">Календарь</p>
+      <h1 class="page-hero__title">События клуба</h1>
+      <p class="page-hero__text">Форумы, мастер-классы, стажировки, «Разговоры за вином», спорт и досуг — форматы для роста бизнеса и сильных связей.</p>
+    </div></section>
+
+    <section class="section" style="padding-top:10px" data-bg="cta">
+      <div class="container">
+        <article class="next-event" data-reveal>
+          <div class="next-event__badge">Ближайшее событие</div>
+          <a class="next-event__main" href="${R}event-open-doors.html">
+            <div class="next-event__media"><img src="${A}/atmosphere/dj-03.jpg" alt="День открытых дверей" loading="lazy"></div>
+            <div class="next-event__body">
+              <div class="next-event__date"><span class="next-event__day">12</span><span class="next-event__month">августа</span></div>
+              <div class="next-event__info">
+                <h2 class="next-event__title">День открытых дверей «Деловой жизни»</h2>
+                <p class="next-event__meta">Бизнес-дом, ул. 25 Октября, 4 · Пермь</p>
+                <p class="next-event__desc">Впервые в истории клуба — день открытых дверей. Увидите клуб изнутри, познакомитесь с резидентами и почувствуете атмосферу сообщества.</p>
+              </div>
+              <span class="next-event__more">Подробнее →</span>
+            </div>
+          </a>
+          <div class="next-event__cta">
+            <a class="btn btn--fill" href="visit.html" data-cta="next_event">Записаться</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--sand" data-bg="news"><div class="container">
+      <div class="res-head" data-reveal>
+        <div>
+          <p class="eyebrow">Расписание</p>
+          <h2 class="section-title" data-split>Ближайшие события</h2>
+        </div>
+        <a class="btn btn--line" href="${R}events-archive.html">Архив событий</a>
+      </div>
+      <div class="filter-chips" id="eventFilters" style="margin:8px 0 22px" data-reveal>
         <button type="button" class="chip is-active" data-filter="all">Все</button>
-        <button type="button" class="chip" data-filter="forum">Форумы</button>
-        <button type="button" class="chip" data-filter="breakfast">Завтраки</button>
+        <button type="button" class="chip" data-filter="forum">Форум-группы</button>
+        <button type="button" class="chip" data-filter="breakfast">Бизнес-завтраки</button>
         <button type="button" class="chip" data-filter="masterclass">Мастер-классы</button>
         <button type="button" class="chip" data-filter="networking">Нетворкинг</button>
-        <a class="chip" href="${R}events-archive.html">Архив событий</a>
       </div>
-    </div></section>
-    <section class="section" style="padding-top:10px" data-bg="news"><div class="container">
-      <div class="grid-3" id="eventsGrid" data-reveal-stagger>
-        <a class="event-card" href="${R}event-forum-teh.html" data-type="forum"><div class="event-card__date">Форум</div><h3>Форум «Технологии»</h3><p>Разбор внедрения решений и AI в бизнес-процессах.</p></a>
-        <a class="event-card" href="${R}event-forum-marketing.html" data-type="forum"><div class="event-card__date">Форум</div><h3>Форум «Маркетинг»</h3><p>Глубокий разбор задач продвижения и роста.</p></a>
-        <a class="event-card" href="${R}event-masterclass-prodaji.html" data-type="masterclass"><div class="event-card__date">Мастер-класс</div><h3>Продажи</h3><p>Техники и кейсы участников клуба.</p></a>
-        <a class="event-card" href="${R}event-breakfast-01.html" data-type="breakfast"><div class="event-card__date">Завтрак</div><h3>Бизнес-завтрак</h3><p>Лёгкий нетворкинг и тёплые знакомства.</p></a>
-        <a class="event-card" href="${R}event-breakfast-15.html" data-type="breakfast"><div class="event-card__date">Завтрак</div><h3>Масштабирование</h3><p>Стратегии роста компаний резидентов.</p></a>
-        <a class="event-card" href="${R}event-networking-25.html" data-type="networking"><div class="event-card__date">Нетворкинг</div><h3>Встреча резидентов</h3><p>Знакомства и обмен контактами.</p></a>
-        <article class="event-card" data-type="networking"><div class="event-card__date">Формат</div><h3>Стажировки</h3><p>Погружение в компании резидентов.</p></article>
-        <article class="event-card" data-type="networking"><div class="event-card__date">Формат</div><h3>Разговоры за вином</h3><p>Неформальное общение, где рождаются партнёрства.</p></article>
-        <article class="event-card" data-type="forum"><div class="event-card__date">Открыто</div><h3>День открытых дверей</h3><p>Познакомьтесь с клубом и задайте вопросы команде.</p></article>
+      <div class="events-list" id="eventsGrid" data-reveal-stagger>
+        <a class="event-row" href="${R}event-breakfast-15.html" data-type="breakfast">
+          <div class="event-row__date"><span>15</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Бизнес-завтрак</h3>
+            <p class="event-row__meta">09:00 — 11:00 · Бизнес-дом, ул. 25 Октября, 4</p>
+            <p>Тема: «Как масштабировать бизнес в 2026 году»</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="${R}event-forum-teh.html" data-type="forum">
+          <div class="event-row__date"><span>18</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Форум-группа «Технологии»</h3>
+            <p class="event-row__meta">18:00 — 20:00 · Бизнес-дом, переговорная №2</p>
+            <p>Обсуждение внедрения AI в бизнес-процессы</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="${R}event-masterclass-prodaji.html" data-type="masterclass">
+          <div class="event-row__date"><span>22</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Мастер-класс «Продажи»</h3>
+            <p class="event-row__meta">14:00 — 17:00 · Бизнес-дом, зал мероприятий</p>
+            <p>Практические техники повышения конверсии продаж</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="${R}event-networking-25.html" data-type="networking">
+          <div class="event-row__date"><span>25</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Нетворкинг-вечер</h3>
+            <p class="event-row__meta">19:00 — 21:00 · Бизнес-дом, ул. 25 Октября, 4</p>
+            <p>Неформальное общение и знакомство с новыми резидентами</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="${R}event-forum-marketing.html" data-type="forum">
+          <div class="event-row__date"><span>29</span><em>июля</em></div>
+          <div class="event-row__body">
+            <h3>Форум-группа «Маркетинг»</h3>
+            <p class="event-row__meta">18:00 — 20:00 · Бизнес-дом, переговорная №1</p>
+            <p>Анализ эффективности маркетинговых каналов</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="${R}event-breakfast-01.html" data-type="breakfast">
+          <div class="event-row__date"><span>01</span><em>авг</em></div>
+          <div class="event-row__body">
+            <h3>Бизнес-завтрак</h3>
+            <p class="event-row__meta">09:00 — 11:00 · Бизнес-дом, ул. 25 Октября, 4</p>
+            <p>Тема: «Управление финансами в кризис»</p>
+          </div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
       </div>
       <div style="margin-top:36px;text-align:center" data-reveal>
-        <a class="btn btn--line" href="${R}events-archive.html">Архив событий</a>
-        <a class="btn btn--fill" href="visit.html" style="margin-left:8px" data-cta="events_visit">Стать гостем</a>
+        <a class="btn btn--fill" href="visit.html" data-cta="events_visit">Стать гостем</a>
       </div>
     </div></section>
 `;
+
+const YMAP_LIGHT = 'https://yandex.ru/map-widget/v1/?ll=56.250773%2C58.010456&z=16&pt=56.250773,58.010456,pm2rdm&lang=ru_RU&theme=light';
+const YMAP_DARK = 'https://yandex.ru/map-widget/v1/?ll=56.250773%2C58.010456&z=16&pt=56.250773,58.010456,pm2rdm&lang=ru_RU&theme=dark';
 
 bodies.contacts = `
     <section class="page-hero" data-bg="cta"><div class="container">
@@ -576,15 +667,16 @@ bodies.contacts = `
       <h1 class="page-hero__title">Будем рады знакомству</h1>
       <p class="page-hero__text">Напишите или позвоните — расскажем о гостевом визите и клубе.</p>
     </div></section>
-    <section class="section" style="padding-top:10px" data-bg="grid"><div class="container grid-2">
-      <div class="grid-2" style="grid-template-columns:1fr;gap:18px" data-reveal-stagger>
+    <section class="section" style="padding-top:10px" data-bg="grid"><div class="container contacts-layout">
+      <div class="contacts-layout__info" data-reveal-stagger>
         <article class="contact-card"><h3>Телефон</h3><p><a href="tel:+79630170017">+7 (963) 017-00-17</a><br><a href="tel:+73422919593">+7 (342) 291-95-93</a></p></article>
         <article class="contact-card"><h3>Email</h3><p><a href="mailto:club@delolife.club">club@delolife.club</a></p></article>
         <article class="contact-card"><h3>Адрес</h3><p>г. Пермь, ул. 25 Октября, 4<br>Бизнес-дом «Деловая жизнь»<br><span style="color:var(--muted)">также: ул. Ленина, 68</span></p></article>
         <article class="contact-card"><h3>Соцсети</h3><p><a href="https://t.me/delolife_club" target="_blank" rel="noopener">Telegram</a> · <a href="https://wa.me/79630170017" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://vk.com/delolife.club" target="_blank" rel="noopener">VK</a></p></article>
       </div>
-      <div class="map" data-reveal>
-        <iframe src="https://www.google.com/maps?q=Пермь,+ул.+25+Октября,+4&hl=ru&z=16&output=embed" loading="lazy" title="Карта"></iframe>
+      <div class="map" data-yandex-map data-reveal>
+        <iframe class="map__frame map__frame--light" title="Яндекс Карта — светлая тема" loading="lazy" allowfullscreen src="${YMAP_LIGHT}"></iframe>
+        <iframe class="map__frame map__frame--dark" title="Яндекс Карта — тёмная тема" loading="lazy" allowfullscreen src="${YMAP_DARK}"></iframe>
       </div>
     </div></section>
     <section class="section section--sand" id="form" data-bg="cta">
@@ -614,7 +706,14 @@ bodies.visit = `
       <h1 class="page-hero__title">Почувствуйте атмосферу клуба</h1>
       <p class="page-hero__text">Приходите в гости: познакомьтесь с резидентами, форматами и командой.</p>
     </div></section>
-    <section class="section" style="padding-top:10px" data-bg="why"><div class="container">
+    <section class="section" style="padding-top:10px" data-bg="eco"><div class="container split">
+      <div class="split__media" data-reveal><img src="${A}/atmosphere/dj-12.jpg" alt="Пространство клуба" data-parallax></div>
+      <div class="prose" data-reveal>
+        <h2>Один визит — и атмосфера становится понятной</h2>
+        <p>Вы увидите площадку, познакомитесь с командой и резидентами, зададите вопросы о форматах и резидентстве.</p>
+      </div>
+    </div></section>
+    <section class="section" data-bg="why"><div class="container">
       <p class="eyebrow" data-reveal>Как попасть</p>
       <h2 class="section-title" data-split style="margin-bottom:28px">Три шага к клубу</h2>
       <div class="join-steps" data-reveal-stagger>
@@ -670,13 +769,18 @@ bodies.partnership = `
       <h1 class="page-hero__title">Сотрудничество с клубом</h1>
       <p class="page-hero__text">Спонсорство, экспертные выступления и совместные проекты.</p>
     </div></section>
-    <section class="section" style="padding-top:10px" data-bg="formats"><div class="container grid-3" data-reveal-stagger>
+    <section class="section" style="padding-top:10px" data-bg="formats"><div class="container split">
+      <div class="split__media" data-reveal><img src="${A}/atmosphere/dj-39.jpg" alt="Бренд клуба" data-parallax></div>
+      <div class="prose" data-reveal>
+        <h2>Станьте партнёром «Деловой жизни»</h2>
+        <p>Предложите экспертизу, продукт или спонсорство — аудитория клуба это действующие предприниматели Пермского края.</p>
+        <a class="btn btn--fill" href="mailto:club@delolife.club">Написать о партнёрстве</a>
+      </div>
+    </div></section>
+    <section class="section section--sand" data-bg="why"><div class="container grid-3" data-reveal-stagger>
       <article class="info-card"><h3>События</h3><p>Партнёрство на форумах и мастер-классах клуба.</p></article>
       <article class="info-card"><h3>Экспертиза</h3><p>Выступления для аудитории предпринимателей края.</p></article>
       <article class="info-card"><h3>Комьюнити</h3><p>Доступ к закрытому кругу сильных компаний.</p></article>
-    </div>
-    <div style="margin-top:36px;text-align:center" data-reveal>
-      <a class="btn btn--fill" href="mailto:club@delolife.club">Написать о партнёрстве</a>
     </div></div></section>
 `;
 
@@ -721,14 +825,31 @@ bodies.networking = `
       <h1 class="page-hero__title">Знакомства, которые двигают бизнес</h1>
       <p class="page-hero__text">Форматы клуба для живых встреч, доверия и партнёрств между резидентами.</p>
     </div></section>
-    <section class="section" data-bg="formats"><div class="container grid-3" data-reveal-stagger>
-      <article class="info-card"><h3>Случайные встречи</h3><p>Знакомства один на один с предпринимателями клуба.</p></article>
-      <article class="info-card"><h3>Завтраки</h3><p>Лёгкий нетворкинг в деловой атмосфере.</p></article>
-      <article class="info-card"><h3>Разговоры за вином</h3><p>Неформальный формат, где рождаются сделки и дружба.</p></article>
+    <section class="section" style="padding-top:10px" data-bg="formats"><div class="container split">
+      <div class="split__media" data-reveal><img src="${A}/atmosphere/dj-45.jpg" alt="Нетворкинг клуба" data-parallax></div>
+      <div class="prose" data-reveal>
+        <h2>Живые связи сильнее холодных контактов</h2>
+        <p>В клубе знакомства рождаются на завтраках, форумах, спорте и поездках — там, где видно человека, а не только визитку.</p>
+        <a class="btn btn--fill" href="article-networking-1.html">Читать материал</a>
+      </div>
+    </div></section>
+    <section class="section section--sand" data-bg="news"><div class="container grid-3" data-reveal-stagger>
+      <a class="event-card event-card--media" href="article-networking-1.html">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-26.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">Статья</div><h3>Как работают связи в клубе</h3><p>О пользе живых знакомств и доверия между резидентами.</p>
+      </a>
+      <article class="event-card event-card--media">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-34.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">Формат</div><h3>Завтраки и встречи</h3><p>Лёгкий нетворкинг в деловой атмосфере бизнес-дома.</p>
+      </article>
+      <article class="event-card event-card--media">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-01.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">Формат</div><h3>Разговоры за вином</h3><p>Неформальный формат, где рождаются сделки и дружба.</p>
+      </article>
     </div>
     <div style="margin-top:32px;text-align:center" data-reveal>
-      <a class="btn btn--fill" href="article-networking-1.html">Читать материал</a>
-      <a class="btn btn--line" href="visit.html" style="margin-left:8px">Гостевой визит</a>
+      <a class="btn btn--fill" href="visit.html" data-cta="networking_visit">Стать гостем</a>
+      <a class="btn btn--line" href="blog.html" style="margin-left:8px">Все разделы блога</a>
     </div></div></section>
 `;
 
@@ -738,9 +859,23 @@ bodies.cases = `
       <h1 class="page-hero__title">Результаты внутри сообщества</h1>
       <p class="page-hero__text">Истории сотрудничества и сделок по программе «Покупай у своих».</p>
     </div></section>
-    <section class="section" data-bg="news"><div class="container grid-2" data-reveal-stagger>
-      <a class="event-card" href="article-cases-1.html"><div class="event-card__date">Кейс</div><h3>Сделки внутри клуба</h3><p>Как резиденты усиливают друг друга заказами и рекомендациями.</p></a>
-      <article class="info-card"><h3>500 млн₽+</h3><p>Объём сделок внутри сообщества — живой результат доверия.</p></article>
+    <section class="section" style="padding-top:10px" data-bg="news"><div class="container grid-3" data-reveal-stagger>
+      <a class="event-card event-card--media" href="article-cases-1.html">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-34.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">Кейс</div><h3>Сделки внутри клуба</h3><p>Как резиденты усиливают друг друга заказами и рекомендациями.</p>
+      </a>
+      <article class="event-card event-card--media">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-03.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">Результат</div><h3>500 млн₽+</h3><p>Объём сделок внутри сообщества — живой итог доверия.</p>
+      </article>
+      <article class="event-card event-card--media">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-20.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">Практика</div><h3>Стажировки в компании</h3><p>Экскурсии к резидентам и знакомство с первыми лицами.</p>
+      </article>
+    </div>
+    <div style="margin-top:32px;text-align:center" data-reveal>
+      <a class="btn btn--fill" href="ecosystem.html">Экосистема клуба</a>
+      <a class="btn btn--line" href="blog.html" style="margin-left:8px">Все разделы блога</a>
     </div></div></section>
 `;
 
@@ -750,10 +885,23 @@ bodies.lifhaki = `
       <h1 class="page-hero__title">Практики для руководителей</h1>
       <p class="page-hero__text">Короткие материалы и рабочие приёмы от участников клуба.</p>
     </div></section>
-    <section class="section" data-bg="grid"><div class="container grid-3" data-reveal-stagger>
-      <a class="event-card" href="article-lifhaki-1.html"><div class="event-card__date">Практика</div><h3>Лайфхаки роста</h3><p>Приёмы, которые предприниматели применяют каждый день.</p></a>
-      <a class="event-card" href="blog.html"><div class="event-card__date">Блог</div><h3>Все материалы</h3><p>Подборка статей, кейсов и заметок клуба.</p></a>
-      <a class="event-card" href="events.html"><div class="event-card__date">События</div><h3>Учиться вживую</h3><p>Мастер-классы и форумы с разбором реальных задач.</p></a>
+    <section class="section" style="padding-top:10px" data-bg="grid"><div class="container grid-3" data-reveal-stagger>
+      <a class="event-card event-card--media" href="article-lifhaki-1.html">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-22.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">Практика</div><h3>Лайфхаки роста</h3><p>Приёмы, которые предприниматели применяют каждый день.</p>
+      </a>
+      <article class="event-card event-card--media">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-24.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">Разборы</div><h3>Бизнес-разборы</h3><p>Живой разбор задач с экспертами и резидентами клуба.</p>
+      </article>
+      <a class="event-card event-card--media" href="events.html">
+        <div class="event-card__media"><img src="${A}/atmosphere/dj-07.jpg" alt="" loading="lazy"></div>
+        <div class="event-card__date">События</div><h3>Учиться вживую</h3><p>Мастер-классы и форумы с разбором реальных задач.</p>
+      </a>
+    </div>
+    <div style="margin-top:32px;text-align:center" data-reveal>
+      <a class="btn btn--fill" href="visit.html">Стать гостем</a>
+      <a class="btn btn--line" href="blog.html" style="margin-left:8px">Все разделы блога</a>
     </div></div></section>
 `;
 
@@ -763,17 +911,80 @@ bodies['events-archive'] = `
       <h1 class="page-hero__title">Прошедшие события клуба</h1>
       <p class="page-hero__text">Форумы, завтраки, мастер-классы и нетворкинг — что уже состоялось.</p>
     </div></section>
-    <section class="section" data-bg="news"><div class="container grid-3" data-reveal-stagger>
-      <a class="event-card" href="event-forum-marketing.html"><div class="event-card__date">Форум</div><h3>Маркетинг</h3><p>Разбор задач продвижения и роста.</p></a>
-      <a class="event-card" href="event-forum-teh.html"><div class="event-card__date">Форум</div><h3>Технологии</h3><p>Практика внедрения решений в бизнес.</p></a>
-      <a class="event-card" href="event-masterclass-prodaji.html"><div class="event-card__date">Мастер-класс</div><h3>Продажи</h3><p>Техники и кейсы участников.</p></a>
-      <a class="event-card" href="event-breakfast-01.html"><div class="event-card__date">Завтрак</div><h3>Бизнес-завтрак</h3><p>Нетворкинг в деловом формате.</p></a>
-      <a class="event-card" href="event-breakfast-15.html"><div class="event-card__date">Завтрак</div><h3>Масштабирование</h3><p>Стратегии роста компаний.</p></a>
-      <a class="event-card" href="event-networking-25.html"><div class="event-card__date">Нетворкинг</div><h3>Встреча резидентов</h3><p>Знакомства и обмен контактами.</p></a>
-    </div>
-    <div style="margin-top:32px;text-align:center" data-reveal>
-      <a class="btn btn--fill" href="events.html">Актуальные форматы</a>
-    </div></div></section>
+    <section class="section" data-bg="news"><div class="container">
+      <div class="events-list" data-reveal-stagger>
+        <a class="event-row" href="event-breakfast-15.html" data-type="breakfast">
+          <div class="event-row__date"><span>15</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Бизнес-завтрак</h3><p class="event-row__meta">09:00 — 11:00 · Бизнес-дом</p><p>Тема: «Как масштабировать бизнес в 2026 году»</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-forum-teh.html" data-type="forum">
+          <div class="event-row__date"><span>18</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Форум-группа «Технологии»</h3><p class="event-row__meta">18:00 — 20:00 · переговорная №2</p><p>Обсуждение внедрения AI в бизнес-процессы</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-masterclass-prodaji.html" data-type="masterclass">
+          <div class="event-row__date"><span>22</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Мастер-класс «Продажи»</h3><p class="event-row__meta">14:00 — 17:00 · зал мероприятий</p><p>Практические техники повышения конверсии продаж</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-networking-25.html" data-type="networking">
+          <div class="event-row__date"><span>25</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Нетворкинг-вечер</h3><p class="event-row__meta">19:00 — 21:00 · Бизнес-дом</p><p>Неформальное общение и знакомство с новыми резидентами</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-forum-marketing.html" data-type="forum">
+          <div class="event-row__date"><span>29</span><em>июля</em></div>
+          <div class="event-row__body"><h3>Форум-группа «Маркетинг»</h3><p class="event-row__meta">18:00 — 20:00 · переговорная №1</p><p>Анализ эффективности маркетинговых каналов</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+        <a class="event-row" href="event-breakfast-01.html" data-type="breakfast">
+          <div class="event-row__date"><span>01</span><em>авг</em></div>
+          <div class="event-row__body"><h3>Бизнес-завтрак</h3><p class="event-row__meta">09:00 — 11:00 · Бизнес-дом</p><p>Тема: «Управление финансами в кризис»</p></div>
+          <span class="event-row__more">Подробнее →</span>
+        </a>
+      </div>
+      <div style="margin-top:32px;text-align:center" data-reveal>
+        <a class="btn btn--fill" href="events.html">Актуальные форматы</a>
+      </div>
+    </div></section>
+`;
+
+bodies['event-open-doors'] = `
+    <section class="page-hero" data-bg="formats"><div class="container">
+      <nav class="crumbs" data-reveal>
+        <a href="index.html">Главная</a><span>/</span>
+        <a href="events.html">События</a><span>/</span>
+        <em>День открытых дверей</em>
+      </nav>
+      <p class="eyebrow">12 августа</p>
+      <h1 class="page-hero__title">День открытых дверей «Деловой жизни»</h1>
+      <p class="page-hero__text">Впервые в истории клуба — день, когда можно увидеть сообщество изнутри.</p>
+    </div></section>
+    <section class="section" style="padding-top:10px" data-bg="cta"><div class="container split">
+      <div class="split__media" data-reveal><img src="${A}/atmosphere/dj-03.jpg" alt="День открытых дверей" data-parallax></div>
+      <div class="prose" data-reveal>
+        <p class="eyebrow">Ближайшее событие</p>
+        <h2>Знакомство с клубом за один день</h2>
+        <p>Бизнес-дом, ул. 25 Октября, 4 · Пермь</p>
+        <p>Увидите площадку, познакомитесь с резидентами, узнаете о форматах клуба и программе «Покупай у своих».</p>
+        <ul class="eco__list" style="margin:18px 0">
+          <li>Экскурсия по бизнес-дому</li>
+          <li>Знакомство с командой и резидентами</li>
+          <li>Ответы на вопросы о вступлении</li>
+        </ul>
+        <a class="btn btn--fill" href="visit.html" data-cta="open_doors_visit">Записаться</a>
+        <a class="btn btn--line" href="events.html" style="margin-left:8px">Все события</a>
+      </div>
+    </div></section>
+    <section class="section section--sand" data-bg="news"><div class="container">
+      <h2 class="section-title" data-split style="margin-bottom:28px">Атмосфера клуба</h2>
+      <div class="grid-3" data-reveal-stagger>
+        <div class="split__media" style="min-height:220px"><img src="${A}/atmosphere/dj-34.jpg" alt="" loading="lazy"></div>
+        <div class="split__media" style="min-height:220px"><img src="${A}/atmosphere/dj-01.jpg" alt="" loading="lazy"></div>
+        <div class="split__media" style="min-height:220px"><img src="${A}/atmosphere/dj-12.jpg" alt="" loading="lazy"></div>
+      </div>
+    </div></section>
 `;
 
 bodies.founder = `

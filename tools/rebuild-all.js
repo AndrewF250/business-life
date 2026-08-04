@@ -454,10 +454,7 @@ function updateCss() {
 
 function replaceLinksEverywhere() {
   const renames = {
-    'founder.html': people.find((p) => p.name.includes('Южанинова'))?.page,
-    'petrov.html': people.find((p) => p.name.includes('Коренякин'))?.page,
-    'ivanova.html': people.find((p) => p.name.includes('Волочкова'))?.page,
-    'kozlov.html': people.find((p) => p.name.includes('Сидорук'))?.page
+    'founder.html': people.find((p) => p.name.includes('Южанинова'))?.page
   };
 
   for (const name of fs.readdirSync(root).filter((f) => f.endsWith('.html') || f === 'sitemap.xml')) {

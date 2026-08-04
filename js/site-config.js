@@ -10,7 +10,9 @@ window.SITE_CONFIG = {
   director: 'Наталья Цаюкова',
   hours: 'Пн–Пт: 9:00 — 18:00',
   guestFormUrl: 'https://forms.yandex.ru/cloud/643659a8c09c0200f93623d0/',
-  mapEmbed: 'https://www.google.com/maps?q=Пермь,+ул.+25+Октября,+4&hl=ru&z=16&output=embed',
+  mapEmbedLight: 'https://yandex.ru/map-widget/v1/?ll=56.250773%2C58.010456&z=16&pt=56.250773,58.010456,pm2rdm&lang=ru_RU&theme=light',
+  mapEmbedDark: 'https://yandex.ru/map-widget/v1/?ll=56.250773%2C58.010456&z=16&pt=56.250773,58.010456,pm2rdm&lang=ru_RU&theme=dark',
+  mapEmbed: 'https://yandex.ru/map-widget/v1/?ll=56.250773%2C58.010456&z=16&pt=56.250773,58.010456,pm2rdm&lang=ru_RU&theme=light',
   social: {
     telegram: 'https://t.me/delolife_club',
     whatsapp: 'https://wa.me/79630170017',

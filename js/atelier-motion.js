@@ -226,6 +226,19 @@
     }
   })();
 
+  /* Yandex map theme sync */
+  (function initYandexMapTheme() {
+    function syncMaps() {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      document.querySelectorAll('[data-yandex-map]').forEach(function (wrap) {
+        wrap.classList.toggle('is-dark', dark);
+      });
+    }
+    syncMaps();
+    var obs = new MutationObserver(syncMaps);
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  })();
+
   /* Analytics + UTM + CTA (full main root) */
   (function initTracking() {
     try {
@@ -627,7 +640,7 @@
   document.querySelectorAll('[data-split]').forEach(function (title) {
     var text = title.textContent.trim();
     title.innerHTML = text.split('').map(function (c) {
-      return c === ' ' ? ' ' : '<i class="ch">' + c + '</i>';
+      return c === ' ' ? ' ' : '<span class="ch">' + c + '</span>';
     }).join('');
     gsap.from(title.querySelectorAll('.ch'), {
       y: 40, opacity: 0, rotateX: -60, stagger: 0.016, duration: 0.55, ease: 'power3.out',
