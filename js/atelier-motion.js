@@ -609,15 +609,17 @@
   gsap.utils.toArray('[data-reveal]').forEach(function (el) {
     gsap.from(el, {
       y: 48, opacity: 0, duration: 0.9, ease: 'power3.out',
-      scrollTrigger: { trigger: el, start: 'top 88%' }
+      immediateRender: false,
+      scrollTrigger: { trigger: el, start: 'top 88%', once: true, toggleActions: 'play none none none' }
     });
   });
   gsap.utils.toArray('[data-reveal-stagger]').forEach(function (wrap) {
     var kids = wrap.children;
     gsap.from(kids, {
       y: 36, opacity: 0, stagger: 0.08, duration: 0.75, ease: 'power3.out',
-      clearProps: 'transform',
-      scrollTrigger: { trigger: wrap, start: 'top 82%' }
+      immediateRender: false,
+      clearProps: 'transform,opacity',
+      scrollTrigger: { trigger: wrap, start: 'top 82%', once: true, toggleActions: 'play none none none' }
     });
   });
 
@@ -670,7 +672,8 @@
       '<div class="bg-fx__blob bg-fx__blob--1"></div>' +
       '<div class="bg-fx__blob bg-fx__blob--2"></div>' +
       '<div class="bg-fx__blob bg-fx__blob--3"></div>' +
-      '<div class="bg-fx__blob bg-fx__blob--4"></div>';
+      '<div class="bg-fx__blob bg-fx__blob--4"></div>' +
+      '<div class="bg-fx__spot"></div>';
     document.body.insertBefore(fx, document.body.firstChild);
 
     var presets = {
@@ -695,26 +698,53 @@
       'thank-you': { d1: 10, d2: 12, d3: 11, d4: 9, a: 60, rot: 10, scale: 1.2 }
     };
     var p = presets[page] || presets.index;
-    gsap.to('.bg-fx__blob--1', { x: p.a, y: p.a * 0.6, rotation: p.rot, duration: p.d1, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-    gsap.to('.bg-fx__blob--2', { x: -p.a * 0.8, y: -p.a * 0.45, rotation: -p.rot * 0.7, duration: p.d2, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-    gsap.to('.bg-fx__blob--3', { x: p.a * 0.5, y: -p.a * 0.7, scale: p.scale, duration: p.d3, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-    gsap.to('.bg-fx__blob--4', { x: -p.a * 0.4, y: p.a * 0.5, scale: p.scale * 1.05, rotation: p.rot * 0.5, duration: p.d4, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-    gsap.to('.bg-fx__blob--1', { opacity: 0.55, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-    gsap.to('.bg-fx__blob--2', { opacity: 0.4, duration: 5.5, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.8 });
-    gsap.to('.bg-fx__blob--3', { opacity: 0.35, duration: 6.2, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 1.2 });
-    gsap.to('.bg-fx__wash', { opacity: 0.85, duration: 7, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+    if (window.gsap) {
+      gsap.to('.bg-fx__blob--1', { x: p.a * 0.7, y: p.a * 0.4, duration: p.d1, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      gsap.to('.bg-fx__blob--2', { x: -p.a * 0.55, y: -p.a * 0.3, duration: p.d2, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      gsap.to('.bg-fx__blob--3', { x: p.a * 0.35, y: -p.a * 0.45, duration: p.d3, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      gsap.to('.bg-fx__blob--1', { opacity: 0.34, duration: 5, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      gsap.to('.bg-fx__blob--2', { opacity: 0.26, duration: 6.5, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 0.8 });
+      gsap.to('.bg-fx__blob--3', { opacity: 0.2, duration: 7, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 1.1 });
+    }
 
-    /* Section spotlight follow on fine pointers */
+    /* One global smooth cursor glow — no per-section staircase */
     if (fine) {
-      document.querySelectorAll('[data-bg]').forEach(function (sec) {
-        sec.addEventListener('mousemove', function (e) {
-          var r = sec.getBoundingClientRect();
-          var x = ((e.clientX - r.left) / r.width) * 100;
-          var y = ((e.clientY - r.top) / r.height) * 100;
-          sec.style.setProperty('--spot-x', x + '%');
-          sec.style.setProperty('--spot-y', y + '%');
-        });
+      var spot = fx.querySelector('.bg-fx__spot');
+      var layer = document.createElement('div');
+      layer.className = 'bg-fx__mouse';
+      fx.appendChild(layer);
+      /* Move animated blobs into mouse layer so cursor offset never fights GSAP tweens */
+      fx.querySelectorAll('.bg-fx__blob').forEach(function (b) { layer.appendChild(b); });
+
+      var tx = window.innerWidth * 0.5;
+      var ty = window.innerHeight * 0.35;
+      var cx = tx;
+      var cy = ty;
+      var mx = 0;
+      var my = 0;
+      var tmx = 0;
+      var tmy = 0;
+      window.addEventListener('pointermove', function (e) {
+        tx = e.clientX;
+        ty = e.clientY;
+        tmx = (e.clientX / window.innerWidth - 0.5) * 40;
+        tmy = (e.clientY / window.innerHeight - 0.5) * 28;
+        fx.classList.add('is-cursor');
+      }, { passive: true });
+      document.documentElement.addEventListener('mouseleave', function () {
+        fx.classList.remove('is-cursor');
+        tmx = 0;
+        tmy = 0;
       });
+      (function tick() {
+        cx += (tx - cx) * 0.1;
+        cy += (ty - cy) * 0.1;
+        mx += (tmx - mx) * 0.06;
+        my += (tmy - my) * 0.06;
+        if (spot) spot.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0) translate(-50%,-50%)';
+        layer.style.transform = 'translate3d(' + mx + 'px,' + my + 'px,0)';
+        requestAnimationFrame(tick);
+      })();
     }
   })();
 
